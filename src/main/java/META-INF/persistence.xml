@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="turbomed-underwriting">
+		<class>ke.co.turbosoft.med.entity.User</class>
+		<class>ke.co.turbosoft.med.entity.Role</class>
+		<class>ke.co.turbosoft.med.entity.Corporate</class>
+		<class>ke.co.turbosoft.med.entity.CorpAnniv</class>
+		<class>ke.co.turbosoft.med.entity.LocalDatePersistenceConverter</class>
+		<class>ke.co.turbosoft.med.entity.Category</class>
+		<class>ke.co.turbosoft.med.entity.CorpBenefit</class>
+	</persistence-unit>
+</persistence>
