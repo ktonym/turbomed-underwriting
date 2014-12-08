@@ -1,12 +1,7 @@
 package ke.co.turbosoft.med.entity;
 
-import java.io.Serializable;
-import java.lang.Double;
-import java.lang.Integer;
-import java.lang.String;
 import javax.persistence.*;
-import ke.co.turbosoft.med.entity.CorpBenefit;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Entity implementation class for Entity: CorpBenefit
@@ -14,71 +9,89 @@ import java.util.Collection;
  */
 @Entity
 
-public class CorpBenefit implements Serializable {
+public class CorpBenefit extends AbstractEntity {
 
-	   
-	@Id
-	@GeneratedValue
-	private Integer id;
 	private String name;
 	private Double upperLimit;
 	private String memberType;
 	private boolean sharing;
 	private static final long serialVersionUID = 1L;
-	@ManyToMany
-	private Collection<CorpBenefit> corpBenefit;
-	@ManyToMany(mappedBy = "corpBenefit")
-	private Collection<CorpBenefit> corpBenefit_1;
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="parentBenefit_id")
+	private CorpBenefit parentBenefit;
+	@OneToMany(mappedBy = "parentBenefit")
+	private List<CorpBenefit> subBenefit;
+    @OneToMany(mappedBy = "benefit")
+    private List<CorpMemberBenefit> corpMemberBenefits;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-	public CorpBenefit() {
-		super();
-	}   
-	public Integer getId() {
-		return this.id;
-	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}   
-	public String getName() {
-		return this.name;
-	}
+    public CorpBenefit() {
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}   
-	public Double getUpperLimit() {
-		return this.upperLimit;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setUpperLimit(Double upperLimit) {
-		this.upperLimit = upperLimit;
-	}   
-	public String getMemberType() {
-		return this.memberType;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setMemberType(String memberType) {
-		this.memberType = memberType;
-	}   
-	public boolean getSharing() {
-		return this.sharing;
-	}
+    public Double getUpperLimit() {
+        return upperLimit;
+    }
 
-	public void setSharing(boolean sharing) {
-		this.sharing = sharing;
-	}
-	public Collection<CorpBenefit> getCorpBenefit() {
-	    return corpBenefit;
-	}
-	public void setCorpBenefit(Collection<CorpBenefit> param) {
-	    this.corpBenefit = param;
-	}
-	public Collection<CorpBenefit> getCorpBenefit_1() {
-	    return corpBenefit_1;
-	}
-	public void setCorpBenefit_1(Collection<CorpBenefit> param) {
-	    this.corpBenefit_1 = param;
-	}
-   
+    public void setUpperLimit(Double upperLimit) {
+        this.upperLimit = upperLimit;
+    }
+
+    public String getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(String memberType) {
+        this.memberType = memberType;
+    }
+
+    public boolean isSharing() {
+        return sharing;
+    }
+
+    public void setSharing(boolean sharing) {
+        this.sharing = sharing;
+    }
+
+    public CorpBenefit getParentBenefit() {
+        return parentBenefit;
+    }
+
+    public void setParentBenefit(CorpBenefit parentBenefit) {
+        this.parentBenefit = parentBenefit;
+    }
+
+    public List<CorpBenefit> getSubBenefit() {
+        return subBenefit;
+    }
+
+    public void setSubBenefit(List<CorpBenefit> subBenefit) {
+        this.subBenefit = subBenefit;
+    }
+
+    public List<CorpMemberBenefit> getCorpMemberBenefits() {
+        return corpMemberBenefits;
+    }
+
+    public void setCorpMemberBenefits(List<CorpMemberBenefit> corpMemberBenefits) {
+        this.corpMemberBenefits = corpMemberBenefits;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

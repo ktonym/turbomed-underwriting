@@ -1,55 +1,51 @@
 package ke.co.turbosoft.med.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import ke.co.turbosoft.med.entity.CorpBenefit;
-import java.util.Collection;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-public class Category {
+public class Category extends AbstractEntity{
 
-	@Id
-	@GeneratedValue
-	private Integer id;
-	
 	private char cat;
-	
 	private String description;
+	@OneToMany(mappedBy = "category")
+	private List<CorpBenefit> corpBenefits;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "anniv_id")
+    private CorpAnniv anniv;
 
-	@OneToMany
-	private Collection<CorpBenefit> corpBenefit;
+    public Category() {
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public char getCat() {
+        return cat;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setCat(char cat) {
+        this.cat = cat;
+    }
 
-	public char getCat() {
-		return cat;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setCat(char cat) {
-		this.cat = cat;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public List<CorpBenefit> getCorpBenefits() {
+        return corpBenefits;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setCorpBenefits(List<CorpBenefit> corpBenefits) {
+        this.corpBenefits = corpBenefits;
+    }
 
-	public Collection<CorpBenefit> getCorpBenefit() {
-	    return corpBenefit;
-	}
+    public CorpAnniv getAnniv() {
+        return anniv;
+    }
 
-	public void setCorpBenefit(Collection<CorpBenefit> param) {
-	    this.corpBenefit = param;
-	}
+    public void setAnniv(CorpAnniv anniv) {
+        this.anniv = anniv;
+    }
 }

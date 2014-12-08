@@ -1,33 +1,32 @@
 package ke.co.turbosoft.med.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
-public class Role {
-	
-	@Id
-	@GeneratedValue
-	private Integer id;
-	
+public class Role extends AbstractEntity{
+
 	private String name;
+    @OneToMany(mappedBy = "role")
+    private List<UserRole> userRoles;
 
-	public Integer getId() {
-		return id;
-	}
+    public Role() {
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+    public List<UserRole> getUserRoles() {
+        return userRoles;
+    }
 
+    public void setUserRoles(List<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
 }

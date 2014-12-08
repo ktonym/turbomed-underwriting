@@ -1,51 +1,50 @@
 package ke.co.turbosoft.med.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
-public class User {
-	@Id
-	@GeneratedValue
-	private Integer id;
-	
-	private String name;
-	
+public class User extends AbstractEntity {
+
+	private String username;
 	private String email;
-	
 	private String password;
+    @OneToMany(mappedBy = "user")
+    private List<UserRole> userRoles;
 
-	public String getName() {
-		return name;
-	}
+    public User() {
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public List<UserRole> getUserRoles() {
+        return userRoles;
+    }
 
+    public void setUserRoles(List<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
 }
