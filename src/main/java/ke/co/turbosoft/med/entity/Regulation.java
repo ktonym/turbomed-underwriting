@@ -15,7 +15,7 @@ public class Regulation extends AbstractEntity {
     private Integer commRate;
     private Integer whTaxRate;
     private Boolean coPay;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "regulation")
     private List<CoPay> coPayList;
 
     public Regulation() {

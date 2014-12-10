@@ -15,6 +15,7 @@ public class CorpBenefit extends AbstractEntity {
 	private Double upperLimit;
 	private String memberType;
 	private boolean sharing;
+    private Integer waitingPeriod;
 	private static final long serialVersionUID = 1L;
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="parentBenefit_id")
@@ -61,6 +62,14 @@ public class CorpBenefit extends AbstractEntity {
 
     public void setSharing(boolean sharing) {
         this.sharing = sharing;
+    }
+
+    public Integer getWaitingPeriod() {
+        return waitingPeriod;
+    }
+
+    public void setWaitingPeriod(Integer waitingPeriod) {
+        this.waitingPeriod = waitingPeriod;
     }
 
     public CorpBenefit getParentBenefit() {

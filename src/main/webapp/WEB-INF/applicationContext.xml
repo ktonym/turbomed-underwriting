@@ -17,7 +17,7 @@
 	
 	<jdbc:embedded-database type="HSQL" id="dataSource"/>
 	
-	<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="packagesToScan" value="ke.co.turbosoft.med.entity"/>
 		<property name="dataSource" ref="dataSource"/>
 		<property name="jpaProperties">
@@ -35,6 +35,8 @@
 	
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
+        <property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	</bean>
-	
+
+    <jpa:repositories base-package="ke.co.turbosoft.med.repository"/>
 </beans>

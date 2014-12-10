@@ -11,4 +11,5 @@ public interface CorpBenefitService {
     List<CorpBenefit> findAll();
     void suspend(CorpBenefit corpBenefit);
     CorpBenefit add(CorpBenefit corpBenefit);
+    void remove(CorpBenefit corpBenefit);
 }

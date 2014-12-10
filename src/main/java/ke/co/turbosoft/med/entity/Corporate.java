@@ -18,6 +18,8 @@ public class Corporate extends AbstractEntity {
     private List<ContactInfo> contactInfo;
     @Convert(converter=LocalDatePersistenceConverter.class)
     private LocalDate joined;
+    @OneToMany(mappedBy = "corporate")
+    private List<GroupRate> rates;
 
     public Corporate() {
     }
@@ -84,5 +86,13 @@ public class Corporate extends AbstractEntity {
 
     public void setJoined(LocalDate joined) {
         this.joined = joined;
+    }
+
+    public List<GroupRate> getRates() {
+        return rates;
+    }
+
+    public void setRates(List<GroupRate> rates) {
+        this.rates = rates;
     }
 }
