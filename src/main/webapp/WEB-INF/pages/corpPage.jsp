@@ -6,15 +6,15 @@
 <c:url var="prevUrl" value="/corporates/${currentIndex - 1}" />
 <c:url var="nextUrl" value="/corporates/${currentIndex + 1}" />
 
-<div class="navbar-collapse collapse">
-    <ul>
+<div>
+    <ul class="pagination">
         <c:choose>
             <c:when test="${currentIndex == 1}">
-                <li class="disabled"><a href="#">&lt;&lt;</a></li>
+                <li class="disabled"><a href="#">&laquo;</a></li>
                 <li class="disabled"><a href="#">&lt;</a></li>
             </c:when>
             <c:otherwise>
-                <li><a href="${firstUrl}">&lt;&lt;</a></li>
+                <li><a href="${firstUrl}">&laquo;</a></li>
                 <li><a href="${prevUrl}">&lt;</a></li>
             </c:otherwise>
         </c:choose>
@@ -34,11 +34,11 @@
         <c:choose>
             <c:when test="${currentIndex == corpPage.totalPages}">
                 <li class="disabled"><a href="#">&gt;</a></li>
-                <li class="disabled"><a href="#">&gt;&gt;</a></li>
+                <li class="disabled"><a href="#">&raquo;;</a></li>
             </c:when>
             <c:otherwise>
                 <li><a href="${nextUrl}">&gt;</a></li>
-                <li><a href="${lastUrl}">&gt;&gt;</a></li>
+                <li><a href="${lastUrl}">&raquo;</a></li>
             </c:otherwise>
         </c:choose>
 
