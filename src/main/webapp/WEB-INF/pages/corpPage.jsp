@@ -7,7 +7,7 @@
 <c:url var="nextUrl" value="/corporates/${currentIndex + 1}" />
 
 <div>
-    <ul class="pagination">
+    <ul class="pagination pagination-small">
         <c:choose>
             <c:when test="${currentIndex == 1}">
                 <li class="disabled"><a href="#">&laquo;</a></li>
@@ -34,7 +34,7 @@
         <c:choose>
             <c:when test="${currentIndex == corpPage.totalPages}">
                 <li class="disabled"><a href="#">&gt;</a></li>
-                <li class="disabled"><a href="#">&raquo;;</a></li>
+                <li class="disabled"><a href="#">&raquo;</a></li>
             </c:when>
             <c:otherwise>
                 <li><a href="${nextUrl}">&gt;</a></li>
@@ -45,7 +45,7 @@
     </ul>
 </div>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover table-condensed">
     <thead>
     <tr>
         <th>Abbreviation</th>
@@ -55,22 +55,33 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${corpList}" var="corp">
-        <tr>
-            <td>
-                    ${corp.abbreviation}
-            </td>
-            <td>
-                    ${corp.name}
-            </td>
-            <td>
-                    ${corp.email}
-            </td>
-            <td>
-                <span class="glyphicon glyphicon-edit"></span>edit
-            </td>
-        </tr>
-    </c:forEach>
+    
+    <c:choose>
+    	<c:when test="${corpList.isEmpty()}">
+    		<div class="alert alert-warning" role="alert">There are no more items to display!</div>
+    	</c:when>
+    	<c:otherwise>
+    		<c:forEach items="${corpList}" var="corp">
+		        <tr>
+		            <td>
+		                    ${corp.abbreviation}
+		            </td>
+		            <td>
+		                    ${corp.name}
+		            </td>
+		            <td>
+		                    ${corp.email}
+		            </td>
+		            <td>
+		            	<span class="glyphicon glyphicon-edit"></span>
+		            	<a href="/corporates/edit/${corp.id}">edit</a>
+		            </td>
+		        </tr>
+    		</c:forEach>    	
+    	</c:otherwise>
+    </c:choose>
+    
+    
     </tbody>
 </table>
 

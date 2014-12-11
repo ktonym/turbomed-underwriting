@@ -21,6 +21,11 @@
 </head>
 <body>
 
+<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx" %>
+
+<tilesx:useAttribute name="current"/>
+
+
     <div class="container">
 
       <!-- Static navbar -->
@@ -36,12 +41,21 @@
             <a class="navbar-brand" href="#">Medical Underwriting</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href='<spring:url value="/"/>'>Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href='<spring:url value="/corporate" />'>Corporates</a></li>
-              <li><a href='<spring:url value="/corporates" />'>Corporate Pages</a></li>
-              <li><a href="#">Contact</a></li>
+            <ul class="nav nav-pills">
+              <li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/"/>'><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li class="${current == 'marketing' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-cutlery"></span> Marketing</a></li>
+              <li class="${current == 'corporates' ? 'active' : ''}"><a href='<spring:url value="/corporates/1" />'>Corporates</a></li>
+              <li class="${current == 'care' ? 'active' : ''}"><a href='<spring:url value="/care" />'><span class="glyphicon glyphicon-tint"></span>Care</a></li>
+              <li class="${current == 'reports' ? 'active' : ''}"><a href='<spring:url value="/reports" />'>Reports</a></li>
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Claims<b class="caret"></b></a>
+              	<ul class="dropdown-menu">
+              		<li><a href='<spring:url value="/claims/capture" />'>Capture</a></li>
+              		<li><a href='<spring:url value="/claims/batch" />'>Batch</a></li>
+              		<li><a href='<spring:url value="/claims/vetting" />'>Vet</a></li>
+              		<li><a href='<spring:url value="/claims/authorize" />'>Authorize</a></li>
+              	</ul>
+              </li>
+              <li class="${current == 'register' ? 'active' : ''}"><a href='<spring:url value="/register" />'>Register</a></li>
               
             </ul>
           </div><!--/.nav-collapse -->

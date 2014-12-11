@@ -12,21 +12,21 @@
         </tr>
     </thead>
     <tbody>
-        <c:forEach items="${corps}" var="corp">
+       
             <tr>
                 <td>
                     <span class="glyphicon glyphicon-edit"></span>
                 </td>
                 <td>
-                    ${corp.abbreviation}
+                    ${corporate.abbreviation}
                 </td>
                 <td>
-                    ${corp.name}
+                    ${corporate.name}
                 </td>
                 <td>
-                    ${corp.email}
+                    ${corporate.email}
                 </td>
             </tr>
-        </c:forEach>
+        
     </tbody>
 </table>

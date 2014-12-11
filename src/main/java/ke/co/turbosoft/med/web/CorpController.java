@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by akipkoech on 12/10/14.
  */
 @Controller
+@RequestMapping("/corporates")
 public class CorpController {
 
     @Autowired
@@ -25,14 +26,15 @@ public class CorpController {
         return "corps";
     }
 
-    @RequestMapping(value = "/corporates/{pageNumber}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{pageNumber}",method = RequestMethod.GET)
     public String getCorporatePage(@PathVariable Integer pageNumber, Model model){
 
         Page<Corporate> page=corporateService.getCorporates(pageNumber);
         int current = page.getNumber()+1;
-        int begin = Math.max(1, current - 1);
+        int begin = Math.max(1, current - 2);
         int end = Math.min(begin + 2, page.getTotalPages());
 
+        
         model.addAttribute("corpPage",page);
         model.addAttribute("corpList", page.getContent());
         model.addAttribute("beginIndex",begin);
@@ -42,7 +44,7 @@ public class CorpController {
 
     }
 
-    @RequestMapping(value = "/corporates/edit/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/edit/{id}",method = RequestMethod.GET)
     public String editCorporate(@PathVariable Integer id, Model model){
         Corporate corporate=corporateService.search(id);
         model.addAttribute("corporate", corporate);

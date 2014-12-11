@@ -8,5 +8,11 @@
 		<class>ke.co.turbosoft.med.entity.LocalDatePersistenceConverter</class>
 		<class>ke.co.turbosoft.med.entity.Category</class>
 		<class>ke.co.turbosoft.med.entity.CorpBenefit</class>
+		<class>ke.co.turbosoft.med.entity.AbstractEntity</class>
+		<class>ke.co.turbosoft.med.entity.Agency</class>
+		<class>ke.co.turbosoft.med.entity.Agent</class>
+		<class>ke.co.turbosoft.med.entity.Broker</class>
+		<class>ke.co.turbosoft.med.entity.ContactInfo</class>
+		<class>ke.co.turbosoft.med.entity.CoPay</class>
 	</persistence-unit>
 </persistence>
