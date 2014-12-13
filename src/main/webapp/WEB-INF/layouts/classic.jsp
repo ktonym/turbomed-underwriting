@@ -43,10 +43,10 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav nav-pills">
               <li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/"/>'><span class="glyphicon glyphicon-home"></span> Home</a></li>
-              <li class="${current == 'marketing' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-cutlery"></span> Marketing</a></li>
+              <%--<li class="${current == 'marketing' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-cutlery"></span> Marketing</a></li>--%>
               <li class="${current == 'corporates' ? 'active' : ''}"><a href='<spring:url value="/corporates/1" />'>Corporates</a></li>
-              <li class="${current == 'care' ? 'active' : ''}"><a href='<spring:url value="/care" />'><span class="glyphicon glyphicon-tint"></span>Care</a></li>
-              <li class="${current == 'reports' ? 'active' : ''}"><a href='<spring:url value="/reports" />'>Reports</a></li>
+              <%--<li class="${current == 'care' ? 'active' : ''}"><a href='<spring:url value="/care" />'><span class="glyphicon glyphicon-tint"></span>Care</a></li>--%>
+              <%--<li class="${current == 'reports' ? 'active' : ''}"><a href='<spring:url value="/reports" />'>Reports</a></li>--%>
               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Claims<b class="caret"></b></a>
               	<ul class="dropdown-menu">
               		<li><a href='<spring:url value="/claims/capture" />'>Capture</a></li>
@@ -55,6 +55,7 @@
               		<li><a href='<spring:url value="/claims/authorize" />'>Authorize</a></li>
               	</ul>
               </li>
+              <li class="${current == 'users' ? 'active' : ''}"><a href='<spring:url value="/users" />'>Users</a></li>
               <li class="${current == 'register' ? 'active' : ''}"><a href='<spring:url value="/register" />'>Register</a></li>
               
             </ul>

@@ -12,6 +12,8 @@ public class CorpAnniv extends AbstractEntity {
 	private LocalDate startDate;
 	@Convert(converter=LocalDatePersistenceConverter.class)
 	private LocalDate endDate;
+    @Convert(converter=LocalDatePersistenceConverter.class)
+    private LocalDate renewalDate;
 	@OneToMany(mappedBy = "anniv")
 	private List<Category> category;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -46,6 +48,14 @@ public class CorpAnniv extends AbstractEntity {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public LocalDate getRenewalDate() {
+        return renewalDate;
+    }
+
+    public void setRenewalDate(LocalDate renewalDate) {
+        this.renewalDate = renewalDate;
     }
 
     public List<Category> getCategory() {

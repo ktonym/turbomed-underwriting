@@ -103,4 +103,9 @@ public class CorpBenefit extends AbstractEntity {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public boolean isMainBenefit(){
+        return (this.getParentBenefit() == null);
+    }
+
 }

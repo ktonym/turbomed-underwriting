@@ -1,27 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../layouts/taglib.jsp" %>
 
 <table class="table table-bordered">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Abbreviation</th>
-            <th>Scheme Name</th>
-            <th>Email address</th>
-            <th></th>
-        </tr>
-    </thead>
+
     <tbody>
        
             <tr>
                 <td>
-                    <span class="glyphicon glyphicon-edit"></span>
+                    Abbreviation:
                 </td>
                 <td>
                     ${corporate.abbreviation}
                 </td>
+            </tr>
+            <tr>
+                <td>
+                    Name:
+                </td>
                 <td>
                     ${corporate.name}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email:
                 </td>
                 <td>
                     ${corporate.email}
