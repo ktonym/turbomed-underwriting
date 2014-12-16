@@ -29,25 +29,29 @@
     <div class="container">
 
       <!-- Static navbar -->
-      <nav class="navbar navbar-default" role="navigation">
+      <%--<nav class="navbar navbar-default" role="navigation">--%>
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
+              <%--<span class="icon-bar"></span>--%>
+              <%--<span class="icon-bar"></span>--%>
+              <%--<span class="icon-bar"></span>--%>
             </button>
             <a class="navbar-brand" href="#">Medical Underwriting</a>
           </div>
-          <div id="navbar" class="navbar-collapse collapse">
+          <%--<div id="navbar" class="navbar-collapse collapse">--%>
             <ul class="nav nav-pills">
+
               <li class="${current == 'index' ? 'active' : ''}"><a href='<spring:url value="/"/>'><span class="glyphicon glyphicon-home"></span> Home</a></li>
               <%--<li class="${current == 'marketing' ? 'active' : ''}"><a href="#"><span class="glyphicon glyphicon-cutlery"></span> Marketing</a></li>--%>
               <li class="${current == 'corporates' ? 'active' : ''}"><a href='<spring:url value="/corporates/1" />'>Corporates</a></li>
-              <%--<li class="${current == 'care' ? 'active' : ''}"><a href='<spring:url value="/care" />'><span class="glyphicon glyphicon-tint"></span>Care</a></li>--%>
+              <%--<li class="${current == 'care' ? 'active' : ''}"><a href='<sprtable table-bordered table-hover table-condenseding:url value="/care" />'><span class="glyphicon glyphicon-tint"></span>Care</a></li>--%>
               <%--<li class="${current == 'reports' ? 'active' : ''}"><a href='<spring:url value="/reports" />'>Reports</a></li>--%>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Claims<b class="caret"></b></a>
+              <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      Claims<b class="caret"></b>
+                  </a>
               	<ul class="dropdown-menu">
               		<li><a href='<spring:url value="/claims/capture" />'>Capture</a></li>
               		<li><a href='<spring:url value="/claims/batch" />'>Batch</a></li>
@@ -59,9 +63,9 @@
               <li class="${current == 'register' ? 'active' : ''}"><a href='<spring:url value="/register" />'>Register</a></li>
               
             </ul>
-          </div><!--/.nav-collapse -->
+          <%--</div><!--/.nav-collapse -->--%>
         </div><!--/.container-fluid -->
-      </nav>
+      <%--</nav>--%>
 
    <tiles:insertAttribute name="body"/>
 
