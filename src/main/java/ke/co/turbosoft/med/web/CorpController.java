@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Created by akipkoech on 12/10/14.
@@ -19,6 +22,11 @@ public class CorpController {
 
     @Autowired
     private CorporateService corporateService;
+
+    @ModelAttribute("corporate")
+    public Corporate create(){
+        return new Corporate();
+    }
 
     @RequestMapping("/corporate")
     public String getCorporates(Model model){
@@ -49,6 +57,23 @@ public class CorpController {
         Corporate corporate=corporateService.search(id);
         model.addAttribute("corporate", corporate);
         return "corporate";
+    }
+
+    @RequestMapping(value="/add")
+    public String showRegistration(){
+        return "corp-register";
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String doRegistration(@ModelAttribute("corporate") Corporate corporate, BindingResult result /*, RedirectAttributes redirectAttributes*/){
+
+        if(result.hasErrors()){
+            return "add";
+        }
+
+        corporateService.save(corporate);
+        //redirectAttributes.addFlashAttribute("success",true);
+        return "redirect:add?success=true";
     }
 
 

@@ -6,6 +6,9 @@
 <c:url var="prevUrl" value="/corporates/${currentIndex - 1}" />
 <c:url var="nextUrl" value="/corporates/${currentIndex + 1}" />
 
+<c:url var="newCorp" value="/corporates/add" />
+
+
 <div>
     <ul class="pagination pagination-small">
         <c:choose>
@@ -43,7 +46,10 @@
         </c:choose>
 
     </ul>
+
+    <a href="${newCorp}">Create new</a>
 </div>
+
 
 <c:choose>
     	<c:when test="${corpList.isEmpty()}">

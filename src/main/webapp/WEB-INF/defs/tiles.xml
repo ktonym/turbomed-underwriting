@@ -15,7 +15,7 @@
 
     <definition name="corporate" extends="common">
         <put-attribute name="title" value="TurboMed Corporate" />
-        <put-attribute name="body" value="/WEB-INF/pages/corporate.jsp" />
+        <put-attribute name="body" value="/WEB-INF/pages/corp-detail.jsp" />
         <put-attribute name="current" value="corporates" />
     </definition>
 
@@ -24,7 +24,13 @@
         <put-attribute name="body" value="/WEB-INF/pages/corpPage.jsp" />
         <put-attribute name="current" value="corporates" />
     </definition>
-    
+
+    <definition name="corp-register" extends="common">
+        <put-attribute name="title" value="TurboMed User registration" />
+        <put-attribute name="body" value="/WEB-INF/pages/corp-register.jsp" />
+        <put-attribute name="current" value="corporates" />
+    </definition>
+
     <definition name="claims" extends="common">
         <put-attribute name="title" value="TurboMed Claims" />
         <put-attribute name="body" value="/WEB-INF/pages/corpPage.jsp" />
@@ -48,7 +54,7 @@
         <put-attribute name="body" value="/WEB-INF/pages/users.jsp" />
         <put-attribute name="current" value="users" />
     </definition>
-    
+
     <definition name="user-register" extends="common">
         <put-attribute name="title" value="TurboMed User registration" />
         <put-attribute name="body" value="/WEB-INF/pages/user-register.jsp" />

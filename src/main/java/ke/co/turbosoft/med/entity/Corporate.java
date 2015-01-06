@@ -22,6 +22,7 @@ public class Corporate extends AbstractEntity {
     private List<GroupRate> rates;
 
     public Corporate() {
+        this.setJoined(LocalDate.now());
     }
 
     public String getName() {

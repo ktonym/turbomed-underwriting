@@ -2,6 +2,7 @@ package ke.co.turbosoft.med.entity;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,6 +21,8 @@ public class Principal extends AbstractEntity {
     private LocalDate dob;
     @OneToMany(mappedBy = "principal")
     private List<Member> dependants;
+    @OneToMany(mappedBy = "principal")
+    private List<CategoryPrincipal> categoryPrincipal;
 
     public Principal() {
     }

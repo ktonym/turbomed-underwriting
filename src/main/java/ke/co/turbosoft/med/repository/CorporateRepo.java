@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ke.co.turbosoft.med.entity.CorpAnniv;
@@ -13,5 +14,8 @@ import org.springframework.data.repository.query.Param;
  * Created by akipkoech on 12/8/14.
  */
 public interface CorporateRepo extends JpaRepository<Corporate,Integer> {
-	
+
+    List<Corporate> findByJoinedAfter(LocalDate localDate);
+
+    List<Corporate> findByJoinedBefore(LocalDate localDate);
 }

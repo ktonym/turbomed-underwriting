@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.Param;
  * Created by akipkoech on 12/8/14.
  */
 public interface PrincipalRepo extends JpaRepository<Principal,Integer> {
-	//@Query("select p from Principal p where p.corporate = :corporate")
+    //List<Principal> findByCategoryPrincipal_Category_Anniv_Corporate(Corporate corporate);
+    //@Query("select p from Principal p where p.corporate = :corporate")
 	//List<Principal> findByCorporate(@Param("corporate") Corporate corporate);
 }

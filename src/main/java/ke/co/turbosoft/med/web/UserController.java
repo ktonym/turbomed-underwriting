@@ -44,7 +44,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST,value="/register")
     public String doRegistration(@ModelAttribute("user") User user){
         userService.save(user);
-        return "user-register";
+        return "redirect:register?success=true";
     }
 
 }
