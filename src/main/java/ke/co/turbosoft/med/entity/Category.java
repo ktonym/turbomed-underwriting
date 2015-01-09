@@ -13,7 +13,6 @@ public class Category extends AbstractEntity{
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "anniv_id")
     private CorpAnniv anniv;
-    //TODO check if this property is actually needed
     @OneToMany(mappedBy = "category")
     private List<CategoryPrincipal> categoryPrincipal;
 

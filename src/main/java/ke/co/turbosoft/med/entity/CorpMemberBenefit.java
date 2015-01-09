@@ -1,20 +1,18 @@
 package ke.co.turbosoft.med.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 /**
  * Created by akipkoech on 12/8/14.
  */
-@Entity
-public class CorpMemberBenefit extends AbstractEntity{
-
+@Entity @IdClass(CorpMemberBenefitId.class)
+public class CorpMemberBenefit {
+    @Id
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="member_id")
     private Member member;
+    @Id
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="benefit_id")
     private CorpBenefit benefit;

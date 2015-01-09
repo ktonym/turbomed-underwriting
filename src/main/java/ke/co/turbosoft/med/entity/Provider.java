@@ -2,6 +2,7 @@ package ke.co.turbosoft.med.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 
 /**
@@ -15,6 +16,8 @@ public class Provider extends AbstractEntity {
     private String town;
     @OneToMany(mappedBy = "provider")
     private List<CoPay> coPayList;
+    @OneToOne(mappedBy = "provider")
+    private BankDetail bankDetail;
 
     public Provider() {
     }
@@ -49,5 +52,13 @@ public class Provider extends AbstractEntity {
 
     public void setCoPayList(List<CoPay> coPayList) {
         this.coPayList = coPayList;
+    }
+
+    public BankDetail getBankDetail() {
+        return bankDetail;
+    }
+
+    public void setBankDetail(BankDetail bankDetail) {
+        this.bankDetail = bankDetail;
     }
 }

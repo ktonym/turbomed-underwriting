@@ -1,6 +1,7 @@
 package ke.co.turbosoft.med.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 /**
  * Created by ktonym on 1/2/15.
@@ -8,9 +9,8 @@ import javax.persistence.*;
 @Entity @IdClass(CategoryPrincipalId.class)
 public class CategoryPrincipal{
 
-    // TODO establish why I didn't have this manyToMany relationship in the first place
-
     private Boolean active;
+    private LocalDate wef;
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
@@ -29,6 +29,14 @@ public class CategoryPrincipal{
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public LocalDate getWef() {
+        return wef;
+    }
+
+    public void setWef(LocalDate wef) {
+        this.wef = wef;
     }
 
     public Category getCategory() {
