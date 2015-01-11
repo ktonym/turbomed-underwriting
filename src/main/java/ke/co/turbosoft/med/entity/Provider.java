@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 public class Provider extends AbstractEntity {
 
+    @Column(nullable = false,unique = true)
     private String name;
     private String physicalAddress;
     private String town;
@@ -18,6 +20,8 @@ public class Provider extends AbstractEntity {
     private List<CoPay> coPayList;
     @OneToOne(mappedBy = "provider")
     private BankDetail bankDetail;
+    @OneToMany(mappedBy = "provider")
+    private List<Bill> bills;
 
     public Provider() {
     }
@@ -60,5 +64,13 @@ public class Provider extends AbstractEntity {
 
     public void setBankDetail(BankDetail bankDetail) {
         this.bankDetail = bankDetail;
+    }
+
+    public List<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
     }
 }

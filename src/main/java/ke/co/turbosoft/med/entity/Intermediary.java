@@ -10,7 +10,8 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="INTERMEDIARY_TYPE",discriminatorType = DiscriminatorType.STRING)
-//might need @ForceDiscriminator
+//TODO consider replacing above @nnotation with   @DiscriminatorFormula
+//TODO read more about @ForceDiscriminator
 public class Intermediary extends AbstractEntity {
 
     private String PIN;

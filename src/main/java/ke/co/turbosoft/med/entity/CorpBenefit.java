@@ -18,15 +18,17 @@ public class CorpBenefit extends AbstractEntity {
     private Integer waitingPeriod;
 	private static final long serialVersionUID = 1L;
 	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="parentBenefit_id")
+    @JoinColumn(name="parentBenefit_id",nullable = true)
 	private CorpBenefit parentBenefit;
 	@OneToMany(mappedBy = "parentBenefit")
 	private List<CorpBenefit> subBenefit;
     @OneToMany(mappedBy = "benefit")
     private List<CorpMemberBenefit> corpMemberBenefits;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id",nullable = false)
     private Category category;
+
+    //TODO consider adding Boolean requiresPreAuthorization
 
 
     public CorpBenefit() {

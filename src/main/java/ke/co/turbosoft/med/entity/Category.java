@@ -6,12 +6,13 @@ import java.util.List;
 @Entity
 public class Category extends AbstractEntity{
 
-	private char cat;
+    @Column(nullable = false)
+    private char cat;
 	private String description;
 	@OneToMany(mappedBy = "category")
 	private List<CorpBenefit> corpBenefits;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "anniv_id")
+    @JoinColumn(name = "anniv_id",nullable = false)
     private CorpAnniv anniv;
     @OneToMany(mappedBy = "category")
     private List<CategoryPrincipal> categoryPrincipal;
