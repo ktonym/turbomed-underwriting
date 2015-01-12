@@ -39,4 +39,7 @@
 	</bean>
 
     <jpa:repositories base-package="ke.co.turbosoft.med.repository"/>
+
+    <import resource="security.xml"/>
+
 </beans>
