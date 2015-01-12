@@ -23,12 +23,13 @@ public class Payment extends AbstractEntity{
     @Column(nullable = false)
     @Convert(converter = LocalDatePersistenceConverter.class)
     private LocalDate dispatchDate;
-    @OneToOne // TODO primaryKeyJoinColumn??
-    @Column(unique = true,nullable = false)
+    @OneToOne(optional=false)
     private PaymentVoucher voucher;
     @OneToOne(mappedBy = "payment")
     private PaymentCancellation paymentCancellation;
-
+    @OneToOne(optional=false)
+    private BillVet billVet;
+    
     public Payment() {
     }
 
@@ -87,5 +88,15 @@ public class Payment extends AbstractEntity{
     public void setPaymentCancellation(PaymentCancellation paymentCancellation) {
         this.paymentCancellation = paymentCancellation;
     }
+
+	public BillVet getBillVet() {
+		return billVet;
+	}
+
+	public void setBillVet(BillVet billVet) {
+		this.billVet = billVet;
+	}
+    
+    
 
 }

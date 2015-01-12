@@ -7,16 +7,15 @@ import java.util.List;
  * Created by ktonym on 1/9/15.
  */
 @Entity
-public class BankDetail {
+public class BankDetail extends AbstractEntity{
 
     private String name;
     private String branch;
     @Column(nullable = false, unique = true)
     private int accountNo;
-    @OneToOne
+    @OneToOne(optional=false)
     // TODO consider using primaryKeyJoinColumn here!!
    // @PrimaryKeyJoinColumn
-    @Column(nullable = false, unique = true)
     private Provider provider;
     @OneToMany(mappedBy = "bankDetail")
     private List<Payment> payments;

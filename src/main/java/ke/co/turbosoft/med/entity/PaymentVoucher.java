@@ -22,8 +22,7 @@ public class PaymentVoucher extends AbstractEntity{
     private Payment payment;
     @OneToMany(mappedBy = "voucher")
     private List<ClaimBatch> batch;
-    @OneToOne
-    @Column(nullable = false,unique = true)
+    @OneToOne(optional=false)
     private BillVet billVet;
 
     public PaymentVoucher() {

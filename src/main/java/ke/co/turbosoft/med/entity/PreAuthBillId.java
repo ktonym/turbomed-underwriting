@@ -28,4 +28,36 @@ public class PreAuthBillId implements Serializable {
     public void setPreAuth(PreAuth preAuth) {
         this.preAuth = preAuth;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bill == null) ? 0 : bill.hashCode());
+		result = prime * result + ((preAuth == null) ? 0 : preAuth.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PreAuthBillId other = (PreAuthBillId) obj;
+		if (bill == null) {
+			if (other.bill != null)
+				return false;
+		} else if (!bill.equals(other.bill))
+			return false;
+		if (preAuth == null) {
+			if (other.preAuth != null)
+				return false;
+		} else if (!preAuth.equals(other.preAuth))
+			return false;
+		return true;
+	}
+        
 }

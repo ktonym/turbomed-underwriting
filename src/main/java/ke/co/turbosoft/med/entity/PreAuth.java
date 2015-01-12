@@ -1,6 +1,7 @@
 package ke.co.turbosoft.med.entity;
 
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -18,7 +19,7 @@ public class PreAuth extends AbstractEntity {
     @Column(nullable = false)
     private BigDecimal limit;
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(name = "provider_id",nullable = false)
     private Provider provider;
     @ManyToOne
     @JoinColumns({
@@ -26,6 +27,7 @@ public class PreAuth extends AbstractEntity {
             @JoinColumn(name = "benefit_id",referencedColumnName = "benefit_id",nullable = false)
     })
     private CorpMemberBenefit memberBenefit;
+    @OneToMany(mappedBy="preAuth")
     private List<PreAuthBill> preAuthBills;
 
 

@@ -11,8 +11,7 @@ import java.time.LocalDate;
 @Entity
 public class BillVet extends AbstractEntity{
 
-    @OneToOne
-    @Column(unique = true,nullable = false)
+    @OneToOne(optional=false)
     private Bill bill;
     @Column(nullable = false)
     private LocalDate date;

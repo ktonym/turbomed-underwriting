@@ -1,8 +1,10 @@
 package ke.co.turbosoft.med.entity;
 
 import javax.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by ktonym on 1/9/15.
@@ -40,8 +42,8 @@ public class Bill extends AbstractEntity {
     private ClaimBatch batch;
     @OneToOne(mappedBy = "bill")
     private BillVet billVet;
-    @OneToOne(mappedBy = "bill")
-    private PreAuthBill preAuthBill;
+    @OneToMany(mappedBy = "bill")
+    private List<PreAuthBill> preAuthBills;
 
     public Bill() {
     }
@@ -134,11 +136,13 @@ public class Bill extends AbstractEntity {
         this.billVet = billVet;
     }
 
-    public PreAuthBill getPreAuthBill() {
-        return preAuthBill;
-    }
+	public List<PreAuthBill> getPreAuthBills() {
+		return preAuthBills;
+	}
 
-    public void setPreAuthBill(PreAuthBill preAuthBill) {
-        this.preAuthBill = preAuthBill;
-    }
+	public void setPreAuthBills(List<PreAuthBill> preAuthBills) {
+		this.preAuthBills = preAuthBills;
+	}
+
+       
 }

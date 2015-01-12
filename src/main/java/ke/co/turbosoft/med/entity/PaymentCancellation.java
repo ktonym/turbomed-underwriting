@@ -12,8 +12,7 @@ import java.time.LocalDate;
 @Entity
 public class PaymentCancellation extends AbstractEntity{
 
-    @OneToOne
-    @Column(unique = true,nullable = false)
+    @OneToOne(optional=false)
     private Payment payment;
     @Convert(converter = LocalDatePersistenceConverter.class)
     @Column(nullable = false)
