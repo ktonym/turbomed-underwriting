@@ -61,6 +61,7 @@
               </li>
               <li class="${current == 'users' ? 'active' : ''}"><a href='<spring:url value="/users" />'>Users</a></li>
               <li class="${current == 'register' ? 'active' : ''}"><a href='<spring:url value="/register" />'>Register</a></li>
+              <li class="${current == 'login' ? 'active' : ''}"><a href='<spring:url value="/login" />'>Login</a></li>
               
             </ul>
           <%--</div><!--/.nav-collapse -->--%>
