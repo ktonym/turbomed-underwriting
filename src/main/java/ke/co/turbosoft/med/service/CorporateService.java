@@ -1,7 +1,7 @@
 package ke.co.turbosoft.med.service;
 
 import ke.co.turbosoft.med.entity.*;
-import org.springframework.data.domain.Page;
+import ke.co.turbosoft.med.vo.Result;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,18 +11,17 @@ import java.util.List;
  */
 public interface CorporateService {
 
-    Page<Corporate> getCorporates(Integer pageNumber);
-    List<Corporate> findAll();
-    Corporate search(Integer corpId);
+    Result<List<Corporate>> findAll();
+    Result<Corporate> search(Integer idCorp);
     void renew(Corporate corporate);
-    List<Corporate> listActive();
-    List<Corporate> listInactive();
-    List<Corporate> listJoinedAfter(LocalDate localDate);
-    List<Corporate> listJoinedBefore(LocalDate localDate);
-    List<Principal> listPrincipals(Corporate corporate);
-    List<CorpAnniv> listAnniversaries(Corporate corporate);
-    List<Member> listMembers(Corporate corporate);
-    List<Member> listActiveMembers(Corporate corporate);
-    List<Category> listCategories(Corporate corporate);
+    Result<List<Corporate>> listActive();
+    Result<List<Corporate>> listInactive();
+    Result<List<Corporate>> listJoinedAfter(LocalDate localDate);
+    Result<List<Corporate>> listJoinedBefore(LocalDate localDate);
+    Result<List<Principal>> listPrincipals(Corporate corporate);
+    Result<List<CorpAnniv>> listAnniversaries(Corporate corporate);
+    Result<List<Member>> listMembers(Corporate corporate);
+    Result<List<Member>> listActiveMembers(Corporate corporate);
+    Result<List<Category>> listCategories(Corporate corporate);
     void save(Corporate corporate);
 }
