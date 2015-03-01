@@ -1,19 +1,20 @@
 package ke.co.turbosoft.med.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.json.JsonObjectBuilder;
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by akipkoech on 12/8/14.
  */
 @Entity
-public class Provider extends AbstractEntity {
+public class Provider extends AbstractEntity implements EntityItem<Integer> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idProvider;
     @Column(nullable = false,unique = true)
-    private String name;
+    private String providerName;
     private String physicalAddress;
     private String town;
     @OneToMany(mappedBy = "provider")
@@ -26,12 +27,20 @@ public class Provider extends AbstractEntity {
     public Provider() {
     }
 
-    public String getName() {
-        return name;
+    public Integer getIdProvider() {
+        return idProvider;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIdProvider(Integer idProvider) {
+        this.idProvider = idProvider;
+    }
+
+    public String getProviderName() {
+        return providerName;
+    }
+
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
     }
 
     public String getPhysicalAddress() {
@@ -72,5 +81,19 @@ public class Provider extends AbstractEntity {
 
     public void setBills(List<Bill> bills) {
         this.bills = bills;
+    }
+
+    @Override
+    public Integer getId() {
+        return idProvider;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        builder.add("idProvider",idProvider)
+                .add("providerName",providerName)
+                .add("physicalAddress", physicalAddress)
+                .add("town",town);
+
     }
 }

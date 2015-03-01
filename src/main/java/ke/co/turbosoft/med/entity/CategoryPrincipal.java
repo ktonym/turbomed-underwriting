@@ -1,13 +1,15 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by ktonym on 1/2/15.
  */
 @Entity @IdClass(CategoryPrincipalId.class)
-public class CategoryPrincipal{
+public class CategoryPrincipal extends AbstractEntity{
 
     private Boolean active;
     private LocalDate wef;
@@ -19,6 +21,8 @@ public class CategoryPrincipal{
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "principal_id")
     private Principal principal;
+
+    static final DateTimeFormatter DATE_FORMATTER_yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
 
     public CategoryPrincipal() {
     }
@@ -53,5 +57,14 @@ public class CategoryPrincipal{
 
     public void setPrincipal(Principal principal) {
         this.principal = principal;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        category.addJson(builder);
+        principal.addJson(builder);
+        builder.add("active", active)
+                .add("wef", wef == null ? "" : DATE_FORMATTER_yyyyMMdd.format(wef));
+
     }
 }

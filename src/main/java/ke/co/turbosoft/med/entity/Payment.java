@@ -1,15 +1,20 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by ktonym on 1/9/15.
  */
 @Entity
-public class Payment extends AbstractEntity{
+public class Payment extends AbstractEntity implements EntityItem<Integer>{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idPayment;
     @ManyToOne
     @JoinColumn(name = "bank_id",nullable = false)
     private BankDetail bankDetail;
@@ -29,8 +34,18 @@ public class Payment extends AbstractEntity{
     private PaymentCancellation paymentCancellation;
     @OneToOne(optional=false)
     private BillVet billVet;
+
+    static final DateTimeFormatter DATE_FORMATTER_yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
     
     public Payment() {
+    }
+
+    public Integer getIdPayment() {
+        return idPayment;
+    }
+
+    public void setIdPayment(Integer idPayment) {
+        this.idPayment = idPayment;
     }
 
     public BankDetail getBankDetail() {
@@ -96,7 +111,24 @@ public class Payment extends AbstractEntity{
 	public void setBillVet(BillVet billVet) {
 		this.billVet = billVet;
 	}
-    
-    
 
+
+    @Override
+    public Integer getId() {
+        return idPayment;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        builder.add("idPayment",idPayment);
+        bankDetail.addJson(builder);
+        builder.add("chequeNo",chequeNo)
+                .add("chequeAmt",chequeAmt)
+                .add("chequeDate", DATE_FORMATTER_yyyyMMdd.format(chequeDate))
+                .add("dispatchDate", dispatchDate == null ? "" : DATE_FORMATTER_yyyyMMdd.format(dispatchDate));
+        voucher.addJson(builder);
+        billVet.addJson(builder);
+
+    }
 }

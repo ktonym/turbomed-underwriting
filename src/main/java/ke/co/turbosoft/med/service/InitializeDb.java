@@ -46,7 +46,7 @@ public class InitializeDb {
         corp1.setAbbreviation("KBC");
         corp1.setEmail("info@kbc.com");
         corp1.setJoined(LocalDate.now());
-        corp1.setName("Kenya Broadcasting Corporation");
+        corp1.setCorporateName("Kenya Broadcasting Corporation");
         List<ContactInfo> contactInfoList = new ArrayList<>();
         contactInfoList.add(contactInfo);
         corp1.setContactInfo(contactInfoList);
@@ -56,35 +56,35 @@ public class InitializeDb {
         corp2.setAbbreviation("NWS");
         corp2.setEmail("info@nawasco.com");
         corp2.setJoined(LocalDate.now());
-        corp2.setName("Nakuru Water Services Corporation");
+        corp2.setCorporateName("Nakuru Water Services Corporation");
         corpRepo.save(corp2);
 
         Corporate corp3 = new Corporate();
         corp3.setAbbreviation("TSB");
         corp3.setEmail("info@tana.com");
         corp3.setJoined(LocalDate.now());
-        corp3.setName("Tana Water Services Board");
+        corp3.setCorporateName("Tana Water Services Board");
         corpRepo.save(corp3);
 
         Corporate corp4 = new Corporate();
         corp4.setAbbreviation("KOF");
         corp4.setEmail("info@kenyaordnance.com");
         corp4.setJoined(LocalDate.now());
-        corp4.setName("Kenya Ordnance Factories Corporation");
+        corp4.setCorporateName("Kenya Ordnance Factories Corporation");
         corpRepo.save(corp4);
 
         Corporate corp5 = new Corporate();
         corp5.setAbbreviation("ABK");
         corp5.setEmail("info@abercrombie.com");
         corp5.setJoined(LocalDate.now());
-        corp5.setName("Abercrombie & Kent");
+        corp5.setCorporateName("Abercrombie & Kent");
         corpRepo.save(corp5);
 
         Corporate corp6 = new Corporate();
         corp6.setAbbreviation("ACK");
         corp6.setEmail("info@ack.org");
         corp6.setJoined(LocalDate.now());
-        corp6.setName("Anglican Church of Kenya");
+        corp6.setCorporateName("Anglican Church of Kenya");
         corpRepo.save(corp6);
 
     }

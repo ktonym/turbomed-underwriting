@@ -1,13 +1,18 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
-public class Corporate extends AbstractEntity {
+public class Corporate extends AbstractEntity implements EntityItem<Integer> {
 
-	private String name;
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idCorporate;
+    private String corporateName;
 	private String abbreviation;
 	private String tel;
 	private String email;
@@ -21,16 +26,18 @@ public class Corporate extends AbstractEntity {
     @OneToMany(mappedBy = "corporate")
     private List<GroupRate> rates;
 
+    static final DateTimeFormatter DATE_FORMATTER_yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
+
     public Corporate() {
         this.setJoined(LocalDate.now());
     }
 
-    public String getName() {
-        return name;
+    public String getCorporateName() {
+        return corporateName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCorporateName(String corporateName) {
+        this.corporateName = corporateName;
     }
 
     public String getAbbreviation() {
@@ -95,5 +102,21 @@ public class Corporate extends AbstractEntity {
 
     public void setRates(List<GroupRate> rates) {
         this.rates = rates;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        builder.add("idCorporate", idCorporate)
+                .add("corporateName", corporateName)
+                .add("abbreviation", abbreviation)
+                .add("tel",tel)
+                .add("email",email)
+                .add("postalAddress", postalAddress)
+                .add("joined", joined == null ? "" : DATE_FORMATTER_yyyyMMdd.format(joined));
+    }
+
+    @Override
+    public Integer getId() {
+        return idCorporate;
     }
 }

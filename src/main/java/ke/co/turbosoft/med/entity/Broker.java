@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
 /**
@@ -48,4 +49,16 @@ public class Broker extends Intermediary {
     public void setPostalAddress(String postalAddress) {
         this.postalAddress = postalAddress;
     }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        super.addJson(builder);
+        builder.add("name", name)
+                .add("street",street)
+                .add("town",town)
+                .add("postalAddress", postalAddress);
+
+    }
+
 }

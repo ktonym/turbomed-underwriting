@@ -1,9 +1,11 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -11,8 +13,11 @@ import java.util.List;
  */
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"invoice_no","provider_id"})})
-public class Bill extends AbstractEntity {
+public class Bill extends AbstractEntity implements EntityItem<Integer>{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idBill;
     @Column(name="invoice_no",nullable = false)
     private String invoiceNo;
     @Column(nullable = false, unique = true)
@@ -45,7 +50,17 @@ public class Bill extends AbstractEntity {
     @OneToMany(mappedBy = "bill")
     private List<PreAuthBill> preAuthBills;
 
+    static final DateTimeFormatter DATE_FORMAT_yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
+
     public Bill() {
+    }
+
+    public Integer getIdBill() {
+        return idBill;
+    }
+
+    public void setIdBill(Integer idBill) {
+        this.idBill = idBill;
     }
 
     public String getInvoiceNo() {
@@ -144,5 +159,28 @@ public class Bill extends AbstractEntity {
 		this.preAuthBills = preAuthBills;
 	}
 
-       
+    @Override
+    public Integer getId() {
+        return idBill;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        builder.add("idBill",idBill)
+                .add("invoiceNo",invoiceNo)
+                .add("claimNo", claimNo)
+                .add("invoiceDate", invoiceDate.toString())
+                .add("invoiceAmt", invoiceAmt)
+                .add("deductionAmt",deductionAmt)
+                .add("deductionReason",deductionReason)
+                .add("enteredDate",enteredDate==null ? "" : DATE_FORMAT_yyyyMMdd.format(enteredDate));
+
+
+        if(memberBenefit!=null){
+            memberBenefit.addJson(builder);
+        }
+
+        batch.addJson(builder);
+
+    }
 }

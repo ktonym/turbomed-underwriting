@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -9,10 +10,13 @@ import java.math.BigDecimal;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="PREMIUM_TYPE",discriminatorType = DiscriminatorType.STRING)
-public class PremiumRate extends AbstractEntity{
+public class PremiumRate extends AbstractEntity implements EntityItem<Integer>{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idPremiumRate;
     @Column(name = "PREMIUM_TYPE",insertable = false,updatable = false)
-    private PremiumType type;
+    private PremiumType premiumType;
     private String benefit;
     private BigDecimal upperLimit;
     private BigDecimal premium;
@@ -21,12 +25,20 @@ public class PremiumRate extends AbstractEntity{
     public PremiumRate() {
     }
 
-    public PremiumType getType() {
-        return type;
+    public Integer getIdPremiumRate() {
+        return idPremiumRate;
     }
 
-    public void setType(PremiumType type) {
-        this.type = type;
+    public void setIdPremiumRate(Integer idPremiumRate) {
+        this.idPremiumRate = idPremiumRate;
+    }
+
+    public PremiumType getPremiumType() {
+        return premiumType;
+    }
+
+    public void setPremiumType(PremiumType premiumType) {
+        this.premiumType = premiumType;
     }
 
     public String getBenefit() {
@@ -59,5 +71,20 @@ public class PremiumRate extends AbstractEntity{
 
     public void setFamilySize(String familySize) {
         this.familySize = familySize;
+    }
+
+    @Override
+    public Integer getId() {
+        return idPremiumRate;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+         builder.add("idPremiumRate", idPremiumRate)
+                 .add("premiumType", premiumType.toString())
+                 .add("benefit", benefit)
+                 .add("upperLimit", upperLimit)
+                 .add("premium", premium)
+                 .add("familySize", familySize);
     }
 }

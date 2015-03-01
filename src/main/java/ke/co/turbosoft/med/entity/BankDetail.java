@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,9 +8,12 @@ import java.util.List;
  * Created by ktonym on 1/9/15.
  */
 @Entity
-public class BankDetail extends AbstractEntity{
+public class BankDetail extends AbstractEntity implements EntityItem<Integer>{
 
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idBankDetail;
+    private String bankName;
     private String branch;
     @Column(nullable = false, unique = true)
     private int accountNo;
@@ -23,12 +27,20 @@ public class BankDetail extends AbstractEntity{
     public BankDetail() {
     }
 
-    public String getName() {
-        return name;
+    public Integer getIdBankDetail() {
+        return idBankDetail;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIdBankDetail(Integer idBankDetail) {
+        this.idBankDetail = idBankDetail;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
     }
 
     public String getBranch() {
@@ -61,5 +73,20 @@ public class BankDetail extends AbstractEntity{
 
     public void setPayments(List<Payment> payments) {
         this.payments = payments;
+    }
+
+    @Override
+    public Integer getId() {
+        return idBankDetail;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        builder.add("idBankDetail", idBankDetail)
+                .add("bankName",bankName)
+                .add("branch", branch)
+                .add("accountNo", accountNo);
+
+        provider.addJson(builder);
     }
 }

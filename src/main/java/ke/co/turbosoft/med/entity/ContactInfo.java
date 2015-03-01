@@ -1,6 +1,7 @@
 package ke.co.turbosoft.med.entity;
 
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
 /**
@@ -8,8 +9,11 @@ import javax.persistence.*;
  */
 
 @Entity
-public class ContactInfo extends AbstractEntity {
+public class ContactInfo extends AbstractEntity implements EntityItem<Integer> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idContactInfo;
     private String firstName;
     private String surname;
     private String jobTitle;
@@ -20,6 +24,14 @@ public class ContactInfo extends AbstractEntity {
     private Corporate corporate;
 
     public ContactInfo() {
+    }
+
+    public Integer getIdContactInfo() {
+        return idContactInfo;
+    }
+
+    public void setIdContactInfo(Integer idContactInfo) {
+        this.idContactInfo = idContactInfo;
     }
 
     public String getFirstName() {
@@ -68,5 +80,21 @@ public class ContactInfo extends AbstractEntity {
 
     public void setCorporate(Corporate corporate) {
         this.corporate = corporate;
+    }
+
+    @Override
+    public Integer getId() {
+        return idContactInfo;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        builder.add("idContactInfo", idContactInfo)
+                .add("firstName", firstName)
+                .add("surname", surname)
+                .add("jobTitle", jobTitle)
+                .add("email", email)
+                .add("tel", tel);
+        corporate.addJson(builder);
     }
 }

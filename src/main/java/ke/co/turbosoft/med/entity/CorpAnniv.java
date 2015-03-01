@@ -1,12 +1,17 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
-public class CorpAnniv extends AbstractEntity {
+public class CorpAnniv extends AbstractEntity implements EntityItem<Integer> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idCorpAnniv;
 	private Integer anniv;
 	@Convert(converter=LocalDatePersistenceConverter.class)
 	private LocalDate startDate;
@@ -23,7 +28,17 @@ public class CorpAnniv extends AbstractEntity {
     @JoinColumn(name = "intermediary_id")
     private Intermediary intermediary;
 
+    static final DateTimeFormatter DATE_FORMATTER_yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
+
     public CorpAnniv() {
+    }
+
+    public Integer getIdCorpAnniv() {
+        return idCorpAnniv;
+    }
+
+    public void setIdCorpAnniv(Integer idCorpAnniv) {
+        this.idCorpAnniv = idCorpAnniv;
     }
 
     public Integer getAnniv() {
@@ -80,5 +95,21 @@ public class CorpAnniv extends AbstractEntity {
 
     public void setIntermediary(Intermediary intermediary) {
         this.intermediary = intermediary;
+    }
+
+    @Override
+    public Integer getId() {
+        return idCorpAnniv;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        builder.add("idCorpAnniv", idCorpAnniv)
+                .add("anniv", anniv)
+                .add("startDate", startDate == null ? "" : DATE_FORMATTER_yyyyMMdd.format(startDate))
+                .add("endDate", endDate == null ? "" : DATE_FORMATTER_yyyyMMdd.format(endDate))
+                .add("renewalDate", renewalDate == null ? "" : DATE_FORMATTER_yyyyMMdd.format(renewalDate)); 
+        corporate.addJson(builder);
+        intermediary.addJson(builder);
     }
 }

@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
 /**
@@ -23,4 +24,24 @@ public class GroupRate extends PremiumRate {
     public void setCorporate(Corporate corporate) {
         this.corporate = corporate;
     }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        super.addJson(builder);
+
+        //
+        //Can't believe I was this silly!!
+        //
+        //        builder.add("idPremiumRate", idPremiumRate)
+        //                .add("premiumType", premiumType.toString())
+        //                .add("benefit", benefit)
+        //                .add("upperLimit", upperLimit)
+        //                .add("premium", premium)
+        //                .add("familySize", familySize);
+        corporate.addJson(builder);
+
+
+    }
+
 }

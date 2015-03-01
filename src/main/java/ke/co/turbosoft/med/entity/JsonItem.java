@@ -8,7 +8,7 @@ import javax.json.JsonObjectBuilder;
  */
 public interface JsonItem {
 
-    public JsonObject tojson();
+    public JsonObject toJson();
     public void addJson(JsonObjectBuilder builder);
 
 }

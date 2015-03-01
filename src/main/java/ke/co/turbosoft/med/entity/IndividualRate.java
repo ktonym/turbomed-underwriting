@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -30,5 +31,14 @@ public class IndividualRate extends PremiumRate {
 
     public void setMaxAge(Integer maxAge) {
         this.maxAge = maxAge;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        super.addJson(builder);
+        builder.add("minAge", minAge)
+                .add("maxAge", maxAge);
+
     }
 }

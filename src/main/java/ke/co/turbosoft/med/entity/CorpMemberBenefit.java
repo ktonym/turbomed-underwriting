@@ -1,14 +1,16 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
  * Created by akipkoech on 12/8/14.
  */
 @Entity @IdClass(CorpMemberBenefitId.class)
-public class CorpMemberBenefit {
+public class CorpMemberBenefit extends AbstractEntity {
 
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
@@ -22,6 +24,8 @@ public class CorpMemberBenefit {
     private LocalDate wef;
     @OneToMany
     private List<PreAuth> preAuthList;
+
+    static final DateTimeFormatter DATE_FORMATTER_yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
 
     public CorpMemberBenefit() {
     }
@@ -64,5 +68,15 @@ public class CorpMemberBenefit {
 
     public void setPreAuthList(List<PreAuth> preAuthList) {
         this.preAuthList = preAuthList;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        builder.add("status",status.toString())
+                .add("wef", wef == null ? "" : DATE_FORMATTER_yyyyMMdd.format(wef));
+        member.addJson(builder);
+        benefit.addJson(builder);
+
     }
 }

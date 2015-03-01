@@ -1,7 +1,9 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -12,8 +14,11 @@ import java.util.List;
 @DiscriminatorColumn(name="INTERMEDIARY_TYPE",discriminatorType = DiscriminatorType.STRING)
 //TODO consider replacing above @nnotation with   @DiscriminatorFormula
 //TODO read more about @ForceDiscriminator
-public class Intermediary extends AbstractEntity {
+public class Intermediary extends AbstractEntity implements EntityItem<Integer>{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idIntermediary;
     private String PIN;
     @Column(name = "INTERMEDIARY_TYPE",insertable = false,updatable = false)
     private IntermediaryType type;
@@ -23,7 +28,17 @@ public class Intermediary extends AbstractEntity {
     @OneToMany(mappedBy = "intermediary")
     private List<CorpAnniv> corpAnnivs;
 
+    static final DateTimeFormatter DATE_FORMATTER_yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
+
     public Intermediary() {
+    }
+
+    public Integer getIdIntermediary() {
+        return idIntermediary;
+    }
+
+    public void setIdIntermediary(Integer idIntermediary) {
+        this.idIntermediary = idIntermediary;
     }
 
     public String getPIN() {
@@ -73,4 +88,22 @@ public class Intermediary extends AbstractEntity {
     public void setCorpAnnivs(List<CorpAnniv> corpAnnivs) {
         this.corpAnnivs = corpAnnivs;
     }
+
+    @Override
+    public Integer getId() {
+        return idIntermediary;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        builder.add("idIntermediary", idIntermediary)
+                .add("PIN", PIN)
+                .add("type",type.toString())
+                .add("joinDate", joinDate == null ? "" : DATE_FORMATTER_yyyyMMdd.format(joinDate))
+                .add("email",email)
+                .add("tel",tel);
+    }
+
+
+
 }

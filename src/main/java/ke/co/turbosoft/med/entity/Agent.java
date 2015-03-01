@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
 /**
@@ -39,4 +40,15 @@ public class Agent extends Intermediary{
     public void setOtherNames(String otherNames) {
         this.otherNames = otherNames;
     }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        super.addJson(builder);
+        builder.add("firstName", firstName)
+                .add("surname",surname)
+                .add("otherNames",otherNames);
+
+    }
+
 }

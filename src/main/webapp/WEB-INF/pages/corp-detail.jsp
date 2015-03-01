@@ -45,7 +45,7 @@
                     Name:
                 </td>
                 <td>
-                    <input type="text"  value="${corporate.name}"/>
+                    <input type="text"  value="${corporate.corporateName}"/>
                 </td>
             </tr>
             <tr>
