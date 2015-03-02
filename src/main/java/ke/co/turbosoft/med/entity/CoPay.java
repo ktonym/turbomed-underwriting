@@ -1,26 +1,35 @@
 package ke.co.turbosoft.med.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.json.JsonObjectBuilder;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
  * Created by akipkoech on 12/8/14.
  */
 @Entity
-public class CoPay extends AbstractEntity {
+public class CoPay extends AbstractEntity implements EntityItem<Integer> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idCoPay;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="provider_id")
     private Provider provider;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="regulation_id")
     private Regulation regulation;
-    private BigDecimal amount;
+    private BigDecimal coPayAmount;
 
     public CoPay() {
+    }
+
+    public Integer getIdCoPay() {
+        return idCoPay;
+    }
+
+    public void setIdCoPay(Integer idCoPay) {
+        this.idCoPay = idCoPay;
     }
 
     public Provider getProvider() {
@@ -39,11 +48,25 @@ public class CoPay extends AbstractEntity {
         this.regulation = regulation;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getCoPayAmount() {
+        return coPayAmount;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setCoPayAmount(BigDecimal coPayAmount) {
+        this.coPayAmount = coPayAmount;
+    }
+
+    @Override
+    public Integer getId() {
+        return idCoPay;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        builder.add("idCoPay", idCoPay);
+        provider.addJson(builder);
+        regulation.addJson(builder);
+        builder.add("coPayAmount",coPayAmount);
+
     }
 }

@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
 /**
@@ -7,7 +8,7 @@ import javax.persistence.*;
  */
 @Entity @IdClass(PreAuthBillId.class)
 //@Table(uniqueConstraints={@UniqueConstraint(columnNames="bill_id")})
-public class PreAuthBill {
+public class PreAuthBill extends AbstractEntity {
 
     @Id
     @ManyToOne
@@ -35,5 +36,12 @@ public class PreAuthBill {
 
     public void setPreAuth(PreAuth preAuth) {
         this.preAuth = preAuth;
+    }
+
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        bill.addJson(builder);
+        preAuth.addJson(builder);
     }
 }

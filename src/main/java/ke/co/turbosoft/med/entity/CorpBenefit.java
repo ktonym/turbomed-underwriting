@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,9 +10,12 @@ import java.util.List;
  */
 @Entity
 
-public class CorpBenefit extends AbstractEntity {
+public class CorpBenefit extends AbstractEntity implements EntityItem<Integer>{
 
-	private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idCorpBenefit;
+	private String corpBenefitName;
 	private Double upperLimit;
 	private String memberType;
 	private boolean sharing;
@@ -34,12 +38,20 @@ public class CorpBenefit extends AbstractEntity {
     public CorpBenefit() {
     }
 
-    public String getName() {
-        return name;
+    public Integer getIdCorpBenefit() {
+        return idCorpBenefit;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIdCorpBenefit(Integer idCorpBenefit) {
+        this.idCorpBenefit = idCorpBenefit;
+    }
+
+    public String getCorpBenefitName() {
+        return corpBenefitName;
+    }
+
+    public void setCorpBenefitName(String corpBenefitName) {
+        this.corpBenefitName = corpBenefitName;
     }
 
     public Double getUpperLimit() {
@@ -110,4 +122,20 @@ public class CorpBenefit extends AbstractEntity {
         return (this.getParentBenefit() == null);
     }
 
+    @Override
+    public Integer getId() {
+        return idCorpBenefit;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        builder.add("idCorpBenefit",idCorpBenefit)
+                .add("corpBenefitName",corpBenefitName)
+                .add("upperLimit",upperLimit)
+                .add("memberType",memberType)
+                .add("sharing",sharing)
+                .add("waitingPeriod", waitingPeriod);
+        parentBenefit.addJson(builder);
+        category.addJson(builder);
+    }
 }

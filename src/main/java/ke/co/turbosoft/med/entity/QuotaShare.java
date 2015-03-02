@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
@@ -48,5 +49,16 @@ public class QuotaShare extends ReinsuranceTreaty {
 
     public void setCommRate(Integer commRate) {
         this.commRate = commRate;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        super.addJson(builder);
+        builder.add("cessionRate",cessionRate)
+                .add("retentionRate",retentionRate)
+                .add("taxRate",taxRate)
+                .add("commRate",commRate);
+
     }
 }

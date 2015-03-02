@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 
 /**
@@ -8,14 +9,26 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="RI_TYPE",discriminatorType = DiscriminatorType.STRING)
-public class ReinsuranceTreaty extends AbstractEntity {
+public class ReinsuranceTreaty extends AbstractEntity implements EntityItem<Integer> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idRITreaty;
 
     @Column(name = "RI_TYPE",insertable = false,updatable = false)
     private ReinsuranceType riType;
 
-    private Integer period;
+    private Integer rIPeriod;
 
     public ReinsuranceTreaty() {
+    }
+
+    public Integer getIdRITreaty() {
+        return idRITreaty;
+    }
+
+    public void setIdRITreaty(Integer idRITreaty) {
+        this.idRITreaty = idRITreaty;
     }
 
     public ReinsuranceType getRiType() {
@@ -26,11 +39,24 @@ public class ReinsuranceTreaty extends AbstractEntity {
         this.riType = riType;
     }
 
-    public Integer getPeriod() {
-        return period;
+    public Integer getrIPeriod() {
+        return rIPeriod;
     }
 
-    public void setPeriod(Integer period) {
-        this.period = period;
+    public void setrIPeriod(Integer rIPeriod) {
+        this.rIPeriod = rIPeriod;
+    }
+
+    @Override
+    public Integer getId() {
+        return idRITreaty;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+        builder.add("idRITreaty",idRITreaty)
+                .add("riType", riType.toString())
+                .add("rIPeriod",rIPeriod);
+
     }
 }

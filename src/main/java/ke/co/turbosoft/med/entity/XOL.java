@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 @DiscriminatorValue("XOL")
 public class XOL extends ReinsuranceTreaty {
 
+    //TODO add fields based on the current XOL arrangement with FirstRe
+
     public XOL() {
     }
 }

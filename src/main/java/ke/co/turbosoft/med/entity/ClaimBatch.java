@@ -1,5 +1,6 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,8 +8,11 @@ import java.util.List;
  * Created by ktonym on 1/9/15.
  */
 @Entity
-public class ClaimBatch extends AbstractEntity {
+public class ClaimBatch extends AbstractEntity implements EntityItem<Integer> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idClaimBatch;
     @Column(nullable = false, unique = true)
     private String batchNo;
     @ManyToOne
@@ -18,6 +22,14 @@ public class ClaimBatch extends AbstractEntity {
     private List<Bill> bills;
 
     public ClaimBatch() {
+    }
+
+    public Integer getIdClaimBatch() {
+        return idClaimBatch;
+    }
+
+    public void setIdClaimBatch(Integer idClaimBatch) {
+        this.idClaimBatch = idClaimBatch;
     }
 
     public String getBatchNo() {
@@ -42,5 +54,19 @@ public class ClaimBatch extends AbstractEntity {
 
     public void setBills(List<Bill> bills) {
         this.bills = bills;
+    }
+
+    @Override
+    public Integer getId() {
+        return idClaimBatch;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        builder.add("idClaimBatch",idClaimBatch)
+                .add("batchNo",batchNo);
+        voucher.addJson(builder);
+
     }
 }

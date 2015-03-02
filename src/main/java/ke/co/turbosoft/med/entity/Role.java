@@ -1,25 +1,28 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Role extends AbstractEntity{
+public class Role extends AbstractEntity implements EntityItem<String>{
 
-	private String name;
+    @Id
+	private String roleName;
     @OneToMany(mappedBy = "role")
     private List<UserRole> userRoles;
 
     public Role() {
     }
 
-    public String getName() {
-        return name;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     public List<UserRole> getUserRoles() {
@@ -28,5 +31,17 @@ public class Role extends AbstractEntity{
 
     public void setUserRoles(List<UserRole> userRoles) {
         this.userRoles = userRoles;
+    }
+
+    @Override
+    public String getId() {
+        return roleName;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        builder.add("roleName",roleName);
+
     }
 }

@@ -1,7 +1,9 @@
 package ke.co.turbosoft.med.entity;
 
+import javax.json.JsonObjectBuilder;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -9,8 +11,11 @@ import java.util.List;
  */
 
 @Entity
-public class PaymentVoucher extends AbstractEntity{
+public class PaymentVoucher extends AbstractEntity implements EntityItem<Integer>{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idPaymentVoucher;
     @Column(nullable = false,unique = true)
     private String voucherNo;
     @Convert(converter = LocalDatePersistenceConverter.class)
@@ -25,7 +30,17 @@ public class PaymentVoucher extends AbstractEntity{
     @OneToOne(optional=false)
     private BillVet billVet;
 
+    static final DateTimeFormatter DATE_FORMATTER_yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
+
     public PaymentVoucher() {
+    }
+
+    public Integer getIdPaymentVoucher() {
+        return idPaymentVoucher;
+    }
+
+    public void setIdPaymentVoucher(Integer idPaymentVoucher) {
+        this.idPaymentVoucher = idPaymentVoucher;
     }
 
     public String getVoucherNo() {
@@ -74,5 +89,21 @@ public class PaymentVoucher extends AbstractEntity{
 
     public void setBillVet(BillVet billVet) {
         this.billVet = billVet;
+    }
+
+    @Override
+    public Integer getId() {
+        return idPaymentVoucher;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        builder.add("idPaymentVoucher",idPaymentVoucher)
+                .add("voucherNo",voucherNo)
+                .add("voucherDate",DATE_FORMATTER_yyyyMMdd.format(voucherDate))
+                .add("authorizedDate", DATE_FORMATTER_yyyyMMdd.format(authorizedDate));
+        billVet.addJson(builder);
+
     }
 }

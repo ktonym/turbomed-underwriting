@@ -1,18 +1,20 @@
 package ke.co.turbosoft.med.entity;
 
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.json.JsonObjectBuilder;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
  * Created by akipkoech on 12/8/14.
  */
 @Entity
-public class Principal extends AbstractEntity {
+public class Principal extends AbstractEntity implements EntityItem<Integer> {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idPrincipal;
     private String familyNo;
     private String firstName;
     private String surname;
@@ -24,7 +26,25 @@ public class Principal extends AbstractEntity {
     @OneToMany(mappedBy = "principal")
     private List<CategoryPrincipal> categoryPrincipal;
 
+    static final DateTimeFormatter DATE_FORMATTER_yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");
+
     public Principal() {
+    }
+
+    public Integer getIdPrincipal() {
+        return idPrincipal;
+    }
+
+    public void setIdPrincipal(Integer idPrincipal) {
+        this.idPrincipal = idPrincipal;
+    }
+
+    public List<CategoryPrincipal> getCategoryPrincipal() {
+        return categoryPrincipal;
+    }
+
+    public void setCategoryPrincipal(List<CategoryPrincipal> categoryPrincipal) {
+        this.categoryPrincipal = categoryPrincipal;
     }
 
     public String getFamilyNo() {
@@ -73,5 +93,22 @@ public class Principal extends AbstractEntity {
 
     public void setDependants(List<Member> dependants) {
         this.dependants = dependants;
+    }
+
+    @Override
+    public Integer getId() {
+        return idPrincipal;
+    }
+
+    @Override
+    public void addJson(JsonObjectBuilder builder) {
+
+        builder.add("idPrincipal", idPrincipal)
+                .add("familyNo", familyNo)
+                .add("firstName", firstName)
+                .add("surname", surname)
+                .add("otherNames", otherNames)
+                .add("dob", dob == null ? "" : DATE_FORMATTER_yyyyMMdd.format(dob));
+
     }
 }
