@@ -7,7 +7,5 @@
 Ext.application({
     name: 'EMIS',
 
-    extend: 'EMIS.Application',
-    
-    autoCreateViewport: true
+    extend: 'EMIS.Application'
 });

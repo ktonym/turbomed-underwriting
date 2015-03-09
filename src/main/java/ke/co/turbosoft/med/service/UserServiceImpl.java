@@ -58,4 +58,10 @@ public class UserServiceImpl extends AbstractService implements UserService {
     public Result<User> remove(String username, String actionUsername) {
         return null;
     }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public Result<User> find(String username, String actionUsername) {
+        return null;
+    }
 }

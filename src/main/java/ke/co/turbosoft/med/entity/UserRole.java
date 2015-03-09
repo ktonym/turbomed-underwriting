@@ -11,11 +11,11 @@ public class UserRole extends AbstractEntity{
 
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="username")
     private User user;
     @Id
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="role_id")
+    @JoinColumn(name="roleName")
     private Role role;
 
     public UserRole() {

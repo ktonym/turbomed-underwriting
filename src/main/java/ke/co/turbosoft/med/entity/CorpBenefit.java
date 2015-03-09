@@ -19,6 +19,7 @@ public class CorpBenefit extends AbstractEntity implements EntityItem<Integer>{
 	private Double upperLimit;
 	private String memberType;
 	private boolean sharing;
+    private boolean requiresPreAuth;
     private Integer waitingPeriod;
 	private static final long serialVersionUID = 1L;
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -32,7 +33,6 @@ public class CorpBenefit extends AbstractEntity implements EntityItem<Integer>{
     @JoinColumn(name = "category_id",nullable = false)
     private Category category;
 
-    //TODO consider adding Boolean requiresPreAuthorization
 
 
     public CorpBenefit() {
@@ -76,6 +76,14 @@ public class CorpBenefit extends AbstractEntity implements EntityItem<Integer>{
 
     public void setSharing(boolean sharing) {
         this.sharing = sharing;
+    }
+
+    public boolean isRequiresPreAuth() {
+        return requiresPreAuth;
+    }
+
+    public void setRequiresPreAuth(boolean requiresPreAuth) {
+        this.requiresPreAuth = requiresPreAuth;
     }
 
     public Integer getWaitingPeriod() {
@@ -134,6 +142,7 @@ public class CorpBenefit extends AbstractEntity implements EntityItem<Integer>{
                 .add("upperLimit",upperLimit)
                 .add("memberType",memberType)
                 .add("sharing",sharing)
+                .add("requiresPreAuth",requiresPreAuth)
                 .add("waitingPeriod", waitingPeriod);
         parentBenefit.addJson(builder);
         category.addJson(builder);

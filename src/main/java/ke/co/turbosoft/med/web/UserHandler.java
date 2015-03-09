@@ -2,47 +2,101 @@ package ke.co.turbosoft.med.web;
 
 import ke.co.turbosoft.med.entity.User;
 import ke.co.turbosoft.med.service.UserService;
+import ke.co.turbosoft.med.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.json.JsonObject;
+import javax.servlet.http.HttpServletRequest;
+
+import java.util.List;
+
+import static ke.co.turbosoft.med.web.SecurityHelper.getSessionUser;
 
 @Controller
-public class UserHandler {
+@RequestMapping("/user")
+public class UserHandler extends AbstractHandler{
 	
 	@Autowired
 	private UserService userService;
 
-    @ModelAttribute("user")
-    public User construct(){
-        return new User();
+
+    @RequestMapping(value = "/find", method = RequestMethod.GET, produces = {"application/json"})
+    @ResponseBody
+    public String find(@RequestParam(value = "username") String username,
+                       HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<User> ar = userService.find(username, sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+
     }
-	
-	@RequestMapping("/users")
-	public String users(Model model){
-		model.addAttribute("users", userService.findAll());
-       // model.addAttribute("userList",)
-		return "users";
-	}
-	
-	@RequestMapping("/users/{id}")
-	public String detail(Model model, @PathVariable int id){
-		model.addAttribute("user", userService.findOne(id));
-		return "user-detail";
-	}
-	
-	@RequestMapping("/register")
-	public String showRegistration(){
-		return "user-register";
+
+	@RequestMapping(value = "/findAll", method = RequestMethod.GET, produces = {"application/json"})
+    @ResponseBody
+	public String findAll(HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<List<User>> ar = userService.findAll(sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+
 	}
 
-    @RequestMapping(method = RequestMethod.POST,value="/register")
-    public String doRegistration(@ModelAttribute("user") User user){
-        userService.save(user);
-        return "redirect:register?success=true";
+    @RequestMapping(value = "/store", method = RequestMethod.POST, produces = {"application/json"})
+    @ResponseBody
+    public String store(@RequestParam(value = "data", required = true) String jsonData,
+                        HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        JsonObject jsonObj = parseJsonObject(jsonData);
+
+        Result<User> ar = userService.store(
+                jsonObj.getString("username"),
+                jsonObj.getString("email"),
+                jsonObj.getString("password"),
+                jsonObj.getString("firstName"),
+                jsonObj.getString("lastName"),
+                sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+
+    }
+
+    @RequestMapping(value = "/remove", method = RequestMethod.POST, produces = {"application/json"})
+    @ResponseBody
+    public String remove(@RequestParam(value="username") String username,
+                         HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<User> ar = userService.remove(username, sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
     }
 
 }

@@ -17,5 +17,6 @@ public interface UserService {
         String lastName,
         String actionUsername);
     public Result<User> remove(String username, String actionUsername);
-	
+
+    Result<User> find(String username, String actionUsername);
 }
