@@ -424,6 +424,16 @@
         "appName": "EMIS",
         "name": "user.UserList"
       }
+    },
+    "app/view/Welcome.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "Welcome",
+        "viewFileName": "Welcome",
+        "appName": "EMIS",
+        "name": "Welcome"
+      }
     }
   }
 }

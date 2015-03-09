@@ -1,15 +1,27 @@
 Ext.define('EMIS.view.Viewport', {
+
     extend: 'Ext.container.Viewport',
+
+    cls: 'x-border-layout-ct',
+
     requires:[
-        'Ext.layout.container.Fit',
-        'EMIS.view.Main'
+        'Ext.layout.container.VBox',
+        'EMIS.view.MainHeader',
+        'EMIS.view.MainCards'
     ],
 
+    padding: 5,
+
     layout: {
-        type: 'fit'
+        type: 'vbox',
+        align: 'stretch'
     },
 
     items: [{
-        xtype: 'app-main'
+        xtype: 'mainheader',
+        height: 80
+    },{
+        xtype: 'maincards',
+        flex: 1
     }]
 });

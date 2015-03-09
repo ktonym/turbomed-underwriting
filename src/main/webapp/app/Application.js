@@ -3,7 +3,7 @@ Ext.define('EMIS.Application', {
     extend: 'Ext.app.Application',
     requires: ['EMIS.view.LogonWindow'],
     models: ['User'],
-    controllers: ['MainController',UserController],
+    controllers: ['MainController','UserController'],
     stores: ['User'],
 
     init: function(application){

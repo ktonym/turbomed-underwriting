@@ -1,7 +1,11 @@
 Ext.define('EMIS.controller.MainController', {
+
     extend: 'Ext.app.Controller',
+
     requires: ['Ext.window.MessageBox'],
+
     views: ['EMIS.view.MainHeader','EMIS.view.MainCards','EMIS.view.LogonWindow'],
+
     refs: [{
         ref: 'mainCards',
         selector: 'maincards'
@@ -12,6 +16,7 @@ Ext.define('EMIS.controller.MainController', {
         ref: 'passwordField',
         selector: 'logonwindow textfield[name=password]'
     }],
+
     init: function(application){
         this.control({
             'mainheader button':{
@@ -22,6 +27,7 @@ Ext.define('EMIS.controller.MainController', {
             }
         });
     },
+
     doHeaderButtonClick: function(button,e,options){
         var me = this;
         if(button.itemId === 'userAdminBtn'){
@@ -34,6 +40,7 @@ Ext.define('EMIS.controller.MainController', {
             me.doLogoff();
         }
     },
+
     doLogon: function(){
         var me = this;
         if (me.getUsernameField().validate() &&
@@ -58,6 +65,7 @@ Ext.define('EMIS.controller.MainController', {
             Ext.Msg.alert('Invalid Logon', 'Please enter a valid username and password');
         }
     },
+
     doLogoff: function(){
         Ext.Msg.confirm('Confirm Logout', 'Are you sure you want to log out of EMIS?', function(button){
             if(button == 'yes'){
