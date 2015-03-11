@@ -22,5 +22,36 @@ Ext.define('EMIS.controller.UserController', {
     },{
         ref: 'usernameField',
         selector: 'manageusers userform textfield[name=username]'
-    }]
+    }],
+    init: function(application){
+        this.control({
+            'manageusers #addUserBtn': {
+                click: this.addUser
+            },
+            'userlist': {
+                itemclick: this.doSelectUser,
+                viewready: this.doInitStore
+            },
+            'manageusers userform': {
+                afterrender: this.doAddUser
+            },
+            'manageusers userform fieldset': {
+                click: this.doRefreshUserList
+            }
+        });
+    },
+    doInitStore: function(){
+        this.getUserList().getStore().load();
+    },
+    doRefreshUserList: function(){
+        this.getUserList().getStore().load();
+    },
+    doAddUser: function(){
+        var me = this;
+        me.getUserFormFieldset().setTitle('Add New User');
+        me.getUsernameField().enable();
+        var newUserRec = Ext.create('EMIS.model.User');
+        me.getUserForm().loadRecord(newUserRec);
+        me.getDeleteUserButton().disable();
+    }
 });
