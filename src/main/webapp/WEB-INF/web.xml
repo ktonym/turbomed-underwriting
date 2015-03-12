@@ -15,7 +15,7 @@
   
   <servlet-mapping>
   	<servlet-name>dispatcher</servlet-name>
-  	<url-pattern>/EMIS/*</url-pattern>
+  	<url-pattern>/emis/*</url-pattern>
   </servlet-mapping>
   
   <listener>

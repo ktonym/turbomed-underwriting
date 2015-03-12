@@ -12,6 +12,7 @@
   </properties>
   
   <build>
+      <finalName>emis</finalName>
   	<plugins>
   		<plugin>
   			<groupId>org.eclipse.jetty</groupId>
