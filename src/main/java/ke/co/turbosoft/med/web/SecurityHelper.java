@@ -12,8 +12,6 @@ public class SecurityHelper {
 
     static final String SESSION_ATTRIB_USER = "sessionuser";
 
-    static final String[] SESSION_ATTRIB_ROLES = {"Guest"};
-
     public static User getSessionUser(HttpServletRequest request){
         User user=null;
         HttpSession session = request.getSession(true);

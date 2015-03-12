@@ -1,8 +1,11 @@
 package ke.co.turbosoft.med.service;
 
 import ke.co.turbosoft.med.entity.User;
+import ke.co.turbosoft.med.entity.UserRole;
+import ke.co.turbosoft.med.repository.UserRoleRepo;
 import ke.co.turbosoft.med.vo.Result;
 import ke.co.turbosoft.med.vo.ResultFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +15,9 @@ import java.util.List;
 @Transactional
 @Service("userService")
 public class UserServiceImpl extends AbstractService implements UserService {
+
+    @Autowired
+    UserRoleRepo userRoleRepo;
 
     public UserServiceImpl() {
         super();
@@ -63,5 +69,20 @@ public class UserServiceImpl extends AbstractService implements UserService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public Result<User> find(String username, String actionUsername) {
         return null;
+    }
+
+    @Override
+    public Result<List<UserRole>> findUserRole(String username) {
+
+        User user = userRepo.findOne(username);
+
+        List<UserRole> userRoles=userRoleRepo.findByUser(user);
+
+        if (userRoles == null || userRoles.isEmpty() || userRoles.size() == 0){
+            return ResultFactory.getSuccessResult(userRoles);
+        } else {
+            return ResultFactory.getFailResult("There are no roles defined for user[ "+user.getFirstName()+"]");
+        }
+
     }
 }

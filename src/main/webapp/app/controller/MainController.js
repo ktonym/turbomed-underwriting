@@ -46,7 +46,7 @@ Ext.define('EMIS.controller.MainController', {
         if (me.getUsernameField().validate() &&
             me.getPasswordField().validate()){
             Ext.Ajax.request({
-               url: 'j_spring_security_check',
+               url: 'security/logon',
                 params: {
                     j_username: me.getUsernameField().getValue(),
                     j_password: me.getPasswordField().getValue()
@@ -70,7 +70,7 @@ Ext.define('EMIS.controller.MainController', {
         Ext.Msg.confirm('Confirm Logout', 'Are you sure you want to log out of EMIS?', function(button){
             if(button == 'yes'){
                 Ext.Ajax.request({
-                    url: 'logout',
+                    url: 'security/logout',
                     success: function(){
                         window.location.reload();
                     }

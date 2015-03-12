@@ -18,10 +18,13 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.model.User": [],
   "EMIS.store.User": [],
   "EMIS.view.LogonWindow": [],
-  "EMIS.view.Main": [],
   "EMIS.view.MainCards": [],
   "EMIS.view.MainHeader": [],
   "EMIS.view.Viewport": [],
+  "EMIS.view.Welcome": [],
+  "EMIS.view.user.ManageUsers": [],
+  "EMIS.view.user.UserForm": [],
+  "EMIS.view.user.UserList": [],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],
@@ -861,13 +864,28 @@ Ext.ClassManager.addNameAliasMappings({
   "EMIS.controller.UserController": [],
   "EMIS.model.User": [],
   "EMIS.store.User": [],
-  "EMIS.view.LogonWindow": [],
-  "EMIS.view.Main": [
-    "widget.app-main"
+  "EMIS.view.LogonWindow": [
+    "widget.logonwindow"
   ],
-  "EMIS.view.MainCards": [],
-  "EMIS.view.MainHeader": [],
+  "EMIS.view.MainCards": [
+    "widget.maincards"
+  ],
+  "EMIS.view.MainHeader": [
+    "widget.mainheader"
+  ],
   "EMIS.view.Viewport": [],
+  "EMIS.view.Welcome": [
+    "widget.welcome"
+  ],
+  "EMIS.view.user.ManageUsers": [
+    "widget.manageusers"
+  ],
+  "EMIS.view.user.UserForm": [
+    "widget.userform"
+  ],
+  "EMIS.view.user.UserList": [
+    "widget.userlist"
+  ],
   "Ext.AbstractComponent": [],
   "Ext.AbstractManager": [],
   "Ext.AbstractPlugin": [],

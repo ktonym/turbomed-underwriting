@@ -1,6 +1,7 @@
 package ke.co.turbosoft.med.service;
 
 import ke.co.turbosoft.med.entity.User;
+import ke.co.turbosoft.med.entity.UserRole;
 import ke.co.turbosoft.med.vo.Result;
 
 import java.util.List;
@@ -18,5 +19,7 @@ public interface UserService {
         String actionUsername);
     public Result<User> remove(String username, String actionUsername);
 
-    Result<User> find(String username, String actionUsername);
+    public Result<User> find(String username, String actionUsername);
+
+    public Result<List<UserRole>> findUserRole(String username);
 }

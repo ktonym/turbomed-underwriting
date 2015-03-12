@@ -4,7 +4,7 @@ Ext.define("EMIS.view.user.UserForm", {
 
     xtype: 'userform',
 
-    requires: ['Ext.form.FieldSet','Ext.form.field.CheckBox','Ext.toolbar.Toolbar'],
+    requires: ['Ext.form.FieldSet','Ext.toolbar.Toolbar'],
 
     layout: {
         type: 'anchor'

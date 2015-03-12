@@ -9,13 +9,13 @@ Ext.define('EMIS.controller.UserController', {
         selector: 'manageusers userlist'
     },{
         ref: 'addUserButton',
-        selector: 'manageusers button #addUserBtn'
+        selector: 'manageusers #addUserBtn'
     },{
         ref: 'saveUserButton',
-        selector: 'manageusers userform button #saveBtn'
+        selector: 'manageusers userform #saveBtn'
     },{
         ref: 'deleteUserButton',
-        selector: 'manageusers userform button #deleteBtn'
+        selector: 'manageusers userform #deleteBtn'
     },{
         ref: 'userFormFieldset',
         selector: 'manageusers userform fieldset'
@@ -26,7 +26,7 @@ Ext.define('EMIS.controller.UserController', {
     init: function(application){
         this.control({
             'manageusers #addUserBtn': {
-                click: this.addUser
+                click: this.doAddUser
             },
             'userlist': {
                 itemclick: this.doSelectUser,
@@ -37,6 +37,12 @@ Ext.define('EMIS.controller.UserController', {
             },
             'manageusers userform fieldset': {
                 click: this.doRefreshUserList
+            },
+            'manageusers userform #deleteBtn': {
+                click: this.doDeleteUser
+            },
+            'manageusers userform #saveBtn': {
+                click: this.doSaveUser
             }
         });
     },
