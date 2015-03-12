@@ -48,8 +48,8 @@ Ext.define('EMIS.controller.MainController', {
             Ext.Ajax.request({
                url: 'security/logon',
                 params: {
-                    j_username: me.getUsernameField().getValue(),
-                    j_password: me.getPasswordField().getValue()
+                    username: me.getUsernameField().getValue(),
+                    password: me.getPasswordField().getValue()
                 },
                 success: function(response){
                     var obj = Ext.JSON.decode(response.responseText);

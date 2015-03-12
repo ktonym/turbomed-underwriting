@@ -1,10 +1,7 @@
 package ke.co.turbosoft.med.service;
 
-import ke.co.turbosoft.med.entity.ContactInfo;
-import ke.co.turbosoft.med.entity.Corporate;
-import ke.co.turbosoft.med.repository.ContactInfoRepo;
-import ke.co.turbosoft.med.repository.CorpAnnivRepo;
-import ke.co.turbosoft.med.repository.CorporateRepo;
+import ke.co.turbosoft.med.entity.*;
+import ke.co.turbosoft.med.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +26,15 @@ public class InitializeDb {
 
     @Autowired
     private CorpAnnivRepo corpAnnivRepo;
+
+    @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
+    private RoleRepo roleRepo;
+
+    @Autowired
+    private UserRoleRepo userRoleRepo;
 
     @PostConstruct
     public void init(){
@@ -86,6 +92,46 @@ public class InitializeDb {
         corp6.setJoined(LocalDate.now());
         corp6.setCorporateName("Anglican Church of Kenya");
         corpRepo.save(corp6);
+
+        Role uw_role = new Role();
+        uw_role.setRoleName("uw_user");
+        roleRepo.save(uw_role);
+
+        Role uw_supervisor = new Role();
+        uw_supervisor.setRoleName("uw_spvsr");
+        roleRepo.save(uw_supervisor);
+
+        Role clm_analyst = new Role();
+        clm_analyst.setRoleName("clm_analyst");
+        roleRepo.save(clm_analyst);
+
+        Role clm_supervisor = new Role();
+        clm_supervisor.setRoleName("clm_spvsr");
+        roleRepo.save(clm_supervisor);
+
+        User user1 = new User();
+        user1.setUsername("akipkoech");
+        user1.setFirstName("Anthony");
+        user1.setLastName("Kipkoech");
+        user1.setPassword("pass123");
+        user1.setEmail("akipkoech@madison.co.ke");
+        userRepo.save(user1);
+
+        User user2 = new User();
+        user2.setUsername("emwangi");
+        user2.setFirstName("Esther");
+        user2.setLastName("Mwangi");
+        user2.setPassword("pass123");
+        user2.setEmail("mwessy08@yahoo.com");
+        userRepo.save(user2);
+
+        UserRole userRole1 = new UserRole();
+        userRole1.setRole(uw_role);
+        userRole1.setUser(user1);
+        userRoleRepo.save(userRole1);
+
+
+
 
     }
 
