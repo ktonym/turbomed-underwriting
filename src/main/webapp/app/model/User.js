@@ -8,7 +8,9 @@ Ext.define('EMIS.model.User', {
         { name: 'firstName', type: 'string' },
         { name: 'lastName', type: 'string' }
     ],
+
     idProperty: 'username',
+
     proxy: {
         type: 'ajax',
         idParam: 'username',
@@ -30,6 +32,7 @@ Ext.define('EMIS.model.User', {
             writeAllFields: true
         }
     },
+
     validations: [
         {type: 'presence', field: 'username'},
         {type: 'length', field: 'username', min: 4},

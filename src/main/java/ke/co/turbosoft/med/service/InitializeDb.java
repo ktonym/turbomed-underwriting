@@ -93,21 +93,37 @@ public class InitializeDb {
         corp6.setCorporateName("Anglican Church of Kenya");
         corpRepo.save(corp6);
 
-        Role uw_role = new Role();
-        uw_role.setRoleName("uw_user");
-        roleRepo.save(uw_role);
+//        Role uw_role = new Role();
+//        uw_role.setRoleName("uw_user");
+//        roleRepo.save(uw_role);
+//
+//        Role uw_supervisor = new Role();
+//        uw_supervisor.setRoleName("uw_spvz");
+//        roleRepo.save(uw_supervisor);
+//
+//        Role clm_analyst = new Role();
+//        clm_analyst.setRoleName("clm_user");
+//        roleRepo.save(clm_analyst);
+//
+//        Role clm_supervisor = new Role();
+//        clm_supervisor.setRoleName("clm_spvz");
+//        roleRepo.save(clm_supervisor);
+//
+//        Role sys_adm = new Role();
+//        sys_adm.setRoleName("sys_adm");
+//        roleRepo.save(sys_adm);
 
-        Role uw_supervisor = new Role();
-        uw_supervisor.setRoleName("uw_spvsr");
-        roleRepo.save(uw_supervisor);
+        UserRole userRole1 = new UserRole();
+        userRole1.setRole(RoleType.SYS_ADM);
+        userRoleRepo.save(userRole1);
 
-        Role clm_analyst = new Role();
-        clm_analyst.setRoleName("clm_analyst");
-        roleRepo.save(clm_analyst);
+        UserRole userRole2 = new UserRole();
+        userRole2.setRole(RoleType.UW_UZR);
+        userRoleRepo.save(userRole2);
 
-        Role clm_supervisor = new Role();
-        clm_supervisor.setRoleName("clm_spvsr");
-        roleRepo.save(clm_supervisor);
+        List<UserRole> userRoles = new ArrayList<>();
+        userRoles.add(userRole1);
+        userRoles.add(userRole2);
 
         User user1 = new User();
         user1.setUsername("akipkoech");
@@ -115,7 +131,13 @@ public class InitializeDb {
         user1.setLastName("Kipkoech");
         user1.setPassword("pass123");
         user1.setEmail("akipkoech@madison.co.ke");
+        user1.setUserRoles(userRoles);
         userRepo.save(user1);
+
+//        UserRole userRoleAdm = new UserRole();
+//        userRoleAdm.setUser(user1);
+//        userRoleAdm.setRole(RoleType.SYS_ADM);
+//        userRoleRepo.save(userRoleAdm);
 
         User user2 = new User();
         user2.setUsername("emwangi");
@@ -124,14 +146,6 @@ public class InitializeDb {
         user2.setPassword("pass123");
         user2.setEmail("mwessy08@yahoo.com");
         userRepo.save(user2);
-
-        UserRole userRole1 = new UserRole();
-        userRole1.setRole(uw_role);
-        userRole1.setUser(user1);
-        userRoleRepo.save(userRole1);
-
-
-
 
     }
 

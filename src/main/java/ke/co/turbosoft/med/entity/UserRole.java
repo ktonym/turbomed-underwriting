@@ -6,19 +6,30 @@ import javax.persistence.*;
 /**
  * Created by akipkoech on 12/8/14.
  */
-@Entity @IdClass(UserRoleId.class)
-public class UserRole extends AbstractEntity{
+@Entity //@IdClass(UserRoleId.class)
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"username","roleName"})})
+public class UserRole extends AbstractEntity implements EntityItem<Integer>{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idUserRole;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="username")
     private User user;
-    @Id
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="roleName")
-    private Role role;
+
+    @Column(name="roleName")
+    private RoleType role;
 
     public UserRole() {
+    }
+
+    public Integer getIdUserRole() {
+        return idUserRole;
+    }
+
+    public void setIdUserRole(Integer idUserRole) {
+        this.idUserRole = idUserRole;
     }
 
     public User getUser() {
@@ -29,19 +40,25 @@ public class UserRole extends AbstractEntity{
         this.user = user;
     }
 
-    public Role getRole() {
+    public RoleType getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(RoleType role) {
         this.role = role;
     }
 
     @Override
     public void addJson(JsonObjectBuilder builder) {
-
+        builder.add("idUserRole",idUserRole)
+               .add("role", role.toString());
         user.addJson(builder);
-        role.addJson(builder);
+//        role.addJson(builder);
 
+    }
+
+    @Override
+    public Integer getId() {
+        return idUserRole;
     }
 }

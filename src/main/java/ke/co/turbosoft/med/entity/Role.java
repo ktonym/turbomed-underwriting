@@ -11,11 +11,13 @@ public class Role extends AbstractEntity implements EntityItem<String>{
 
     @Id
 	private String roleName;
+    private String description;
     @OneToMany(mappedBy = "role")
     private List<UserRole> userRoles;
 
     public Role() {
     }
+
 
     public String getRoleName() {
         return roleName;
@@ -33,6 +35,14 @@ public class Role extends AbstractEntity implements EntityItem<String>{
         this.userRoles = userRoles;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String getId() {
         return roleName;
@@ -41,7 +51,7 @@ public class Role extends AbstractEntity implements EntityItem<String>{
     @Override
     public void addJson(JsonObjectBuilder builder) {
 
-        builder.add("roleName",roleName);
+        builder.add("roleName",roleName).add("description",description);
 
     }
 }

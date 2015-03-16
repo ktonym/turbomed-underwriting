@@ -4,7 +4,7 @@ Ext.define("EMIS.view.MainCards", {
 
     xtype: 'maincards',
 
-    requires: ['Ext.layout.container.Card','EMIS.view.Welcome'],
+    requires: ['Ext.layout.container.Card','EMIS.view.Welcome','EMIS.view.user.ManageUsers'],
 
     layout: 'card',
 
@@ -14,6 +14,9 @@ Ext.define("EMIS.view.MainCards", {
             items: [{
                 xtype: 'welcome',
                 itemId: 'welcomeCard'
+            },{
+                xtype: 'manageusers',
+                itemId: 'manageUsersCard'
             }]
         });
         me.callParent(arguments);

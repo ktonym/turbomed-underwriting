@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class UserRoleId implements Serializable {
     User user;
-    Role role;
+    RoleType role;
 
     public UserRoleId() {
     }
@@ -20,11 +20,11 @@ public class UserRoleId implements Serializable {
         this.user = user;
     }
 
-    public Role getRole() {
+    public RoleType getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(RoleType role) {
         this.role = role;
     }
 
