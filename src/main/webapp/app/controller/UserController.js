@@ -108,7 +108,7 @@ Ext.define('EMIS.controller.UserController', {
                 });
             } else {
                 me.getUserForm().getForm().markInvalid(errs);
-                Ext.Msg.lert('Invalid Fields','Please fix the invalid entries');
+                Ext.Msg.alert('Invalid Fields','Please fix the invalid entries');
             }
         }
     }

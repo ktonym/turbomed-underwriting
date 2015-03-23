@@ -1,6 +1,5 @@
 package ke.co.turbosoft.med.service;
 
-import ke.co.turbosoft.med.entity.RoleType;
 import ke.co.turbosoft.med.entity.User;
 import ke.co.turbosoft.med.entity.UserRole;
 import ke.co.turbosoft.med.vo.Result;
@@ -54,9 +53,10 @@ public class UserServiceImpl extends AbstractService implements UserService {
     public Result<User> store(String username, String email, String password, String firstName, String lastName, String actionUsername) {
 
         //things TODO change this to query for sys_adm rights
-        if (!hasRole(actionUsername,RoleType.SYS_ADM)){
-            return ResultFactory.getFailResult(USER_NOT_AUTHORIZED);
-        }
+//        if (!hasRole(actionUsername,RoleType.SYS_ADM)){
+//
+//            return ResultFactory.getFailResult(USER_NOT_AUTHORIZED + "\n" + getRoles(actionUsername).toString());
+//        }
 
         if(username==null|| username.trim().isEmpty() || email==null || email.trim().isEmpty()){
             return ResultFactory.getFailResult("Unable to store a user without a valid non-empty username/email");
@@ -108,7 +108,7 @@ public class UserServiceImpl extends AbstractService implements UserService {
 
         //User actionUser = userRepo.findOne(actionUsername);
 
-        if(!hasRole(actionUsername, RoleType.SYS_ADM)){
+        if(!hasRole(actionUsername, "SYS_ADM")){
             return ResultFactory.getFailResult(USER_NOT_AUTHORIZED);
         }
 

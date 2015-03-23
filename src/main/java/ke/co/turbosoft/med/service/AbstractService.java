@@ -1,6 +1,5 @@
 package ke.co.turbosoft.med.service;
 
-import ke.co.turbosoft.med.entity.RoleType;
 import ke.co.turbosoft.med.entity.User;
 import ke.co.turbosoft.med.entity.UserRole;
 import ke.co.turbosoft.med.repository.UserRepo;
@@ -10,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Created by akipkoech on 3/5/15.
@@ -32,20 +32,18 @@ public abstract class AbstractService {
         return user != null;
     }
 
-    protected boolean hasRole(String username, RoleType roleType){
+    protected boolean hasRole(String username, String roleName){
+
+        Predicate<UserRole> predicate = p -> p.getRole().getRoleName().equals(roleName);
+
+        return getRoles(username).stream().anyMatch(predicate);
+    }
+
+    protected List<UserRole> getRoles(String username){
 
         User user = userRepo.findOne(username);
 
-        List<UserRole> userRoles = userRoleRepo.findByUser(user);
-
-        for(UserRole userRole: userRoles){
-            if (userRole.getRole().equals(roleType)){
-                return true;
-            }
-        }
-
-        return false;
-
+        return userRoleRepo.findByUser(user);
     }
 
 }

@@ -1,7 +1,7 @@
 package ke.co.turbosoft.med.service;
 
 import ke.co.turbosoft.med.entity.*;
-import org.springframework.data.domain.Page;
+import ke.co.turbosoft.med.vo.Result;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,9 +11,10 @@ import java.util.List;
  */
 public interface CorporateService {
 
-    Page<Corporate> getCorporates(Integer pageNumber);
-    List<Corporate> findAll();
-    Corporate search(Integer corpId);
+//    Consider returning a Result<Page<Corporate>> object;
+//    Page<Corporate> getCorporates(Integer pageNumber);
+
+/*
     void renew(Corporate corporate);
     List<Corporate> listActive();
     List<Corporate> listInactive();
@@ -24,5 +25,22 @@ public interface CorporateService {
     List<Member> listMembers(Corporate corporate);
     List<Member> listActiveMembers(Corporate corporate);
     List<Category> listCategories(Corporate corporate);
-    void save(Corporate corporate);
+*/
+
+    Result<Corporate> store(
+            Integer idCorporate,
+            String corporateName,
+            String abbreviation,
+            String tel,
+            String email,
+            String postalAddress,
+            LocalDate joined,
+            String actionUsername
+    );
+
+    Result<Corporate> remove(Integer idCorporate, String actionUsername);
+
+    Result<Corporate> find(Integer idCorporate, String actionUsername);
+
+    Result<List<Corporate>> findAll(String actionUsername);
 }

@@ -1,13 +1,12 @@
 package ke.co.turbosoft.med.service;
 
-import ke.co.turbosoft.med.entity.*;
+import ke.co.turbosoft.med.entity.Corporate;
 import ke.co.turbosoft.med.repository.*;
-
+import ke.co.turbosoft.med.vo.Result;
+import ke.co.turbosoft.med.vo.ResultFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
@@ -16,11 +15,11 @@ import java.util.List;
 /**
  * Created by akipkoech on 12/10/14.
  */
-@Service
+@Service("corporateService")
+@Transactional
+public class CorporateServiceImpl extends AbstractService implements CorporateService {
 
-public class CorporateServiceImpl implements CorporateService {
-
-    private static final int PAGE_SIZE = 3;
+   // private static final int PAGE_SIZE = 3;
 
     @Autowired
     private CorporateRepo corporateRepo;
@@ -37,89 +36,105 @@ public class CorporateServiceImpl implements CorporateService {
     @Autowired
     private MemberRepo memberRepo;
 
-    @Override
-    @Transactional(readOnly=true)
-    public Page<Corporate> getCorporates(Integer pageNumber) {
-        PageRequest request =new PageRequest(pageNumber - 1, PAGE_SIZE,Sort.Direction.ASC, "abbreviation" );
-        return corporateRepo.findAll(request);
+    public CorporateServiceImpl() {
+        super();
     }
 
     @Override
-    @Transactional(readOnly=true)
-    public List<Corporate> findAll() {
-        return corporateRepo.findAll();
-    }
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+    public Result<Corporate> store(Integer idCorporate,
+                                   String corporateName,
+                                   String abbreviation,
+                                   String tel,
+                                   String email,
+                                   String postalAddress,
+                                   LocalDate joined,
+                                   String actionUsername) {
 
-    @Override
-    @Transactional(readOnly=true)
-    public Corporate search(Integer corpId) {
-        return corporateRepo.findOne(corpId);
-    }
+       // User sessionUser = userRepo.findOne(actionUsername);
 
-    @Override
-    @Transactional
-    public void renew(Corporate corporate) {
+        if(!hasRole(actionUsername,"UW_UZR")){
+            return ResultFactory.getFailResult(USER_NOT_AUTHORIZED);
+        }
 
-    }
+        Corporate corporate;
 
-    @Override
-    @Transactional(readOnly=true)
-    public List<Corporate> listActive() {
-        return null;
-    }
+        if(idCorporate == null){
+            corporate = new Corporate();
+        } else {
+            // Company exists and we're updating it
+            corporate = corporateRepo.findOne(idCorporate);
+            if(corporate == null){
+                return ResultFactory.getFailResult("Unable to find scheme with ID = " +idCorporate);
+            }
+        }
 
-    @Override
-    @Transactional(readOnly=true)
-    public List<Corporate> listInactive() {
-        return null;
-    }
+        corporate.setAbbreviation(abbreviation);
+        corporate.setCorporateName(corporateName);
+        corporate.setEmail(email);
+        corporate.setJoined(joined);
+        corporate.setPostalAddress(postalAddress);
+        corporate.setTel(tel);
 
-    @Override
-    @Transactional(readOnly=true)
-    public List<Principal> listPrincipals(Corporate corporate) {
-        //return principalRepo.findByCategoryPrincipal_Category_Anniv_Corporate(corporate);
-        return null;
-    }
-
-    @Override
-    @Transactional(readOnly=true)
-    public List<CorpAnniv> listAnniversaries(Corporate corporate) {
-        return corpAnnivRepo.findByCorporate(corporate);
-    }
-
-    @Override
-    @Transactional(readOnly=true)
-    public List<Member> listMembers(Corporate corporate) {
-        return memberRepo.findByPrincipal_CategoryPrincipal_Category_Anniv_Corporate(corporate);
-    }
-
-    @Override
-    @Transactional(readOnly=true)
-    public List<Member> listActiveMembers(Corporate corporate) {
-        return null;
-    }
-
-    @Override
-    @Transactional(readOnly=true)
-    public List<Category> listCategories(Corporate corporate) {
-        return categoryRepo.findByAnniv_Corporate(corporate);
-    }
-
-    @Override
-    @Transactional(readOnly=true)
-    public List<Corporate> listJoinedAfter(LocalDate localDate) {
-        return corporateRepo.findByJoinedAfter(localDate);
-    }
-
-    @Override
-    @Transactional(readOnly=true)
-    public List<Corporate> listJoinedBefore(LocalDate localDate) {
-        return corporateRepo.findByJoinedBefore(localDate);
-    }
-
-    @Override
-    @Transactional
-    public void save(Corporate corporate) {
         corporateRepo.save(corporate);
+
+        return ResultFactory.getSuccessResult(corporate);
+
+    }
+
+    @Override
+    public Result<Corporate> remove(Integer idCorporate, String actionUsername) {
+
+        if(!hasRole(actionUsername,"UW_SPVZ")){
+            return ResultFactory.getFailResult(USER_NOT_AUTHORIZED);
+        }
+
+        if(idCorporate == null){
+            return ResultFactory.getFailResult("Unable to remove Corporate. Null idCorporate!");
+        }
+
+        Corporate corporate = corporateRepo.findOne(idCorporate);
+
+        if( corporate == null){
+            return ResultFactory.getFailResult("Unable to load Corporate with idCorporate=" + idCorporate +" for removal");
+        } else {
+
+            if((corporate.getAnnivs()==null || corporate.getAnnivs().isEmpty()) &&
+                    (corporate.getContactInfo()==null || corporate.getContactInfo().isEmpty()) &&
+                    (corporate.getRates()==null || corporate.getRates().isEmpty())){
+                corporateRepo.delete(corporate);
+                String msg = "Corporate " + corporate.getCorporateName()
+                        + " was deleted by " + actionUsername;
+                logger.info(msg);
+                return ResultFactory.getSuccessResult(msg);
+            } else {
+                return ResultFactory.getFailResult("Corporate has child record(s) and could not be deleted");
+            }
+
+        }
+
+
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public Result<Corporate> find(Integer idCorporate, String actionUsername) {
+        if(isValidUser(actionUsername)){
+            Corporate corporate=corporateRepo.findOne(idCorporate);
+            return ResultFactory.getSuccessResult(corporate);
+        } else {
+            return ResultFactory.getFailResult(USER_INVALID);
+        }
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public Result<List<Corporate>> findAll(String actionUsername) {
+        if(isValidUser(actionUsername)){
+            List<Corporate> corporateList = corporateRepo.findAll();
+            return ResultFactory.getSuccessResult(corporateList);
+        } else {
+            return ResultFactory.getFailResult(USER_INVALID);
+        }
     }
 }

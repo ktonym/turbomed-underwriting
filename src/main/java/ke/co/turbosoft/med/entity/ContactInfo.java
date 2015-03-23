@@ -20,7 +20,7 @@ public class ContactInfo extends AbstractEntity implements EntityItem<Integer> {
     private String email;
     private String tel;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="corp_id")
+    @JoinColumn(name="idCorporate")
     private Corporate corporate;
 
     public ContactInfo() {

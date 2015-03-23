@@ -434,6 +434,71 @@
         "appName": "EMIS",
         "name": "Welcome"
       }
+    },
+    "app/controller/CorpController.js": {
+      "source": "{controllerFileName}.js.tpl.merge",
+      "version": "b092f4aad11d2f7eaab5ce3e2dcc2fc3134f3188",
+      "parameters": {
+        "appName": "EMIS",
+        "controllerName": "CorpController",
+        "name": "CorpController",
+        "controllerNamespace": "EMIS.controller",
+        "controllerFileName": "CorpController"
+      }
+    },
+    "app/model/Corporate.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "Corporate",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idCorporate:int:null,corporateName:string:null,abbreviation:string:null,tel:string:null,email:string:null,postalAddress:string:null,joined:date:null",
+        "modelFileName": "Corporate"
+      }
+    },
+    "app/model/ContactInfo.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "ContactInfo",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idContactInfo:int:null,firstName:auto:null,surname:auto:null,jobTitle:auto:null,email:auto:null,tel:auto:null",
+        "modelFileName": "ContactInfo"
+      }
+    },
+    "app/view/corporate/ManageCorporates.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "corporate.ManageCorporates",
+        "viewFileName": "corporate/ManageCorporates",
+        "appName": "EMIS",
+        "name": "corporate.ManageCorporates"
+      }
+    },
+    "app/view/corporate/CorporateForm.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "corporate.CorporateForm",
+        "viewFileName": "corporate/CorporateForm",
+        "appName": "EMIS",
+        "name": "corporate.CorporateForm"
+      }
+    },
+    "app/view/corporate/CorporateList.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "corporate.CorporateList",
+        "viewFileName": "corporate/CorporateList",
+        "appName": "EMIS",
+        "name": "corporate.CorporateList"
+      }
     }
   }
 }

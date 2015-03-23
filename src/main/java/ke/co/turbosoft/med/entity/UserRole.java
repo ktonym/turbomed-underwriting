@@ -7,19 +7,19 @@ import javax.persistence.*;
  * Created by akipkoech on 12/8/14.
  */
 @Entity //@IdClass(UserRoleId.class)
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"username","roleName"})})
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"username","idRole"})})
 public class UserRole extends AbstractEntity implements EntityItem<Integer>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idUserRole;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="username")
     private User user;
 
-    @Column(name="roleName")
-    private RoleType role;
+    @Column(name="idRole")
+    private Role role;
 
     public UserRole() {
     }
@@ -40,20 +40,24 @@ public class UserRole extends AbstractEntity implements EntityItem<Integer>{
         this.user = user;
     }
 
-    public RoleType getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(RoleType role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
     @Override
     public void addJson(JsonObjectBuilder builder) {
-        builder.add("idUserRole",idUserRole)
-               .add("role", role.toString());
-        user.addJson(builder);
-//        role.addJson(builder);
+        builder.add("idUserRole",idUserRole);
+
+        if (user!=null){
+             user.addJson(builder);
+        }
+        if (role!=null){
+             role.addJson(builder);
+        }
 
     }
 
