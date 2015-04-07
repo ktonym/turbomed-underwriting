@@ -1,7 +1,7 @@
 Ext.define("EMIS.view.corporate.CorporateForm", {
     extend: 'Ext.form.Panel',
     xtype: 'corporateform',
-    requires: ['Ext.form.Fieldset','Ext.form.field.Date',
+    requires: ['Ext.form.FieldSet','Ext.form.field.Date',
         'Ext.form.field.Number','Ext.form.field.TextArea','Ext.toolbar.Toolbar'],
     layout: {
         type: 'anchor'
@@ -14,7 +14,6 @@ Ext.define("EMIS.view.corporate.CorporateForm", {
         Ext.applyIf(me,{
             items: [{
                xtype: 'fieldset',
-                hidden: true,
                 padding: 10,
                 fieldDefaults: {
                     anchor: '100%'
@@ -67,8 +66,7 @@ Ext.define("EMIS.view.corporate.CorporateForm", {
                         iconCls: 'save',
                         text: 'Save'
                     }]
-                }
-                ]
+                }]
 
             }]
         });

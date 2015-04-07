@@ -71,7 +71,7 @@ public abstract class AbstractHandler {
 
     }
 
-    private static String toJsonString(JsonObject model) {
+    public static String toJsonString(JsonObject model) {
 
         final StringWriter stWriter = new StringWriter();
 

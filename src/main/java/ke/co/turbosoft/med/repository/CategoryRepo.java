@@ -1,10 +1,10 @@
 package ke.co.turbosoft.med.repository;
 
 import ke.co.turbosoft.med.entity.Category;
+import ke.co.turbosoft.med.entity.CorpAnniv;
 import ke.co.turbosoft.med.entity.Corporate;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.persistence.Column;
 import java.util.List;
 
 /**
@@ -12,4 +12,6 @@ import java.util.List;
  */
 public interface CategoryRepo extends JpaRepository<Category,Integer> {
     List<Category> findByAnniv_Corporate(Corporate corporate);
+    List<Category> findByAnniv(CorpAnniv anniv);
+    long countByAnniv(CorpAnniv anniv);
 }

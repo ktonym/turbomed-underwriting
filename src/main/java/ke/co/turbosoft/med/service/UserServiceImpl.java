@@ -53,9 +53,9 @@ public class UserServiceImpl extends AbstractService implements UserService {
     public Result<User> store(String username, String email, String password, String firstName, String lastName, String actionUsername) {
 
         //things TODO change this to query for sys_adm rights
-//        if (!hasRole(actionUsername,RoleType.SYS_ADM)){
-//
-//            return ResultFactory.getFailResult(USER_NOT_AUTHORIZED + "\n" + getRoles(actionUsername).toString());
+
+//        if(!hasRole(actionUsername,"SYS_ADM")){
+//            return ResultFactory.getFailResult(USER_NOT_AUTHORIZED + getRoles(actionUsername).toString());
 //        }
 
         if(username==null|| username.trim().isEmpty() || email==null || email.trim().isEmpty()){

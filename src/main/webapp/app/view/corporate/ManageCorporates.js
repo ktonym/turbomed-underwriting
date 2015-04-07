@@ -1,14 +1,20 @@
 Ext.define("EMIS.view.corporate.ManageCorporates", {
+
     extend: 'Ext.panel.Panel',
+
     xtype: 'managecorporates',
-    requires: ['Ext.toolbar.Toolbar', 'Ext.layout.container.Border',
-    'Ext.form.field.Date','EMIS.view.corporate.CorporateForm','EMIS.view.corporate.CorporateList'],
+
+    requires: ['Ext.toolbar.Toolbar',
+//        'EMIS.view.corporate.CorpList',
+        'EMIS.view.corporate.CorporateForm'],
+
     layout: {
-        type: 'border'
+        type: 'hbox',
+        align: 'stretch'
     },
+
     initComponent: function(){
         var me = this;
-        var now = new Date();
         Ext.applyIf(me,{
             dockedItems:[{
                 xtype: 'toolbar',
@@ -20,16 +26,16 @@ Ext.define("EMIS.view.corporate.ManageCorporates", {
                     text: 'Add New'
                 }]
             }] ,
-            items: [{
-                xtype: 'corporatelist',
-                region: 'center',
-                margin: 1
-
-            },{
+            items: [
+//                {
+//                xtype: 'corplist',
+//                width: 400,
+//                margin: 1
+//
+//            },
+                {
                 xtype: 'corporateform',
-                region: 'east',
-                split: true,
-                width: 400
+                flex: 1
             }]
         });
         me.callParent(arguments);

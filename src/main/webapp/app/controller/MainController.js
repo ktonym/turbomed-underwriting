@@ -33,7 +33,7 @@ Ext.define('EMIS.controller.MainController', {
         if(button.itemId === 'userAdminBtn'){
             me.getMainCards().getLayout()
                 .setActiveItem('manageUsersCard');
-        } else if (button.itemId === 'schemeAdminBtn'){
+        } else if (button.itemId === 'corpAdminBtn'){
             me.getMainCards().getLayout()
                 .setActiveItem('manageSchemesCard');
         } else if (button.itemId === 'logoffBtn'){

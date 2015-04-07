@@ -8,7 +8,7 @@ Ext.define('EMIS.model.Corporate', {
         { name: 'tel', type: 'string' },
         { name: 'email', type: 'string' },
         { name: 'postalAddress', type: 'string' },
-        { name: 'joined', type: 'date' }
+        { name: 'joined', type: 'date', dateFormat: 'Ymd' }
 
     ],
     idProperty: 'idCorporate',

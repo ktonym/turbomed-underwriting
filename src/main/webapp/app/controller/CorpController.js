@@ -1,13 +1,18 @@
 Ext.define('EMIS.controller.CorpController', {
+
     extend: 'Ext.app.Controller',
-    views: ['corporate.ManageUsers'],
+
+    views: ['corporate.ManageCorporates'],
+
     refs: [{
-        ref: 'corpForm',
+        ref: 'corporateForm',
         selector: 'managecorporates corporateform'
-    },{
+    },
+      {
         ref: 'corpList',
-        selector: 'managecorporates corporatelist'
-    },{
+        selector: 'managecorporates corplist'
+    },
+      {
         ref: 'corpFormFieldset',
         selector: 'managecorporates corporateform fieldset'
     },{
@@ -19,14 +24,16 @@ Ext.define('EMIS.controller.CorpController', {
     },{
         ref: 'saveCorpButton',
         selector: 'managecorporates corporateform #saveBtn'
-    }
-    ],
+    },{
+        ref: 'corpNameField',
+            selector: 'managecorporates corporateform textfield[name=corporateName]'
+    }],
     init: function(application){
         this.control({
             'managecorporates #addCorpBtn': {
                 click: this.doAddCorporate
             },
-            'managecorporates corporatelist':{
+            'managecorporates corplist':{
                 itemclick: this.doSelectCorporate,
                 viewready: this.doInitStore
             },
@@ -57,13 +64,13 @@ Ext.define('EMIS.controller.CorpController', {
         var me = this;
         me.getCorpFormFieldset().setTitle('Add New Corporate');
         var newCorpRec = Ext.create('EMIS.model.Corporate');
-        me.getCorpForm().loadRecord(newCorpRec);
+        me.getCorporateForm().loadRecord(newCorpRec);
         me.getDelCorpButton().disable();
     },
 
     doDeleteCorporate: function(){
         var me = this;
-        var rec = me.getCorpForm().getRecord();
+        var rec = me.getCorporateForm().getRecord();
         Ext.Msg.confirm('Confirm Delete Corporate', 'Are you sure you want to delete corporate ' +
             rec.get('corporateName') + '?', function(btn){
                 if(btn ===  'yes'){
@@ -81,32 +88,35 @@ Ext.define('EMIS.controller.CorpController', {
 
     doSelectCorporate: function(grid, record){
         var me = this;
-        me.getCorpForm().loadRecord(record);
-        me.getCorpFormFieldset();
+        me.getCorporateForm().loadRecord(record);
+        me.getCorpFormFieldset().setTitle('Edit corporate ' + record.data.corporateName);
+        me.getCorpNameField().disable();
+        me.getDelCorpButton().enable();
     },
 
     doSaveCorporate: function(){
         var me = this;
-        var rec = me.getCorpForm().getRecord();
+        var rec = me.getCorporateForm().getRecord();
         if (rec !== null){
-            me.getCorpForm().updateRecord();
+            me.getCorporateForm().updateRecord();
             var errs = rec.validate();
             if(errs.isValid()){
                 rec.save({
-                    success: function(rec,operation){
-                        if(typeof rec.store === 'undefined'){
-                            me.getCorpList().getStore().add(rec);
-                            me.getCorpList().getSelectionModel().select(rec,true);
-                        }
-                        me.getCorpFormFieldset().setTitle('Edit corporate' + rec.data.corporateName);
+                    success: function(record,operation){
+//                        if(typeof record.store === 'undefined'){
+//                            me.getCorpList().getStore().add(record);
+//                            me.getCorpList().getSelectionModel().select(record,true);
+//                        }
+                        me.getCorpFormFieldset().setTitle('Edit corporate ' + record.data.corporateName);
                         me.getDelCorpButton().enable();
+                        Ext.Msg.alert('Save success','Created ' + record.data.corporateName);
                     },
                     failure: function(rec,operation){
                         Ext.Msg.alert('Save failed', operation.request.scope.reader.jsonData.msg);
                     }
                 });
             } else {
-                me.getCorpForm().getForm().markInvalid(errs);
+                me.getCorporateForm().getForm().markInvalid(errs);
                 Ext.Msg.alert('Invalid Fields','Please fix the invalid entries');
             }
         }

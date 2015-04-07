@@ -1,20 +1,31 @@
-Ext.define("EMIS.view.corporate.CorporateList", {
+Ext.define("EMIS.view.corporate.CorpList", {
+
     extend: 'Ext.grid.Panel',
-    xtype: 'corporatelist',
+
+    xtype: 'corplist',
+
     store: 'Corporate',
+
     title: 'Corporate List',
+
     viewConfig: {
         markDirty: false,
         stripeRows: false
     },
+
     initComponent: function(){
         var me = this;
         Ext.applyIf(me,{
             tools: [{
                 type: 'refresh',
-                tooltip: 'Refresh list of corporates'
+                tooltip: 'Refresh list'
             }],
             columns: [{
+                xtype: 'gridcolumn',
+                dataIndex: 'idCorporate',
+                flex: 1,
+                text: 'Corp ID'
+            },{
                 xtype: 'gridcolumn',
                 dataIndex: 'corporateName',
                 flex: 2,
@@ -24,6 +35,7 @@ Ext.define("EMIS.view.corporate.CorporateList", {
                 dataIndex: 'abbreviation',
                 flex: 1,
                 text: 'Abbreviation'
+
             },{
                 xtype: 'gridcolumn',
                 dataIndex: 'tel',

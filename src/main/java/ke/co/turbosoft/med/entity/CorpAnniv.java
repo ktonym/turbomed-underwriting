@@ -25,7 +25,7 @@ public class CorpAnniv extends AbstractEntity implements EntityItem<Integer> {
     @JoinColumn(name="corp_id")
     private Corporate corporate;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "intermediary_id")
+    @JoinColumn(name = "intermediary_id",nullable = true)
     private Intermediary intermediary;
 
     static final DateTimeFormatter DATE_FORMATTER_yyyyMMdd = DateTimeFormatter.ofPattern("yyyyMMdd");

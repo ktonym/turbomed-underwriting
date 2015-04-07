@@ -53,9 +53,9 @@ public class CorporateServiceImpl extends AbstractService implements CorporateSe
 
        // User sessionUser = userRepo.findOne(actionUsername);
 
-        if(!hasRole(actionUsername,"UW_UZR")){
-            return ResultFactory.getFailResult(USER_NOT_AUTHORIZED);
-        }
+//        if(!hasRole(actionUsername,"UW_UZR")){
+//            return ResultFactory.getFailResult(USER_NOT_AUTHORIZED);
+//        }
 
         Corporate corporate;
 
