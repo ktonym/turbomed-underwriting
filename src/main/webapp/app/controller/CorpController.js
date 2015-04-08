@@ -2,15 +2,22 @@ Ext.define('EMIS.controller.CorpController', {
 
     extend: 'Ext.app.Controller',
 
+    stores: ['CorpTree'],
+
     views: ['corporate.ManageCorporates'],
 
     refs: [{
         ref: 'corporateForm',
         selector: 'managecorporates corporateform'
-    },
-      {
-        ref: 'corpList',
-        selector: 'managecorporates corplist'
+    },{
+        ref: 'annivForm',
+        selector: 'managecorporates annivform'
+    },{
+        ref: 'categoryForm',
+        selector: 'managecorporates categoryform'
+    },{
+        ref: 'corpTree',
+        selector: 'managecorporates corptree'
     },
       {
         ref: 'corpFormFieldset',
@@ -26,16 +33,19 @@ Ext.define('EMIS.controller.CorpController', {
         selector: 'managecorporates corporateform #saveBtn'
     },{
         ref: 'corpNameField',
-            selector: 'managecorporates corporateform textfield[name=corporateName]'
+        selector: 'managecorporates corporateform textfield[name=corporateName]'
+    },{
+        ref: 'adminCards',
+        selector: 'managecorporates #adminCards'
     }],
     init: function(application){
         this.control({
             'managecorporates #addCorpBtn': {
                 click: this.doAddCorporate
             },
-            'managecorporates corplist':{
-                itemclick: this.doSelectCorporate,
-                viewready: this.doInitStore
+            'managecorporates corptree':{
+                itemclick: this.doSelectTreeITem
+//                viewready: this.doInitStore
             },
             'managecorporates corporateform': {
                 afterrender: this.doAddCorporate
@@ -86,13 +96,58 @@ Ext.define('EMIS.controller.CorpController', {
         });
     },
 
-    doSelectCorporate: function(grid, record){
-        var me = this;
-        me.getCorporateForm().loadRecord(record);
-        me.getCorpFormFieldset().setTitle('Edit corporate ' + record.data.corporateName);
-        me.getCorpNameField().disable();
-        me.getDelCorpButton().enable();
+    doSetTreeIcon: function(store, node, refNode, eOpts){
+        var nodeType = node.getId().subString(0,1);
+        if(nodeType === 'S'){
+            node.set('iconCls','company');
+        } else if(nodeType === 'A'){
+            node.set('iconCls','project');
+        } else if(nodeType === 'C'){
+            node.set('iconCls', 'task');
+        }
     },
+
+    doSelectTreeItem: function(tree, record){
+        var me = this;
+        var recIdSplit = record.getId().split('_');
+        EMIS.console(recIdSplit);
+        if(recIdSplit[0]==='C'){
+            var idCategory = Ext.Number.from(recIdSplit[1]);
+            var rec = me.getCategoryStore().getById(idCategory);
+            if (!Ext.isEmpty(rec)){
+                me.getCategoryForm().loadRecord(rec);
+                me.getCategoryFormFieldset().setTitle('Edit Category for ' + rec.get('anniv'));
+                me.getDeleteCatButton().enable();
+                me.getAdminCards().getLayout().setActiveItem(me.getCategoryForm());
+            }
+        } else if (recIdSplit[0]==='A'){
+            var idAnniversary = Ext.Number.from(recIdSplit[1]);
+            var rec = me.getAnnivStore().getById(idAnniversary);
+            if (!Ext.isEmpty(rec)){
+                me.getAnnivForm().loadRecord(rec);
+                me.getAnnivFormFieldset().setTitle('Edit Cover Period for ' + rec.get('corporateName'));
+                me.getDeleteAnnivButton().enable();
+                me.getAdminCards().getLayout().setActiveItem(me.getAnnivForm());
+            }
+        } else if (recIdSplit[0]==='S'){
+            var idCorporate = Ext.Number.from(recIdSplit[1]);
+            var rec = me.getCorporateStore().getById(idCorporate);
+            if (!Ext.isEmpty(rec)){
+                me.getCorporateForm().loadRecord(rec);
+                me.getCorporateFormFieldset().setTitle('Edit Scheme ');
+                me.getDelCorpButton().enable();
+                me.getAdminCards().getLayout().setActiveItem(me.getCorporateForm());
+            }
+        }
+    },
+
+//    doSelectCorporate: function(grid, record){
+//        var me = this;
+//        me.getCorporateForm().loadRecord(record);
+//        me.getCorpFormFieldset().setTitle('Edit corporate ' + record.data.corporateName);
+//        me.getCorpNameField().disable();
+//        me.getDelCorpButton().enable();
+//    },
 
     doSaveCorporate: function(){
         var me = this;
@@ -120,6 +175,22 @@ Ext.define('EMIS.controller.CorpController', {
                 Ext.Msg.alert('Invalid Fields','Please fix the invalid entries');
             }
         }
+    },
+
+    doRefreshTree: function() {
+        var me = this;
+        me.getCorpTreeStore().load();
+    },
+    doExpandTree: function() {
+        this.getCorpTree().expandAll();
+    },
+    doCollapseTree: function() {
+        this.getCorpTree().collapseAll();
+    },
+    doDeselectAll: function() {
+        var me = this;
+        var recs = me.getCorpTree().getView().getSelectionModel().getSelection();
+        me.getCorpTree().getView().deselect(recs, false);
     }
 
 

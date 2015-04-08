@@ -1,4 +1,4 @@
-Ext.define("EMIS.store.CorpTree",{
+Ext.define('EMIS.store.CorpTree',{
     extend: 'Ext.data.TreeStore',
     proxy: {
         type: 'ajax',

@@ -19,6 +19,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.model.Corporate": [],
   "EMIS.model.User": [],
   "EMIS.store.ContactInfo": [],
+  "EMIS.store.CorpTree": [],
   "EMIS.store.Corporate": [],
   "EMIS.store.User": [],
   "EMIS.view.LogonWindow": [],
@@ -26,7 +27,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.view.MainHeader": [],
   "EMIS.view.Viewport": [],
   "EMIS.view.Welcome": [],
+  "EMIS.view.corporate.AnnivForm": [],
+  "EMIS.view.corporate.CategoryForm": [],
   "EMIS.view.corporate.CorpList": [],
+  "EMIS.view.corporate.CorpTree": [],
   "EMIS.view.corporate.CorporateForm": [],
   "EMIS.view.corporate.ManageCorporates": [],
   "EMIS.view.user.ManageUsers": [],
@@ -858,6 +862,7 @@ Ext.ClassManager.addNameAliasMappings({
   "EMIS.model.Corporate": [],
   "EMIS.model.User": [],
   "EMIS.store.ContactInfo": [],
+  "EMIS.store.CorpTree": [],
   "EMIS.store.Corporate": [],
   "EMIS.store.User": [],
   "EMIS.view.LogonWindow": [
@@ -873,8 +878,17 @@ Ext.ClassManager.addNameAliasMappings({
   "EMIS.view.Welcome": [
     "widget.welcome"
   ],
+  "EMIS.view.corporate.AnnivForm": [
+    "widget.annivform"
+  ],
+  "EMIS.view.corporate.CategoryForm": [
+    "widget.categoryform"
+  ],
   "EMIS.view.corporate.CorpList": [
     "widget.corplist"
+  ],
+  "EMIS.view.corporate.CorpTree": [
+    "widget.corptree"
   ],
   "EMIS.view.corporate.CorporateForm": [
     "widget.corporateform"

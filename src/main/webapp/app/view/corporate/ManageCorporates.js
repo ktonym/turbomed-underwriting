@@ -6,6 +6,7 @@ Ext.define("EMIS.view.corporate.ManageCorporates", {
 
     requires: ['Ext.toolbar.Toolbar',
 //        'EMIS.view.corporate.CorpList',
+        'EMIS.view.corporate.CorpTree',
         'EMIS.view.corporate.CorporateForm'],
 
     layout: {
@@ -26,16 +27,30 @@ Ext.define("EMIS.view.corporate.ManageCorporates", {
                     text: 'Add New'
                 }]
             }] ,
-            items: [
-//                {
-//                xtype: 'corplist',
-//                width: 400,
-//                margin: 1
-//
-//            },
-                {
-                xtype: 'corporateform',
-                flex: 1
+            items: [{
+                xtype: 'corptree',
+                flex: 1,
+                margin: 1
+
+            },{
+                xtype: 'container',
+                itemId: 'adminCards',
+                activeItem: 0,
+                flex: 1,
+                layout: {
+                    type: 'card'
+                },
+                items: [{
+                    xtype: 'container',
+                    padding: 10,
+                    html: 'Please select an item from the tree...'
+                },{
+                    xtype: 'corporateform'
+                },{
+                    xtype: 'annivform'
+                },{
+                    xtype: 'categoryform'
+                }]
             }]
         });
         me.callParent(arguments);

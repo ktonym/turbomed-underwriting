@@ -1,9 +1,9 @@
-Ext.define("EMIS.view.corporate.CorpTree",{
+Ext.define('EMIS.view.corporate.CorpTree',{
     extend: 'Ext.tree.Panel',
     xtype: 'corptree',
-    title: 'Corporates -> Anniversaries',
-    requires: ['Ext.store.CorpTree'],
-    store: 'Ext.store.CorpTree',
+    title: 'Corporates -> Anniversaries -> Categories',
+    requires: ['EMIS.store.CorpTree'],
+    store: 'CorpTree',
     lines: true,
     rootVisible: false,
     hideHeaders: true,
