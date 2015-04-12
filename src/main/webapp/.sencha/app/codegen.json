@@ -499,6 +499,66 @@
         "appName": "EMIS",
         "name": "corporate.CorporateList"
       }
+    },
+    "app/model/Intermediary.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "Intermediary",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idIntermediary:integer:null,PIN:string:null,type:string:null,joinDate:date:null,email:string:null,tel:string:null,name:string:null,street:string:null,town:string:null,postalAddress:string:null,firstName:string:null,surname:string:null,otherNames:string:null,fullName:string:null",
+        "modelFileName": "Intermediary"
+      }
+    },
+    "app/model/Agent.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "Agent",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idIntermediary:int:null,PIN:string:null,type:string:null,joinDate:date:null,email:string:null,tel:string:null,firstName:string:null,surname:string:null,otherNames:string:null,intermediaryName:string:null",
+        "modelFileName": "Agent"
+      }
+    },
+    "app/model/Agency.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "Agency",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idIntermediary:int:null,PIN:string:null,type:string:null,joinDate:date:null,email:string:null,tel:string:null,name:string:null,street:string:null,town:string:null,postalAddress:string:null,intermediaryName:string:null",
+        "modelFileName": "Agency"
+      }
+    },
+    "app/model/Broker.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "Broker",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idIntermediary:int:null,PIN:string:null,type:string:null,joinDate:date:null,email:string:null,tel:string:null,name:string:null,street:string:null,town:string:null,postalAddress:string:null,intermediaryName:string:null",
+        "modelFileName": "Broker"
+      }
+    },
+    "app/model/CorpAnniv.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "CorpAnniv",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idCorpAnniv:int:null,idCorporate:int:null,idIntermediary:int:null,anniv:int:null,startDate:date:null,endDate:date:null,renewalDate:date:null,corporateName:string:null,intermediaryName:string:null",
+        "modelFileName": "CorpAnniv"
+      }
     }
   }
 }

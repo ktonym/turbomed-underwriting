@@ -14,7 +14,7 @@ import java.util.List;
 @DiscriminatorColumn(name="INTERMEDIARY_TYPE",discriminatorType = DiscriminatorType.STRING)
 //TODO consider replacing above @nnotation with   @DiscriminatorFormula
 //TODO read more about @ForceDiscriminator
-public class Intermediary extends AbstractEntity implements EntityItem<Integer>{
+public abstract class Intermediary extends AbstractEntity implements EntityItem<Integer>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

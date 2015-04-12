@@ -4,6 +4,7 @@ import ke.co.turbosoft.med.entity.*;
 import ke.co.turbosoft.med.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
@@ -136,6 +137,14 @@ public class InitializeDb {
         user1.setEmail("akipkoech@madison.co.ke");
         user1.setUserRoles(userRoles1);
         userRepo.save(user1);
+
+        List<UserRole> userRoleList = userRoleRepo.findByUser(userRepo.findOne("akipkoech"));
+
+        for(UserRole userRole: userRoleList){
+            System.out.println(userRole.getRole());
+
+        }
+
 
 //        UserRole userRoleAdm = new UserRole();
 //        userRoleAdm.setUser(user1);

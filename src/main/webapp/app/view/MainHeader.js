@@ -26,12 +26,12 @@ Ext.define("EMIS.view.MainHeader", {
                     xtype: 'button',
                     itemId: 'corpAdminBtn',
                     iconCls: 'tasklog',
-                    text: 'Scheme Administration'
+                    text: 'Schemes'
                 },{
                     xtype: 'button',
                     itemId: 'indivAdminBtn',
                     iconCls: 'tasklog',
-                    text: 'Individual Plan Admin'
+                    text: 'Individual Plans'
                 },{
                     xtype: 'button',
                     itemId: 'financialAdminBtn',
@@ -46,7 +46,7 @@ Ext.define("EMIS.view.MainHeader", {
                     xtype: 'button',
                     itemId: 'claimAdminBtn',
                     iconCls: 'tasklog',
-                    text: 'Claims Administration'
+                    text: 'Claims'
                 },{
                     xtype: 'button',
                     itemId: 'userAdminBtn',
