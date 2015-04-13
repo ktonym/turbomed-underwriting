@@ -266,4 +266,71 @@ public class CorporateHandler extends AbstractHandler{
 //    }
 
 
+    @RequestMapping(value = "/anniv/findAll", method = RequestMethod.GET, produces = {"application/json"})
+    @ResponseBody
+    public String findAllAnnivs(
+            @RequestParam(value = "idCorporate", required = true) Integer idCorporate,
+            HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<List<CorpAnniv>> ar = corpAnnivService.findByCorporate(corporateService.find(idCorporate,sessionUser.getUsername()).getData(),sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+    }
+
+    @RequestMapping(value = "/anniv/store", method = RequestMethod.POST, produces = {"application/json"})
+    @ResponseBody
+    public String storeAnniv(
+            @RequestParam(value = "data", required = true) String jsonData,
+            HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        JsonObject jsonObj = parseJsonObject(jsonData);
+
+        String startDateVal = jsonObj.getString("startDate");
+        String endDateVal = jsonObj.getString("endDate");
+        String renewalDateVal = jsonObj.getString("renewalDate");
+
+        Result<CorpAnniv> ar = corpAnnivService.store(
+                getIntegerValue(jsonObj.get("idCorporate")),
+                getIntegerValue(jsonObj.get("idCorpAnniv")),
+                getIntegerValue(jsonObj.get("idIntermediary")),
+                getIntegerValue(jsonObj.get("anniv")),
+                LocalDate.parse(startDateVal, DATE_FORMAT_yyyyMMdd),
+                LocalDate.parse(endDateVal, DATE_FORMAT_yyyyMMdd),
+                LocalDate.parse(renewalDateVal, DATE_FORMAT_yyyyMMdd),
+                sessionUser.getUsername()
+        );
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+
+    }
+
+    @RequestMapping(value="/anniv/remove", method = RequestMethod.POST, produces = {"application/json"})
+    @ResponseBody
+    public String removeAnniv(
+            @RequestParam(value = "idCorpAnniv", required = true) Integer idCorpAnniv,
+            HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<CorpAnniv> ar = corpAnnivService.remove(idCorpAnniv,sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+    }
+
 }

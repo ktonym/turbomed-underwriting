@@ -6,9 +6,9 @@ Ext.define('EMIS.model.CorpAnniv', {
         { name: 'idCorporate', type: 'int' },
         { name: 'idIntermediary', type: 'int' },
         { name: 'anniv', type: 'int' },
-        { name: 'startDate', type: 'date' },
-        { name: 'endDate', type: 'date' },
-        { name: 'renewalDate', type: 'date' },
+        { name: 'startDate', type: 'date',dateFormat:'Ymd' },
+        { name: 'endDate', type: 'date',dateFormat:'Ymd' },
+        { name: 'renewalDate', type: 'date',dateFormat:'Ymd' },
         { name: 'corporateName', type: 'string', persist: false },
         { name: 'intermediaryName', type: 'string', persist:false }
 

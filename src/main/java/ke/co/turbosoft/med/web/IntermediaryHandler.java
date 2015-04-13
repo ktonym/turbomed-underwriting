@@ -42,6 +42,9 @@ public class IntermediaryHandler extends AbstractHandler{
 
     }
 
+    //TODO add methods for Broker, Agency, Agent (storeBroker, storeAgent, removeBroker, removeAgent)
+    //TODO ensure service layer methods exist to service these requests!!
+
 
 
 

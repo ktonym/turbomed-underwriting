@@ -559,6 +559,30 @@
         "fields": "idCorpAnniv:int:null,idCorporate:int:null,idIntermediary:int:null,anniv:int:null,startDate:date:null,endDate:date:null,renewalDate:date:null,corporateName:string:null,intermediaryName:string:null",
         "modelFileName": "CorpAnniv"
       }
+    },
+    "app/model/Anniv.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "Anniv",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idCorporate:int:null,idCorpAnniv:int:null,idIntermediary:int:null",
+        "modelFileName": "Anniv"
+      }
+    },
+    "app/model/Category.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "Category",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idCorporate:int:null,idCorpAnniv:int:null",
+        "modelFileName": "Category"
+      }
     }
   }
 }
