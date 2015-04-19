@@ -6,10 +6,18 @@ Ext.define('EMIS.store.ContactInfo',{
     model: 'EMIS.model.ContactInfo',
     proxy: {
         type: 'ajax',
-        url: 'contactinfo/findAll.json',
+        url: 'corporate/contact/findAll.json',
         reader: {
             type: 'json',
             root: 'data'
         }
+    },
+    doFindByCorporate: function(idCorporate){
+        this.load({
+            url: 'corporate/contact/findAll.json',
+            params: {
+                idCorporate: idCorporate
+            }
+        });
     }
 });

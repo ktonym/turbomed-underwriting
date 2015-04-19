@@ -2,7 +2,7 @@ Ext.define('EMIS.controller.CorpController', {
 
     extend: 'Ext.app.Controller',
 
-    stores: ['CorpTree'],
+    stores: ['Corporate','CorpTree','CorpAnniv','Category'],
 
     views: ['corporate.ManageCorporates'],
 
@@ -16,18 +16,29 @@ Ext.define('EMIS.controller.CorpController', {
         ref: 'categoryForm',
         selector: 'managecorporates categoryform'
     },{
+        ref: 'annivFormFieldset',
+        selector: 'managecorporates annivform fieldset'
+    },{
         ref: 'corpTree',
         selector: 'managecorporates corptree'
-    },
-      {
+    },{
         ref: 'corpFormFieldset',
         selector: 'managecorporates corporateform fieldset'
+    },{
+        ref: 'categoryFormFieldset',
+        selector: 'managecorporates categoryform fieldset'
     },{
         ref: 'addCorpButton',
         selector: 'managecorporates #addCorpBtn'
     },{
         ref: 'delCorpButton',
         selector: 'managecorporates corporateform #deleteBtn'
+    },{
+        ref: 'deleteCatButton',
+        selector: 'managecorporates categoryform #deleteBtn'
+    },{
+        ref: 'deleteAnnivButton',
+        selector: 'managecorporates annivform #deleteBtn'
     },{
         ref: 'saveCorpButton',
         selector: 'managecorporates corporateform #saveBtn'
@@ -44,14 +55,10 @@ Ext.define('EMIS.controller.CorpController', {
                 click: this.doAddCorporate
             },
             'managecorporates corptree':{
-                itemclick: this.doSelectTreeITem
-//                viewready: this.doInitStore
+                itemclick: this.doSelectTreeItem
             },
             'managecorporates corporateform': {
                 afterrender: this.doAddCorporate
-            },
-            'managecorporates corporateform fieldset': {
-                click: this.doRefreshCorpList
             },
             'managecorporates corporateform #saveBtn': {
                 click: this.doSaveCorporate
@@ -62,13 +69,13 @@ Ext.define('EMIS.controller.CorpController', {
         });
     },
 
-    doInitStore: function(){
-        this.getCorpList().getStore().load()
-    },
-
-    doRefreshCorpList: function(){
-        this.getCorpList().getStore().load()
-    },
+//    doInitStore: function(){
+//        this.getCorpList().getStore().load()
+//    },
+//
+//    doRefreshCorpList: function(){
+//        this.getCorpList().getStore().load()
+//    },
 
     doAddCorporate: function(){
         var me = this;
@@ -122,7 +129,7 @@ Ext.define('EMIS.controller.CorpController', {
             }
         } else if (recIdSplit[0]==='A'){
             var idAnniversary = Ext.Number.from(recIdSplit[1]);
-            var rec = me.getAnnivStore().getById(idAnniversary);
+            var rec = me.getCorpAnnivStore().getById(idAnniversary);
             if (!Ext.isEmpty(rec)){
                 me.getAnnivForm().loadRecord(rec);
                 me.getAnnivFormFieldset().setTitle('Edit Cover Period for ' + rec.get('corporateName'));
@@ -134,7 +141,7 @@ Ext.define('EMIS.controller.CorpController', {
             var rec = me.getCorporateStore().getById(idCorporate);
             if (!Ext.isEmpty(rec)){
                 me.getCorporateForm().loadRecord(rec);
-                me.getCorporateFormFieldset().setTitle('Edit Scheme ');
+                me.getCorpFormFieldset().setTitle('Edit Scheme ');
                 me.getDelCorpButton().enable();
                 me.getAdminCards().getLayout().setActiveItem(me.getCorporateForm());
             }

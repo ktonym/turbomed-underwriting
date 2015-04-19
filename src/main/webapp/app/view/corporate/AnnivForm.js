@@ -47,7 +47,7 @@ Ext.define('EMIS.view.corporate.AnnivForm', {
                                     fieldLabel: 'Label',
                                     hideLabel: true,
                                     name: 'startDate',
-                                    value: Ext.Date.now(),
+                                   // value: Ext.Date.now(),
                                     format: 'd-M-Y'
                                 },
                                 {
@@ -56,7 +56,7 @@ Ext.define('EMIS.view.corporate.AnnivForm', {
                                     fieldLabel: 'Label',
                                     hideLabel: true,
                                     name: 'endDate',
-                                    value: Ext.Date.add(Ext.Date.now(), Ext.Date.YEAR,1),
+                                   // value: Ext.Date.add(Ext.Date.now(), Ext.Date.YEAR,1),
                                     format: 'd-M-Y'
                                 }
                             ]
@@ -66,7 +66,7 @@ Ext.define('EMIS.view.corporate.AnnivForm', {
                             anchor: '100%',
                             fieldLabel: 'Renewal date',
                             name: 'renewalDate',
-                            value: Ext.Date.add(Ext.Date.now(), Ext.Date.YEAR,1),
+                           // value: Ext.Date.add(Ext.Date.now(), Ext.Date.YEAR,1),
                             format: 'd-M-Y'
                         },
                         {

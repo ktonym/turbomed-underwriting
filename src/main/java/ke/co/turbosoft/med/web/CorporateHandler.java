@@ -2,6 +2,7 @@ package ke.co.turbosoft.med.web;
 
 import ke.co.turbosoft.med.entity.*;
 import ke.co.turbosoft.med.service.CategoryService;
+import ke.co.turbosoft.med.service.ContactInfoService;
 import ke.co.turbosoft.med.service.CorpAnnivService;
 import ke.co.turbosoft.med.service.CorporateService;
 import ke.co.turbosoft.med.vo.Result;
@@ -36,6 +37,9 @@ public class CorporateHandler extends AbstractHandler{
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ContactInfoService contactInfoService;
 
     static final DateTimeFormatter DATE_FORMAT_yyyyMMdd =  DateTimeFormatter.ofPattern("yyyyMMdd");
 //    @ModelAttribute("corporate")
@@ -332,5 +336,70 @@ public class CorporateHandler extends AbstractHandler{
             return getJsonErrorMsg(ar.getMsg());
         }
     }
+
+    @RequestMapping(value = "/contact/findAll", method = RequestMethod.GET, produces = {"application/json"})
+    @ResponseBody
+    public String findContact(
+            @RequestParam(value ="idCorporate", required = true) Integer idCorporate,
+            HttpServletRequest request ){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<List<ContactInfo>> ar = contactInfoService.findAll(idCorporate, sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+    }
+
+    @RequestMapping(value = "/contact/store", method = RequestMethod.POST, produces = {"application/json"})
+    @ResponseBody
+    public String storeContact(
+            @RequestParam(value = "data", required = true) String jsonData,
+            HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        JsonObject jsonObj = parseJsonObject(jsonData);
+
+        Result<ContactInfo> ar = contactInfoService.store(
+                getIntegerValue(jsonObj.get("idContactInfo")),
+                getIntegerValue(jsonObj.get("idCorporate")),
+                jsonObj.getString("firstName"),
+                jsonObj.getString("surname"),
+                jsonObj.getString("jobTitle"),
+                jsonObj.getString("email"),
+                jsonObj.getString("tel"),
+                sessionUser.getUsername());
+
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+
+    }
+
+    @RequestMapping(value = "/contact/remove", method = RequestMethod.POST, produces = {"application/json"})
+    @ResponseBody
+    public String removeContact(
+            @RequestParam(value = "idContactInfo") Integer idContactInfo,
+            HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<ContactInfo> ar = contactInfoService.remove(idContactInfo, sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+
+    }
+
 
 }

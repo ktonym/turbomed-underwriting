@@ -17,6 +17,7 @@ import java.util.List;
  * Created by akipkoech on 4/7/15.
  */
 @Service("categoryService")
+@Transactional
 public class CategoryServiceImpl extends AbstractService implements CategoryService {
 
     @Autowired
