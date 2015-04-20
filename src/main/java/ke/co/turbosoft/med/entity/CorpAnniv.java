@@ -110,6 +110,8 @@ public class CorpAnniv extends AbstractEntity implements EntityItem<Integer> {
                 .add("endDate", endDate == null ? "" : DATE_FORMATTER_yyyyMMdd.format(endDate))
                 .add("renewalDate", renewalDate == null ? "" : DATE_FORMATTER_yyyyMMdd.format(renewalDate)); 
         corporate.addJson(builder);
-        intermediary.addJson(builder);
+        if(this.getIntermediary()!= null){
+            intermediary.addJson(builder);
+        }
     }
 }

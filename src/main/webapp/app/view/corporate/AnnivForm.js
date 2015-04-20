@@ -18,6 +18,17 @@ Ext.define('EMIS.view.corporate.AnnivForm', {
     initComponent: function() {
         var me = this;
 
+        var agents = Ext.create('Ext.data.Store',{
+            fields: ['id','name'],
+            data: [
+                {"id":1,"name":"Shikutwa"},
+                {"id":2,"name":"Naliaka"},
+                {"id":3,"name":"Nafula"},
+                {"id":4,"name":"Shikwekwe"},
+                {"id":5,"name":"Shikokoti"}
+            ]
+        });
+
         Ext.applyIf(me, {
             items: [
                 {
@@ -47,7 +58,7 @@ Ext.define('EMIS.view.corporate.AnnivForm', {
                                     fieldLabel: 'Label',
                                     hideLabel: true,
                                     name: 'startDate',
-                                   // value: Ext.Date.now(),
+                                  //  value: Ext.Date.getFirstDateOfMonth(now),
                                     format: 'd-M-Y'
                                 },
                                 {
@@ -56,7 +67,7 @@ Ext.define('EMIS.view.corporate.AnnivForm', {
                                     fieldLabel: 'Label',
                                     hideLabel: true,
                                     name: 'endDate',
-                                   // value: Ext.Date.add(Ext.Date.now(), Ext.Date.YEAR,1),
+                                  //  value: Ext.Date.add(Ext.Date.getFirstDateOfMonth(now), Ext.Date.YEAR,1),
                                     format: 'd-M-Y'
                                 }
                             ]
@@ -66,23 +77,23 @@ Ext.define('EMIS.view.corporate.AnnivForm', {
                             anchor: '100%',
                             fieldLabel: 'Renewal date',
                             name: 'renewalDate',
-                           // value: Ext.Date.add(Ext.Date.now(), Ext.Date.YEAR,1),
+                           // value: Ext.Date.add(Ext.Date.add(Ext.Date.getFirstDateOfMonth(now), Ext.Date.YEAR,1), Ext.Date.DAY,1),
                             format: 'd-M-Y'
                         },
                         {
                             xtype: 'combobox',
                             anchor: '100%',
                             fieldLabel: 'Intermediary',
-                            name: 'intermediary',
+                            name: 'name',
                             queryMode: 'local',
-                            store: 'Intermediary',
-                            valueField: 'idIntermediary',
-                            listConfig: {
-                                minwidth: 300
-                            },
-                            tpl: Ext.create('Ext.XTemplate','<tpl for=".">',
-                                '<div class="x-boundlist-item"><b>{intermediaryName}</b></div>','</tpl>'),
-                            displayTpl: Ext.create('Ext.XTemplate','<tpl for=".">','{intermediaryName}','</tpl>')
+                            store: agents,
+                            valueField: 'id'
+//                            listConfig: {
+//                                minWidth: 300
+//                            },
+//                            tpl: Ext.create('Ext.XTemplate','<tpl for=".">',
+//                                '<div class="x-boundlist-item"><b>{intermediaryName}</b></div>','</tpl>'),
+//                            displayTpl: Ext.create('Ext.XTemplate','<tpl for=".">','{intermediaryName}','</tpl>')
                         },
                         {
                             xtype: 'toolbar',

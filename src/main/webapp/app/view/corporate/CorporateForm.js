@@ -62,6 +62,11 @@ Ext.define("EMIS.view.corporate.CorporateForm", {
                         text: 'Delete'
                     },{
                         xtype: 'button',
+                        itemId: 'addAnnivBtn',
+                        iconCls: 'addnew',
+                        text: 'Add Cover'
+                    },{
+                        xtype: 'button',
                         itemId: 'saveBtn',
                         iconCls: 'save',
                         text: 'Save'
