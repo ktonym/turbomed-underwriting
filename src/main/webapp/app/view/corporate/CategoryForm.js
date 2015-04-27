@@ -51,7 +51,7 @@ Ext.define('EMIS.view.corporate.CategoryForm', {
                                 },
                                 {
                                     xtype: 'button',
-                                    itemId: 'addMemberBtn',
+                                    itemId: 'addPrincipalBtn',
                                     iconCls: 'addnew',
                                     text: 'Add Member'
                                 },

@@ -41,13 +41,13 @@ Ext.define("EMIS.view.corporate.CorporateForm", {
                     fieldLabel: 'Postal Address'
                 },{
                     xtype: 'datefield',
-                    labelAlign: 'right',
+                    //labelAlign: 'right',
                     name: 'joined',
                     format: 'd-M-Y',
                     fieldLabel: 'Join Date',
-                    value: Ext.Date.now(),
-                    width: 180,
-                    labelWidth: 70
+                    value: Ext.Date.now()
+                    //width: 180,
+                    //labelWidth: 70
                 },{
                     xtype: 'toolbar',
                     ui: 'footer',

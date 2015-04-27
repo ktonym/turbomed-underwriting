@@ -23,6 +23,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.model.CorpAnniv": [],
   "EMIS.model.Corporate": [],
   "EMIS.model.Intermediary": [],
+  "EMIS.model.Principal": [],
   "EMIS.model.User": [],
   "EMIS.store.Category": [],
   "EMIS.store.ContactInfo": [],
@@ -30,6 +31,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.store.CorpTree": [],
   "EMIS.store.Corporate": [],
   "EMIS.store.Intermediary": [],
+  "EMIS.store.Principal": [],
   "EMIS.store.User": [],
   "EMIS.view.LogonWindow": [],
   "EMIS.view.MainCards": [],
@@ -42,6 +44,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.view.corporate.CorpTree": [],
   "EMIS.view.corporate.CorporateForm": [],
   "EMIS.view.corporate.ManageCorporates": [],
+  "EMIS.view.corporate.PrincipalWindow": [],
   "EMIS.view.user.ManageUsers": [],
   "EMIS.view.user.UserForm": [],
   "EMIS.view.user.UserList": [],
@@ -875,6 +878,7 @@ Ext.ClassManager.addNameAliasMappings({
   "EMIS.model.CorpAnniv": [],
   "EMIS.model.Corporate": [],
   "EMIS.model.Intermediary": [],
+  "EMIS.model.Principal": [],
   "EMIS.model.User": [],
   "EMIS.store.Category": [],
   "EMIS.store.ContactInfo": [],
@@ -882,6 +886,7 @@ Ext.ClassManager.addNameAliasMappings({
   "EMIS.store.CorpTree": [],
   "EMIS.store.Corporate": [],
   "EMIS.store.Intermediary": [],
+  "EMIS.store.Principal": [],
   "EMIS.store.User": [],
   "EMIS.view.LogonWindow": [
     "widget.logonwindow"
@@ -913,6 +918,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "EMIS.view.corporate.ManageCorporates": [
     "widget.managecorporates"
+  ],
+  "EMIS.view.corporate.PrincipalWindow": [
+    "widget.principalwindow"
   ],
   "EMIS.view.user.ManageUsers": [
     "widget.manageusers"

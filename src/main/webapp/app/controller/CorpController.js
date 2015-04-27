@@ -2,9 +2,9 @@ Ext.define('EMIS.controller.CorpController', {
 
     extend: 'Ext.app.Controller',
 
-    stores: ['Corporate','CorpTree','CorpAnniv','Category'],
+    stores: ['Corporate','CorpTree','CorpAnniv','Category','Principal'],
 
-    views: ['corporate.ManageCorporates'],
+    views: ['corporate.ManageCorporates','corporate.PrincipalWindow'],
 
     refs: [{
         ref: 'corporateForm',
@@ -15,6 +15,21 @@ Ext.define('EMIS.controller.CorpController', {
     },{
         ref: 'categoryForm',
         selector: 'managecorporates categoryform'
+    },{
+        ref: 'principalForm',
+        selector: 'principalwindow #principalform'
+    },{
+        ref: 'principalFormFieldset',
+        selector: 'principalwindow fieldset'
+    },{
+        ref: 'deletePrinButton',
+        selector: 'principalwindow #deleteBtn'
+    },{
+        ref: 'savePrincButton',
+        selector: 'principalwindow #saveBtn'
+    },{
+        ref: 'addMemberButton',
+        selector: 'principalwindow #addMemberBtn'
     },{
         ref: 'annivFormFieldset',
         selector: 'managecorporates annivform fieldset'
@@ -43,6 +58,9 @@ Ext.define('EMIS.controller.CorpController', {
         ref: 'deleteCatButton',
         selector: 'managecorporates categoryform #deleteBtn'
     },{
+        ref: 'addPrincipalButton',
+        selector: 'managecorporates categoryform #addPrincipalBtn'
+    },{
         ref: 'deleteAnnivButton',
         selector: 'managecorporates annivform #deleteBtn'
     },{
@@ -58,6 +76,7 @@ Ext.define('EMIS.controller.CorpController', {
         ref: 'adminCards',
         selector: 'managecorporates #adminCards'
     }],
+
     init: function(application){
         this.control({
             'managecorporates #addCorpBtn': {
@@ -75,8 +94,12 @@ Ext.define('EMIS.controller.CorpController', {
             'managecorporates annivform #addCategoryBtn':{
                 click: this.doAddCategory
             },
+            'managecorporates categoryform #addPrincipalBtn':{
+                click: this.doAddPrincipal
+            },
             'managecorporates corptree':{
-                itemclick: this.doSelectTreeItem
+                itemclick: this.doSelectTreeItem,
+                itemcontextmenu: this.doRightClick
             },
             'managecorporates corporateform': {
                 afterrender: this.doAddCorporate
@@ -211,7 +234,7 @@ Ext.define('EMIS.controller.CorpController', {
            'idCorpAnniv': corpAnniv.get('idCorpAnniv')
         });
         me.getCategoryForm().loadRecord(newRec);
-        me.getCategoryFormFieldset().setTitle('Add Category to ' + corpAnniv.get('anniv'));
+        me.getCategoryFormFieldset().setTitle('Add Category to anniversary:' + corpAnniv.get('anniv'));
         me.getDeleteCatButton().disable();
         me.getAddCategoryButton().disable();
         me.getAdminCards().getLayout().setActiveItem(me.getCategoryForm());
@@ -229,6 +252,7 @@ Ext.define('EMIS.controller.CorpController', {
                     success: function(record){
                         me.getCategoryFormFieldset().setTitle('Edit Category for anniversary ' + record.get('anniv'));
                         me.getDeleteCatButton().enable();
+                        me.getAddPrincipalButton().enable();
                         // TODO add lower-level entity
                         me.getCategoryStore().load();
                         me.doRefreshTree();
@@ -260,6 +284,63 @@ Ext.define('EMIS.controller.CorpController', {
                    }
                });
            }
+        });
+    },
+
+    doAddPrincipal: function(){
+        var me = this;
+        var categoryRec = me.getCategoryForm().getRecord();
+        var newRec = Ext.create('EMIS.model.Principal',{
+           'idCategory': categoryRec.get('idCategory')
+        });
+        me.getPrincipalForm().loadRecord(newRec);
+        me.getPrincipalFormFieldset().setTitle('Add Principal to Category ' + categoryRec.get('cat'));
+        me.getDeletePrinButton().disable();
+        me.getAddMemberButton().disable();
+
+    },
+
+    doSavePrincipal: function(){
+        var me = this;
+        var rec = me.getPrincipalForm().getRecord();
+        EMIS.console(rec);
+        if (rec !== null){
+            me.getPrincipalForm().updateRecord();
+            var errs = rec.validate();
+            if(errs.isValid()){
+                 rec.save({
+                     success: function(record){
+                         me.getPrincipalFormFieldset().setTitle('Edit Principal: ' + record.get('fullName'));
+                         me.getDeletePrinButton().enable();
+                         me.getAddMemberButton().enable();
+                         me.getPrincipalStore().load();
+                     },
+                     failure: function(rec, operation){
+                          Ext.Msg.alert('Save Failure', operation.request.scope.reader.jsonData.msg);
+                     }
+                 });
+            }
+        } else {
+            me.getPrincipalForm().getForm().markInvalid(errs);
+            Ext.Msg.alert('Save Failure','Fix the invalid entries');
+        }
+    },
+
+    doDeletePrincipal: function(){
+        var me = this;
+        var rec = me.getPrincipalForm().getRecord();
+        Ext.Msg.confirm('Confirm Delete', 'Are you sure you want to delete this principal?',function(btn){
+            if(btn === 'yes'){
+                rec.destroy({
+                    success: function(){
+                        me.getPrincipalStore().load();
+                        //TODO loop through the whole process again, upon acceptance by user
+                    },
+                    failure: function(rec,operation){
+                        Ext.Msg.alert('Delete Failure', operation.request.scope.reader.jsonData.msg);
+                    }
+                });
+            }
         });
     },
 

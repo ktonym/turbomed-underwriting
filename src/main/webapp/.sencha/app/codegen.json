@@ -583,6 +583,28 @@
         "fields": "idCorporate:int:null,idCorpAnniv:int:null",
         "modelFileName": "Category"
       }
+    },
+    "app/model/Principal.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "Principal",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idPrincipal:int:null,idCategory:int:null,familyNo:string:null,firstName:string:null,surname:string:null,otherNames:string:null",
+        "modelFileName": "Principal"
+      }
+    },
+    "app/view/corporate/PrincipalWindow.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "corporate.PrincipalWindow",
+        "viewFileName": "corporate/PrincipalWindow",
+        "appName": "EMIS",
+        "name": "corporate.PrincipalWindow"
+      }
     }
   }
 }

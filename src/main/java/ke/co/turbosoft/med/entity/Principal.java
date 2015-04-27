@@ -108,7 +108,8 @@ public class Principal extends AbstractEntity implements EntityItem<Integer> {
                 .add("firstName", firstName)
                 .add("surname", surname)
                 .add("otherNames", otherNames)
-                .add("dob", dob == null ? "" : DATE_FORMATTER_yyyyMMdd.format(dob));
+                .add("dob", dob == null ? "" : DATE_FORMATTER_yyyyMMdd.format(dob))
+                .add("fullName", firstName.concat(" ").concat(surname).concat(" ").concat(otherNames));
 
     }
 }

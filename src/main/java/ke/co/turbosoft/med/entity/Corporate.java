@@ -109,7 +109,7 @@ public class Corporate extends AbstractEntity implements EntityItem<Integer> {
         builder.add("idCorporate", idCorporate)
                 .add("corporateName", corporateName)
                 .add("abbreviation", abbreviation)
-                .add("tel",tel)
+                .add("tel",tel == null ? "" : tel)
                 .add("email",email)
                 .add("postalAddress", postalAddress)
                 .add("joined", joined == null ? "" : DATE_FORMATTER_yyyyMMdd.format(joined));
