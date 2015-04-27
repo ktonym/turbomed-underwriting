@@ -605,6 +605,16 @@
         "appName": "EMIS",
         "name": "corporate.PrincipalWindow"
       }
+    },
+    "app/view/CtxMenu.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "CtxMenu",
+        "viewFileName": "CtxMenu",
+        "appName": "EMIS",
+        "name": "CtxMenu"
+      }
     }
   }
 }

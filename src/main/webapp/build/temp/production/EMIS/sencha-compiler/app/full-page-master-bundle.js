@@ -1,2 +1,2 @@
 // @tag full-page
-// @require /home/ktonym/IdeaProjects/turbomed-underwriting/src/main/webapp/app.js
+// @require C:\Users\akipkoech\IdeaProjects\turbomed-underwriting\src\main\webapp\app.js

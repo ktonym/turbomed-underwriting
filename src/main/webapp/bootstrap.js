@@ -33,6 +33,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.store.Intermediary": [],
   "EMIS.store.Principal": [],
   "EMIS.store.User": [],
+  "EMIS.view.CtxMenu": [],
   "EMIS.view.LogonWindow": [],
   "EMIS.view.MainCards": [],
   "EMIS.view.MainHeader": [],
@@ -888,6 +889,9 @@ Ext.ClassManager.addNameAliasMappings({
   "EMIS.store.Intermediary": [],
   "EMIS.store.Principal": [],
   "EMIS.store.User": [],
+  "EMIS.view.CtxMenu": [
+    "widget.ctxmenu"
+  ],
   "EMIS.view.LogonWindow": [
     "widget.logonwindow"
   ],

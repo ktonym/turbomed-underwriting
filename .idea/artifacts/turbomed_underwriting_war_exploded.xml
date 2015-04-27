@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="turbomed-underwriting:war exploded">
-    <output-path>$PROJECT_DIR$/target/turbomed-underwriting-0.0.1-SNAPSHOT</output-path>
+    <output-path>$PROJECT_DIR$/target/emis</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="turbomed-underwriting/web/Web" />
       <element id="directory" name="WEB-INF">

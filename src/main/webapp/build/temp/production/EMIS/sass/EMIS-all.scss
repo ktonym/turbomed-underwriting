@@ -1,4 +1,4 @@
-$image-search-path: '/home/ktonym/IdeaProjects/turbomed-underwriting/src/main/webapp/build/production/EMIS/resources';
+$image-search-path: 'C:/Users/akipkoech/IdeaProjects/turbomed-underwriting/src/main/webapp/build/production/EMIS/resources';
 $theme-name:  'ext-theme-classic' !default;
 $include-emis-application: true;
 $include-emis-controller-corpcontroller: true;
@@ -22,6 +22,7 @@ $include-emis-store-corporate: true;
 $include-emis-store-intermediary: false;
 $include-emis-store-principal: true;
 $include-emis-store-user: true;
+$include-emis-view-ctxmenu: true;
 $include-emis-view-logonwindow: true;
 $include-emis-view-maincards: true;
 $include-emis-view-mainheader: true;

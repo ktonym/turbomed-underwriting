@@ -4,7 +4,7 @@ Ext.define('EMIS.controller.CorpController', {
 
     stores: ['Corporate','CorpTree','CorpAnniv','Category','Principal'],
 
-    views: ['corporate.ManageCorporates','corporate.PrincipalWindow'],
+    views: ['corporate.ManageCorporates','corporate.PrincipalWindow', 'CtxMenu'],
 
     refs: [{
         ref: 'corporateForm',
@@ -109,7 +109,10 @@ Ext.define('EMIS.controller.CorpController', {
             },
             'managecorporates corporateform #deleteBtn': {
                 click: this.doDeleteCorporate
-            }
+            },
+            'ctxMenu menuitem[text=Edit]' : {
+                click : this.doEditItem
+            },
         });
     },
 
@@ -406,6 +409,21 @@ Ext.define('EMIS.controller.CorpController', {
                 me.getAdminCards().getLayout().setActiveItem(me.getCorporateForm());
             }
         }
+    },
+    doRightClick: function(view, record, item, index, e){
+        //stop the default action
+        e.stopEvent();
+        //save the current selected record
+        this.application.currentRecord = record;
+        EMIS.console(record);
+        //if (record.get('depth') === 2 ) {
+        // addMenu = 'addmenu';
+        ctxmenu = Ext.widget('ctxmenu')
+        // addMenu.showAt(e.getXY());
+        ctxmenu.showAt(e.getXY());
+    },
+    doEditItem: function(){
+        EMIS.console('Edit chosen!');
     }
 
 

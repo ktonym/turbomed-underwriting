@@ -111,7 +111,7 @@ public class Corporate extends AbstractEntity implements EntityItem<Integer> {
                 .add("abbreviation", abbreviation)
                 .add("tel",tel == null ? "" : tel)
                 .add("email",email)
-                .add("postalAddress", postalAddress)
+                .add("postalAddress", postalAddress == null ? "" : postalAddress)
                 .add("joined", joined == null ? "" : DATE_FORMATTER_yyyyMMdd.format(joined));
     }
 
