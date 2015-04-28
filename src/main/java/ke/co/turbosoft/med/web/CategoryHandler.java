@@ -57,6 +57,7 @@ public class CategoryHandler extends AbstractHandler{
 
         User sessionUser = getSessionUser(request);
 
+
         JsonObject jsonObj = parseJsonObject(jsonData);
 
         Result<Category> ar = categoryService.store(
@@ -92,5 +93,33 @@ public class CategoryHandler extends AbstractHandler{
 
     }
 
+    @RequestMapping(value="/principal/store", method = RequestMethod.POST, produces = {"application/json"})
+    @ResponseBody
+    public String storePrincipal(
+            @RequestParam(value="data", required = true) String jsonData,
+            HttpServletRequest request){
+
+        //TODO populate member by default and complete setup
+
+        return null;
+    }
+
+    @RequestMapping(value="/principal/findByCategory", method = RequestMethod.POST, produces = {"application/json"})
+    @ResponseBody
+    public String findPrincipal(
+            @RequestParam(value="idCategory", required = true) Integer idCategory,
+            HttpServletRequest request){
+        //TODO complete setup
+        return null;
+    }
+
+    @RequestMapping(value="/principal/remove", method = RequestMethod.POST, produces = {"application/json"})
+    @ResponseBody
+    public String removePrincipal(
+            @RequestParam(value="idPrincipal", required = true) Integer idPrincipal,
+            HttpServletRequest request){
+        //TODO complete setup
+        return null;
+    }
 
 }

@@ -54,5 +54,8 @@
 .task {
     background:url(images/icons/task.png) 0 no-repeat !important;    
 }
+.edit {
+    background:url(images/icons/edit.png) 0 no-repeat !important;
+}
 
 

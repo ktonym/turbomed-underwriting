@@ -239,7 +239,7 @@ Ext.define('EMIS.controller.CorpController', {
         me.getCategoryForm().loadRecord(newRec);
         me.getCategoryFormFieldset().setTitle('Add Category to anniversary:' + corpAnniv.get('anniv'));
         me.getDeleteCatButton().disable();
-        me.getAddCategoryButton().disable();
+        me.getAddPrincipalButton().disable();
         me.getAdminCards().getLayout().setActiveItem(me.getCategoryForm());
     },
 
@@ -414,7 +414,7 @@ Ext.define('EMIS.controller.CorpController', {
         //stop the default action
         e.stopEvent();
         //save the current selected record
-        this.application.currentRecord = record;
+        //this.application.currentRecord = record;
         EMIS.console(record);
         //if (record.get('depth') === 2 ) {
         // addMenu = 'addmenu';

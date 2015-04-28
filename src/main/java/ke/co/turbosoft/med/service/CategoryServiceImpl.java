@@ -42,9 +42,10 @@ public class CategoryServiceImpl extends AbstractService implements CategoryServ
         }
 
 
-        /**
-         * TODO modify to handle more scenarios of editing an existing category
-         */
+
+         // TODO modify to handle more scenarios of editing an existing category
+         // TODO check that category is unique
+
 
         Category category;
 

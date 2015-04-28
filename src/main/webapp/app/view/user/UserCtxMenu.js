@@ -1,8 +1,8 @@
-Ext.define("EMIS.view.CtxMenu", {
+Ext.define("EMIS.view.user.UserCtxMenu", {
 
     extend: 'Ext.menu.Menu',
 
-    alias: 'widget.ctxmenu',
+    alias: 'widget.userctxmenu',
 
     width: 120,
 
@@ -16,8 +16,14 @@ Ext.define("EMIS.view.CtxMenu", {
 
                 {
                     xtype: 'menuitem',
-                    text: 'Add Item',
+                    text: 'unlock',
                     iconCls: 'icon-add'
+                },
+
+                {
+                    xtype: 'menuitem',
+                    text: 'disable',
+                    iconCls: 'disable'
                 },
 
                 {

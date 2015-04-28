@@ -1,6 +1,6 @@
 Ext.define('EMIS.controller.UserController', {
     extend: 'Ext.app.Controller',
-    views: ['user.ManageUsers'],
+    views: ['user.ManageUsers','user.UserCtxMenu'],
     refs: [{
         ref: 'userForm',
         selector: 'manageusers userform'
@@ -30,7 +30,8 @@ Ext.define('EMIS.controller.UserController', {
             },
             'userlist': {
                 itemclick: this.doSelectUser,
-                viewready: this.doInitStore
+                viewready: this.doInitStore,
+                itemcontextmenu: this.doRightClick
             },
             'manageusers userform': {
                 afterrender: this.doAddUser
@@ -43,6 +44,9 @@ Ext.define('EMIS.controller.UserController', {
             },
             'manageusers userform #saveBtn': {
                 click: this.doSaveUser
+            },
+            'userCxMenu menuitem[text=unlock]': {
+                click: this.doUnlockUser
             }
         });
     },
@@ -84,6 +88,15 @@ Ext.define('EMIS.controller.UserController', {
         me.getUserFormFieldset().setTitle('Edit User ' + record.data.username);
         me.getUsernameField().disable();
         me.getDeleteUserButton().enable();
+    },
+    doRightClick: function(view, record, item, index, e){
+        e.stopEvent();
+        EMIS.console(record);
+        ctxmenu = Ext.widget('userctxmenu');
+        ctxmenu.showAt(e.getXY());
+    },
+    doUnlockUser: function(){
+        EMIS.console('User unlocked!');
     },
     doSaveUser: function(){
         var me = this;
