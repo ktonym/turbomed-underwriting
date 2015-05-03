@@ -9,5 +9,13 @@ Ext.define('EMIS.store.CorpAnniv',{
             type: 'json',
             root: 'data'
         }
+    },
+    doFindByCorporate: function(idCorporate){
+       this.load({
+           url: 'corporate/anniv/findAll.json',
+           params:{
+               idCorporate: idCorporate
+           }
+       });
     }
 });

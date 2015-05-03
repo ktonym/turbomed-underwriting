@@ -47,6 +47,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.view.corporate.ManageCorporates": [],
   "EMIS.view.corporate.PrincipalWindow": [],
   "EMIS.view.user.ManageUsers": [],
+  "EMIS.view.user.UserCtxMenu": [],
   "EMIS.view.user.UserForm": [],
   "EMIS.view.user.UserList": [],
   "Ext.AbstractComponent": [],
@@ -928,6 +929,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "EMIS.view.user.ManageUsers": [
     "widget.manageusers"
+  ],
+  "EMIS.view.user.UserCtxMenu": [
+    "widget.userctxmenu"
   ],
   "EMIS.view.user.UserForm": [
     "widget.userform"

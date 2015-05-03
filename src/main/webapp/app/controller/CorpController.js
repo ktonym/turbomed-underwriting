@@ -79,6 +79,9 @@ Ext.define('EMIS.controller.CorpController', {
 
     init: function(application){
         this.control({
+            'managecorporates': {
+              activate: this.doAfterActivate
+            },
             'managecorporates #addCorpBtn': {
                 click: this.doAddCorporate
             },
@@ -112,7 +115,7 @@ Ext.define('EMIS.controller.CorpController', {
             },
             'ctxMenu menuitem[text=Edit]' : {
                 click : this.doEditItem
-            },
+            }
         });
     },
 
@@ -347,6 +350,20 @@ Ext.define('EMIS.controller.CorpController', {
         });
     },
 
+    doAfterActivate: function(){
+
+        var me = this;
+        me.getCorporateStore().load();
+        me.getCorpAnnivStore().load();
+        me.getCategoryStore().load();
+        me.getCorpTreeStore().on('append' , me.doSetTreeIcon, me);
+        me.getCorpTree().getView().on('beforedrop' , me.isDropAllowed, me);
+        me.getCorpTree().getView().on('drop', me.doChangeParent, me);
+        me.getCorpTreeStore().load();
+
+
+    },
+
     doRefreshTree: function() {
         var me = this;
         me.getCorpTreeStore().load();
@@ -367,7 +384,7 @@ Ext.define('EMIS.controller.CorpController', {
     },
 
     doSetTreeIcon: function(store, node, refNode, eOpts){
-        var nodeType = node.getId().subString(0,1);
+        var nodeType = node.getId().substring(0,1);
         if(nodeType === 'S'){
             node.set('iconCls','company');
         } else if(nodeType === 'A'){
@@ -392,11 +409,15 @@ Ext.define('EMIS.controller.CorpController', {
             }
         } else if (recIdSplit[0]==='A'){
             var idAnniversary = Ext.Number.from(recIdSplit[1]);
+            EMIS.console('idAnniversary is ' + idAnniversary);
             var rec = me.getCorpAnnivStore().getById(idAnniversary);
+            EMIS.console('corp: ' + rec.get('corporateName'));
+            EMIS.console(rec);
             if (!Ext.isEmpty(rec)){
                 me.getAnnivForm().loadRecord(rec);
                 me.getAnnivFormFieldset().setTitle('Edit Cover Period for ' + rec.get('corporateName'));
                 me.getDeleteAnnivButton().enable();
+                me.getAddCategoryButton().enable();
                 me.getAdminCards().getLayout().setActiveItem(me.getAnnivForm());
             }
         } else if (recIdSplit[0]==='S'){
@@ -404,12 +425,14 @@ Ext.define('EMIS.controller.CorpController', {
             var rec = me.getCorporateStore().getById(idCorporate);
             if (!Ext.isEmpty(rec)){
                 me.getCorporateForm().loadRecord(rec);
-                me.getCorpFormFieldset().setTitle('Edit Scheme ');
+                me.getCorpFormFieldset().setTitle('Edit Scheme: ' + rec.get('corporateName'));
                 me.getDelCorpButton().enable();
+                me.getAddAnnivButton().enable();
                 me.getAdminCards().getLayout().setActiveItem(me.getCorporateForm());
             }
         }
     },
+
     doRightClick: function(view, record, item, index, e){
         //stop the default action
         e.stopEvent();
@@ -422,9 +445,58 @@ Ext.define('EMIS.controller.CorpController', {
         // addMenu.showAt(e.getXY());
         ctxmenu.showAt(e.getXY());
     },
+
     doEditItem: function(){
         EMIS.console('Edit chosen!');
-    }
+    },
 
+    isDropAllowed: function(node,data,overModel,dropPosition){
+        var dragNode = data.records[0];
+        if(!Ext.isEmpty(dragNode) && !Ext.isEmpty(overModel)){
+            var dragIdSplit = dragNode.getId().split('_');
+            var dropIdSplit = overModel.getId().split('_');
+            if(dragIdSplit[0]==='C' && dropIdSplit[0]==='A'){
+                return true;
+            } else if(dragIdSplit[0]==='A' && dropIdSplit[0]==='S'){
+                return true;
+            }
+        }
+        EMIS.console('Drop not allowed...');
+        return false;
+    },
+
+    doChangeParent: function(node,data,overModel,dropPosition,eOpts){
+        var me = this;
+        var dragNode = data.records[0];
+        if( !Ext.isEmpty(dragNode) && !Ext.isEmpty(overModel)){
+
+            var dragIdSplit = dragNode.getId().split('_');
+            var dropIdSplit = dragNode.getId().split('_');
+
+            if(dragIdSplit[0]==='C' && dropIdSplit[0]==='A'){
+
+                var idCategory = Ext.Number.from(dragIdSplit[1]);
+                var idCorpAnniv = Ext.Number.from(dropIdSplit[1]);
+                var rec = me.getCategoryStore().getById(idCategory);
+
+                if(!Ext.isEmpty(rec)){
+                    rec.set('idCorpAnniv',idCorpAnniv);
+                }
+
+
+            } else if(dragIdSplit[0]==='A' && dropIdSplit[0]==='S'){
+
+                var idCorpAnniv = Ext.Number.from(dragIdSplit[1]);
+                var idCorporate = Ext.Number.from(dropIdSplit[1]);
+                var rec = me.getCorpAnnivStore().getById(idCorpAnniv);
+
+                if(!Ext.isEmpty(rec)){
+                    rec.set('idCorporate',idCorporate);
+                    rec.save();
+                }
+
+            }
+        }
+    }
 
 });
