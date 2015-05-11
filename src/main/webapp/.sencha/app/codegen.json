@@ -625,6 +625,56 @@
         "appName": "EMIS",
         "name": "user.UserCtxMenu"
       }
+    },
+    "app/view/corporate/claims/ManageClaims.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "corporate.claims.ManageClaims",
+        "viewFileName": "corporate/claims/ManageClaims",
+        "appName": "EMIS",
+        "name": "corporate.claims.ManageClaims"
+      }
+    },
+    "app/view/claims/ClaimEntry.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "claims.ClaimEntry",
+        "viewFileName": "claims/ClaimEntry",
+        "appName": "EMIS",
+        "name": "claims.ClaimEntry"
+      }
+    },
+    "app/view/claims/ClaimVetting.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "claims.ClaimVetting",
+        "viewFileName": "claims/ClaimVetting",
+        "appName": "EMIS",
+        "name": "claims.ClaimVetting"
+      }
+    },
+    "app/view/claims/ClaimPayment.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "claims.ClaimPayment",
+        "viewFileName": "claims/ClaimPayment",
+        "appName": "EMIS",
+        "name": "claims.ClaimPayment"
+      }
+    },
+    "app/view/admin/ManageAdmin.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "admin.ManageAdmin",
+        "viewFileName": "admin/ManageAdmin",
+        "appName": "EMIS",
+        "name": "admin.ManageAdmin"
+      }
     }
   }
 }

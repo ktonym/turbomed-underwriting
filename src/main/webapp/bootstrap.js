@@ -6,6 +6,7 @@
  */
 Ext.Loader.addClassPathMappings({
   "EMIS": "app",
+  "EMIS.view.corporate.claims.ManageClaims": "app/view/claims/ManageClaims.js",
   "Ext": "ext/src",
   "Ext.Msg": "ext/src/window/MessageBox.js",
   "Ext.rtl.EventObjectImpl": "ext/src/rtl/EventObject.js"
@@ -39,6 +40,10 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.view.MainHeader": [],
   "EMIS.view.Viewport": [],
   "EMIS.view.Welcome": [],
+  "EMIS.view.admin.ManageAdmin": [],
+  "EMIS.view.claims.ClaimEntry": [],
+  "EMIS.view.claims.ClaimPayment": [],
+  "EMIS.view.claims.ClaimVetting": [],
   "EMIS.view.corporate.AnnivForm": [],
   "EMIS.view.corporate.CategoryForm": [],
   "EMIS.view.corporate.CorpList": [],
@@ -46,6 +51,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.view.corporate.CorporateForm": [],
   "EMIS.view.corporate.ManageCorporates": [],
   "EMIS.view.corporate.PrincipalWindow": [],
+  "EMIS.view.corporate.claims.ManageClaims": [],
   "EMIS.view.user.ManageUsers": [],
   "EMIS.view.user.UserCtxMenu": [],
   "EMIS.view.user.UserForm": [],
@@ -906,6 +912,16 @@ Ext.ClassManager.addNameAliasMappings({
   "EMIS.view.Welcome": [
     "widget.welcome"
   ],
+  "EMIS.view.admin.ManageAdmin": [],
+  "EMIS.view.claims.ClaimEntry": [
+    "widget.claimentry"
+  ],
+  "EMIS.view.claims.ClaimPayment": [
+    "widget.claimpayment"
+  ],
+  "EMIS.view.claims.ClaimVetting": [
+    "widget.claimvetting"
+  ],
   "EMIS.view.corporate.AnnivForm": [
     "widget.annivform"
   ],
@@ -926,6 +942,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "EMIS.view.corporate.PrincipalWindow": [
     "widget.principalwindow"
+  ],
+  "EMIS.view.corporate.claims.ManageClaims": [
+    "widget.manageclaims"
   ],
   "EMIS.view.user.ManageUsers": [
     "widget.manageusers"
