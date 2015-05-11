@@ -45,7 +45,7 @@ Ext.define('EMIS.view.corporate.AnnivForm', {
                         },
                         {
                             xtype: 'fieldcontainer',
-                            fieldLabel: 'Starts,Ends',
+                            fieldLabel: 'Cover dates',
                             combineErrors: true,
                             layout: {
                                 type: 'hbox',
@@ -55,18 +55,20 @@ Ext.define('EMIS.view.corporate.AnnivForm', {
                                 {
                                     xtype: 'datefield',
                                     flex: 1,
-                                    fieldLabel: 'Label',
+                                    fieldLabel: 'Start date',
                                     hideLabel: true,
                                     name: 'startDate',
                                   //  value: Ext.Date.getFirstDateOfMonth(now),
+                                    emptyText: 'Start date',
                                     format: 'd-M-Y'
                                 },
                                 {
                                     xtype: 'datefield',
                                     flex: 1,
-                                    fieldLabel: 'Label',
+                                    fieldLabel: 'End date',
                                     hideLabel: true,
                                     name: 'endDate',
+                                    emptyText: 'End date',
                                   //  value: Ext.Date.add(Ext.Date.getFirstDateOfMonth(now), Ext.Date.YEAR,1),
                                     format: 'd-M-Y'
                                 }
