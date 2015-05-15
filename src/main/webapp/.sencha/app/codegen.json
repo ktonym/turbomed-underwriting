@@ -675,6 +675,16 @@
         "appName": "EMIS",
         "name": "admin.ManageAdmin"
       }
+    },
+    "app/view/claims/ClaimNavTree.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "claims.ClaimNavTree",
+        "viewFileName": "claims/ClaimNavTree",
+        "appName": "EMIS",
+        "name": "claims.ClaimNavTree"
+      }
     }
   }
 }
