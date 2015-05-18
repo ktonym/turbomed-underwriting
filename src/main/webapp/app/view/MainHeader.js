@@ -49,6 +49,11 @@ Ext.define("EMIS.view.MainHeader", {
                     text: 'Claims'
                 },{
                     xtype: 'button',
+                    itemId: 'adminItemsBtn',
+                    iconCls: 'tasklog',
+                    text: 'Admin'
+                },{
+                    xtype: 'button',
                     itemId: 'userAdminBtn',
                     iconCls: 'users',
                     text: 'Users'

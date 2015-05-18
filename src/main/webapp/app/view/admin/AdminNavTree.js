@@ -1,6 +1,6 @@
 Ext.define("EMIS.view.admin.AdminNavTree", {
     extend: 'Ext.tree.Panel',
-    xtype: 'adinnavtree' ,
+    xtype: 'adminnavtree' ,
     title: 'Navigation',
     requires: ['EMIS.store.AdminNavTree'],
     store: 'AdminNavTree',

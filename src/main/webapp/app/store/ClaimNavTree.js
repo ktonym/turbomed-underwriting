@@ -12,6 +12,10 @@ Ext.define("EMIS.store.ClaimNavTree",{
                 leaf: true
             },
             {
+                text: 'Pay Claim',
+                leaf: true
+            },
+            {
                 text: 'Batch',
                 leaf: true
             },

@@ -4,7 +4,10 @@ Ext.define("EMIS.view.MainCards", {
 
     xtype: 'maincards',
 
-    requires: ['Ext.layout.container.Card','EMIS.view.Welcome','EMIS.view.user.ManageUsers','EMIS.view.corporate.ManageCorporates'],
+    requires: ['Ext.layout.container.Card','EMIS.view.Welcome',
+        'EMIS.view.user.ManageUsers','EMIS.view.corporate.ManageCorporates',
+        'EMIS.view.claims.ManageClaims','EMIS.view.admin.ManageAdmin'
+    ],
 
     layout: 'card',
 
@@ -20,6 +23,12 @@ Ext.define("EMIS.view.MainCards", {
             },{
                 xtype: 'managecorporates',
                 itemId: 'manageSchemesCard'
+            },{
+                xtype: 'manageclaims',
+                itemId: 'manageClaimsCard'
+            },{
+                xtype: 'manageadmin',
+                itemId: 'manageAdminCard'
             }]
         });
         me.callParent(arguments);

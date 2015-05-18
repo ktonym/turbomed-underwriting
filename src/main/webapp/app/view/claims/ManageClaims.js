@@ -19,40 +19,40 @@ Ext.define("EMIS.view.claims.ManageClaims", {
     initComponent: function(){
         var me = this;
         Ext.applyIf(me,{
-            dockedItems: [
-                {
-                    xtype: 'toolbar',
-                    dock: 'top',
-                    items: [
-                        {
-                            xtype:'button',
-                            text: 'Enter Claim',
-                            iconCls: 'tasklog',
-                            itemId: 'enterClmBtn'
-                        },
-                        {
-                            xtype:'button',
-                            text: 'Search Claim',
-                            iconCls: 'search',
-                            itemId: 'searchClmBtn'
-                        },
-                        {
-                            xtype:'button',
-                            text: 'Vet Claim',
-                            iconCls: '',
-                            itemId: 'vetClmBtn'
-                        }
-                    ]
-                }
-            ],
+//            dockedItems: [
+//                {
+//                    xtype: 'toolbar',
+//                    dock: 'top',
+//                    items: [
+//                        {
+//                            xtype:'button',
+//                            text: 'Enter Claim',
+//                            iconCls: 'tasklog',
+//                            itemId: 'enterClmBtn'
+//                        },
+//                        {
+//                            xtype:'button',
+//                            text: 'Search Claim',
+//                            iconCls: 'search',
+//                            itemId: 'searchClmBtn'
+//                        },
+//                        {
+//                            xtype:'button',
+//                            text: 'Vet Claim',
+//                            iconCls: '',
+//                            itemId: 'vetClmBtn'
+//                        }
+//                    ]
+//                }
+//            ],
             items: [
                 {
                     xtype: 'claimnavtree',
-                    width: 70
+                    width: 250
                 },
                 {
                     xtype: 'container',
-                    itemId: 'claimCards',
+                    itemId: 'clmCards',
                     activeItem: 0,
                     layout: {
                         type: 'card'
@@ -60,7 +60,7 @@ Ext.define("EMIS.view.claims.ManageClaims", {
                     items: [
                         {
                             xtype: 'container',
-                            padding: 10,
+                            padding: 30,
                             html: 'Please select an item from the menu...'
                          },
                         {

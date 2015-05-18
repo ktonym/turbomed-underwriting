@@ -23,7 +23,7 @@ Ext.define("EMIS.view.admin.ManageAdmin", {
 
                 {
                     xtype: 'adminnavtree',
-                    width: 100
+                    width: 250
                 },
                 {
                     xtype: 'container',

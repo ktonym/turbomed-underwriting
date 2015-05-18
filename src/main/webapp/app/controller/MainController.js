@@ -38,6 +38,12 @@ Ext.define('EMIS.controller.MainController', {
                 .setActiveItem('manageSchemesCard');
         } else if (button.itemId === 'logoffBtn'){
             me.doLogoff();
+        } else if (button.itemId === 'adminItemsBtn'){
+            me.getMainCards().getLayout()
+                .setActiveItem('manageAdminCard');
+        } else if (button.itemId === 'claimAdminBtn'){
+            me.getMainCards().getLayout()
+                .setActiveItem('manageClaimsCard');
         }
     },
 
