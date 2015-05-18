@@ -1,10 +1,11 @@
-Ext.define("EMIS.view.corporate.claims.ManageClaims", {
+Ext.define("EMIS.view.claims.ManageClaims", {
 
     extend: 'Ext.panel.Panel',
 
     xtype: 'manageclaims',
 
     requires: ['Ext.toolbar.Toolbar',
+        'EMIS.view.claims.ClaimNavTree',
         'EMIS.view.claims.ClaimEntry',
         'EMIS.view.claims.ClaimVetting',
          'EMIS.view.claims.ClaimPayment'
@@ -45,6 +46,10 @@ Ext.define("EMIS.view.corporate.claims.ManageClaims", {
                 }
             ],
             items: [
+                {
+                    xtype: 'claimnavtree',
+                    width: 70
+                },
                 {
                     xtype: 'container',
                     itemId: 'claimCards',

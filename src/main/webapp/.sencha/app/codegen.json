@@ -685,6 +685,46 @@
         "appName": "EMIS",
         "name": "claims.ClaimNavTree"
       }
+    },
+    "app/view/admin/AdminNavTree.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "admin.AdminNavTree",
+        "viewFileName": "admin/AdminNavTree",
+        "appName": "EMIS",
+        "name": "admin.AdminNavTree"
+      }
+    },
+    "app/view/admin/AccountMapping.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "admin.AccountMapping",
+        "viewFileName": "admin/AccountMapping",
+        "appName": "EMIS",
+        "name": "admin.AccountMapping"
+      }
+    },
+    "app/view/admin/PremiumRates.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "admin.PremiumRates",
+        "viewFileName": "admin/PremiumRates",
+        "appName": "EMIS",
+        "name": "admin.PremiumRates"
+      }
+    },
+    "app/view/admin/Intermediaries.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "admin.Intermediaries",
+        "viewFileName": "admin/Intermediaries",
+        "appName": "EMIS",
+        "name": "admin.Intermediaries"
+      }
     }
   }
 }

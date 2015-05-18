@@ -4,7 +4,12 @@ Ext.define("EMIS.view.admin.ManageAdmin", {
 
     xtype: 'manageadmin',
 
-    requires: [],
+    requires: [
+        'EMIS.view.admin.AdminNavTree',
+        'EMIS.view.admin.AccountMapping',
+        'EMIS.view.admin.PremiumRates',
+        'EMIS.view.admin.Intermediaries'
+    ],
 
     layout: {
         type: 'hbox',
@@ -17,7 +22,7 @@ Ext.define("EMIS.view.admin.ManageAdmin", {
             items: [
 
                 {
-                    xtype: '',
+                    xtype: 'adminnavtree',
                     width: 100
                 },
                 {

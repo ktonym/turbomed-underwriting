@@ -6,13 +6,13 @@
  */
 Ext.Loader.addClassPathMappings({
   "EMIS": "app",
-  "EMIS.view.corporate.claims.ManageClaims": "app/view/claims/ManageClaims.js",
   "Ext": "ext/src",
   "Ext.Msg": "ext/src/window/MessageBox.js",
   "Ext.rtl.EventObjectImpl": "ext/src/rtl/EventObject.js"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "EMIS.Application": [],
+  "EMIS.controller.ClaimController": [],
   "EMIS.controller.CorpController": [],
   "EMIS.controller.MainController": [],
   "EMIS.controller.UserController": [],
@@ -26,7 +26,9 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.model.Intermediary": [],
   "EMIS.model.Principal": [],
   "EMIS.model.User": [],
+  "EMIS.store.AdminNavTree": [],
   "EMIS.store.Category": [],
+  "EMIS.store.ClaimNavTree": [],
   "EMIS.store.ContactInfo": [],
   "EMIS.store.CorpAnniv": [],
   "EMIS.store.CorpTree": [],
@@ -40,10 +42,16 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.view.MainHeader": [],
   "EMIS.view.Viewport": [],
   "EMIS.view.Welcome": [],
+  "EMIS.view.admin.AccountMapping": [],
+  "EMIS.view.admin.AdminNavTree": [],
+  "EMIS.view.admin.Intermediaries": [],
   "EMIS.view.admin.ManageAdmin": [],
+  "EMIS.view.admin.PremiumRates": [],
   "EMIS.view.claims.ClaimEntry": [],
+  "EMIS.view.claims.ClaimNavTree": [],
   "EMIS.view.claims.ClaimPayment": [],
   "EMIS.view.claims.ClaimVetting": [],
+  "EMIS.view.claims.ManageClaims": [],
   "EMIS.view.corporate.AnnivForm": [],
   "EMIS.view.corporate.CategoryForm": [],
   "EMIS.view.corporate.CorpList": [],
@@ -51,7 +59,6 @@ Ext.ClassManager.addNameAlternateMappings({
   "EMIS.view.corporate.CorporateForm": [],
   "EMIS.view.corporate.ManageCorporates": [],
   "EMIS.view.corporate.PrincipalWindow": [],
-  "EMIS.view.corporate.claims.ManageClaims": [],
   "EMIS.view.user.ManageUsers": [],
   "EMIS.view.user.UserCtxMenu": [],
   "EMIS.view.user.UserForm": [],
@@ -875,6 +882,7 @@ Ext.ClassManager.addNameAlternateMappings({
 });
 Ext.ClassManager.addNameAliasMappings({
   "EMIS.Application": [],
+  "EMIS.controller.ClaimController": [],
   "EMIS.controller.CorpController": [],
   "EMIS.controller.MainController": [],
   "EMIS.controller.UserController": [],
@@ -888,7 +896,9 @@ Ext.ClassManager.addNameAliasMappings({
   "EMIS.model.Intermediary": [],
   "EMIS.model.Principal": [],
   "EMIS.model.User": [],
+  "EMIS.store.AdminNavTree": [],
   "EMIS.store.Category": [],
+  "EMIS.store.ClaimNavTree": [],
   "EMIS.store.ContactInfo": [],
   "EMIS.store.CorpAnniv": [],
   "EMIS.store.CorpTree": [],
@@ -912,15 +922,35 @@ Ext.ClassManager.addNameAliasMappings({
   "EMIS.view.Welcome": [
     "widget.welcome"
   ],
-  "EMIS.view.admin.ManageAdmin": [],
+  "EMIS.view.admin.AccountMapping": [
+    "widget.accountmapping"
+  ],
+  "EMIS.view.admin.AdminNavTree": [
+    "widget.adinnavtree"
+  ],
+  "EMIS.view.admin.Intermediaries": [
+    "widget.intermediaries"
+  ],
+  "EMIS.view.admin.ManageAdmin": [
+    "widget.manageadmin"
+  ],
+  "EMIS.view.admin.PremiumRates": [
+    "widget.premiumrates"
+  ],
   "EMIS.view.claims.ClaimEntry": [
     "widget.claimentry"
+  ],
+  "EMIS.view.claims.ClaimNavTree": [
+    "widget.claimnavtree"
   ],
   "EMIS.view.claims.ClaimPayment": [
     "widget.claimpayment"
   ],
   "EMIS.view.claims.ClaimVetting": [
     "widget.claimvetting"
+  ],
+  "EMIS.view.claims.ManageClaims": [
+    "widget.manageclaims"
   ],
   "EMIS.view.corporate.AnnivForm": [
     "widget.annivform"
@@ -942,9 +972,6 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "EMIS.view.corporate.PrincipalWindow": [
     "widget.principalwindow"
-  ],
-  "EMIS.view.corporate.claims.ManageClaims": [
-    "widget.manageclaims"
   ],
   "EMIS.view.user.ManageUsers": [
     "widget.manageusers"
