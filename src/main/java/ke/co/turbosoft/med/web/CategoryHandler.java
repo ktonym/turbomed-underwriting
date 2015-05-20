@@ -63,7 +63,7 @@ public class CategoryHandler extends AbstractHandler{
         Result<Category> ar = categoryService.store(
                 getIntegerValue(jsonObj.get("idCategory")),
                 getIntegerValue(jsonObj.get("idCorpAnniv")),
-                jsonObj.getString("char").charAt(0),
+                jsonObj.getString("cat").charAt(0),
                 jsonObj.getString("description"),
                 sessionUser.getUsername());
 

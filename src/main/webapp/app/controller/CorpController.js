@@ -64,6 +64,9 @@ Ext.define('EMIS.controller.CorpController', {
         ref: 'deleteAnnivButton',
         selector: 'managecorporates annivform #deleteBtn'
     },{
+        ref: 'saveCategoryButton',
+        selector: 'managecorporates categoryform #saveBtn'
+    },{
         ref: 'saveAnnivButton',
         selector: 'managecorporates annivform #saveBtn'
     },{
@@ -96,6 +99,9 @@ Ext.define('EMIS.controller.CorpController', {
             },
             'managecorporates annivform #addCategoryBtn':{
                 click: this.doAddCategory
+            },
+            'managecorporates categoryform #saveBtn':{
+                click: this.doSaveCategory
             },
             'managecorporates categoryform #addPrincipalBtn':{
                 click: this.doAddPrincipal
@@ -401,6 +407,7 @@ Ext.define('EMIS.controller.CorpController', {
         if(recIdSplit[0]==='C'){
             var idCategory = Ext.Number.from(recIdSplit[1]);
             var rec = me.getCategoryStore().getById(idCategory);
+            //EMIS.console
             if (!Ext.isEmpty(rec)){
                 me.getCategoryForm().loadRecord(rec);
                 me.getCategoryFormFieldset().setTitle('Edit Category to anniversary ' + rec.get('anniv'));
@@ -410,8 +417,10 @@ Ext.define('EMIS.controller.CorpController', {
         } else if (recIdSplit[0]==='A'){
             var idAnniversary = Ext.Number.from(recIdSplit[1]);
             EMIS.console('idAnniversary is ' + idAnniversary);
+            var corpRec = record.parentNode.getId().substring(2);
+            EMIS.console(corpRec);
+            var annivRec = me.getCorpAnnivStore().doFindByCorporate(corpRec);
             var rec = me.getCorpAnnivStore().getById(idAnniversary);
-            EMIS.console('corp: ' + rec.get('corporateName'));
             EMIS.console(rec);
             if (!Ext.isEmpty(rec)){
                 me.getAnnivForm().loadRecord(rec);

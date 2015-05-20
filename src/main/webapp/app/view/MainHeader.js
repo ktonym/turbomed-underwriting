@@ -12,7 +12,7 @@ Ext.define("EMIS.view.MainHeader", {
             items: [{
                 xtype: 'container',
                 cls: 'logo',
-                width: 300
+                width: 320
             },{
                 xtype: 'toolbar',
                 flex: 1,

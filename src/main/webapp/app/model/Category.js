@@ -35,7 +35,7 @@ Ext.define('EMIS.model.Category', {
 
     validations: [
         {type: 'presence', field: 'cat'},
-        {type: 'length', field: 'cat', min:1,max:2},
+        {type: 'length', field: 'cat', min:1,max:1},
         {type: 'presence', field: 'idCorpAnniv'},
         {type: 'length', field: 'idCorpAnniv', min:1}
     ]
