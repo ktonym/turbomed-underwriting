@@ -16,9 +16,8 @@ Ext.define('EMIS.view.corporate.AnnivForm', {
     bodyPadding: 10,
 
     initComponent: function() {
-        var me = this;
-
-        var agents = Ext.create('Ext.data.Store',{
+        var me = this,
+            agents = Ext.create('Ext.data.Store',{
             fields: ['id','name'],
             data: [
                 {"id":1,"name":"Shikutwa"},
