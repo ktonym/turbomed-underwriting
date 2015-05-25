@@ -725,6 +725,18 @@
         "appName": "EMIS",
         "name": "admin.Intermediaries"
       }
+    },
+    "app/model/BenefitRef.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "EMIS",
+        "name": "BenefitRef",
+        "baseClass": "Ext.data.Model",
+        "modelNamespace": "EMIS.model",
+        "fields": "idBenefitRef:integer:null,benefitName:string:null,description:string:null",
+        "modelFileName": "BenefitRef"
+      }
     }
   }
 }

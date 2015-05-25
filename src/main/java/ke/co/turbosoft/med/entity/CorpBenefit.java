@@ -15,7 +15,9 @@ public class CorpBenefit extends AbstractEntity implements EntityItem<Integer>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idCorpBenefit;
-	private String corpBenefitName;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "benefitCode", nullable = false)
+	private BenefitRef benefitRef;
 	private Double upperLimit;
 	private String memberType;
 	private boolean sharing;
@@ -46,12 +48,12 @@ public class CorpBenefit extends AbstractEntity implements EntityItem<Integer>{
         this.idCorpBenefit = idCorpBenefit;
     }
 
-    public String getCorpBenefitName() {
-        return corpBenefitName;
+    public BenefitRef getBenefitRef() {
+        return benefitRef;
     }
 
-    public void setCorpBenefitName(String corpBenefitName) {
-        this.corpBenefitName = corpBenefitName;
+    public void setBenefitRef(BenefitRef benefitRef) {
+        this.benefitRef = benefitRef;
     }
 
     public Double getUpperLimit() {
@@ -138,7 +140,6 @@ public class CorpBenefit extends AbstractEntity implements EntityItem<Integer>{
     @Override
     public void addJson(JsonObjectBuilder builder) {
         builder.add("idCorpBenefit",idCorpBenefit)
-                .add("corpBenefitName",corpBenefitName)
                 .add("upperLimit",upperLimit)
                 .add("memberType",memberType)
                 .add("sharing",sharing)
@@ -146,5 +147,6 @@ public class CorpBenefit extends AbstractEntity implements EntityItem<Integer>{
                 .add("waitingPeriod", waitingPeriod);
         parentBenefit.addJson(builder);
         category.addJson(builder);
+        benefitRef.addJson(builder);
     }
 }
