@@ -21,6 +21,9 @@ public class PremiumRate extends AbstractEntity implements EntityItem<Integer>{
     private BigDecimal upperLimit;
     private BigDecimal premium;
     private String familySize;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idCorpBenefit",nullable = false)
+    private CorpBenefit corpBenefit;
 
     public PremiumRate() {
     }
@@ -73,6 +76,14 @@ public class PremiumRate extends AbstractEntity implements EntityItem<Integer>{
         this.familySize = familySize;
     }
 
+    public CorpBenefit getCorpBenefit() {
+        return corpBenefit;
+    }
+
+    public void setCorpBenefit(CorpBenefit corpBenefit) {
+        this.corpBenefit = corpBenefit;
+    }
+
     @Override
     public Integer getId() {
         return idPremiumRate;
@@ -86,5 +97,6 @@ public class PremiumRate extends AbstractEntity implements EntityItem<Integer>{
                  .add("upperLimit", upperLimit)
                  .add("premium", premium)
                  .add("familySize", familySize);
+        corpBenefit.addJson(builder);
     }
 }
