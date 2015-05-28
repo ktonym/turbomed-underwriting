@@ -99,4 +99,15 @@ public class BenefitRefServiceImpl extends AbstractService implements BenefitRef
         }
         return ResultFactory.getFailResult(USER_INVALID);
     }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public Result<List<BenefitRef>> search(String searchStr, String actionUsername) {
+
+        if(isValidUser(actionUsername)){
+            List<BenefitRef> benefitRefList = benefitRefRepo.findByBenefitNameLike(searchStr);
+            return ResultFactory.getSuccessResult(benefitRefList);
+        }
+        return ResultFactory.getFailResult(USER_INVALID);
+    }
 }

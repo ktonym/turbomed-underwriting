@@ -23,4 +23,7 @@ public interface BenefitRefService {
 
     Result<List<BenefitRef>> findAll(String actionUsername);
 
+    Result<List<BenefitRef>> search(String searchStr,
+                              String actionUsername);
+
 }

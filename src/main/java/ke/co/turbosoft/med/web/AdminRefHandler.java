@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
+import java.util.List;
 
 import static ke.co.turbosoft.med.web.SecurityHelper.getSessionUser;
 
@@ -27,7 +28,7 @@ public class AdminRefHandler extends AbstractHandler {
     @Autowired
     private BenefitRefService benefitRefService;
 
-    @RequestMapping(value = "/befenefit/store", method = RequestMethod.POST, produces = {"application/json"})
+    @RequestMapping(value = "/benefit/store", method = RequestMethod.POST, produces = {"application/json"})
     @ResponseBody
     public String storeBenefit(
             @RequestParam(value = "data", required = true) String jsonData,
@@ -51,4 +52,74 @@ public class AdminRefHandler extends AbstractHandler {
 
     }
 
+    @RequestMapping (value = "/benefit/remove", method=RequestMethod.POST, produces = {"application/json"})
+    @ResponseBody
+    public String removeBenefit(
+            @RequestParam(value="benefitCode", required = true) Integer benefitCode,
+            HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<BenefitRef> ar = benefitRefService.remove(benefitCode,sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+
+    }
+
+    @RequestMapping(value = "/benefit/search", method = RequestMethod.GET, produces = {"application/json"})
+    @ResponseBody
+    public String findBenefit(
+            @RequestParam(value = "benefitName",required = true) String benefitName,
+            HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<List<BenefitRef>> ar = benefitRefService.search(benefitName,sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+
+    }
+
+    @RequestMapping(value = "/benefit/findAll", method = RequestMethod.GET, produces = {"application/json"})
+    @ResponseBody
+    public String findAllBenefits(HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<List<BenefitRef>> ar = benefitRefService.findAll(sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+
+    }
+
+    @RequestMapping(value = "/benefit/find", method = RequestMethod.GET, produces = {"application/json"})
+    @ResponseBody
+    public String findBenefit(
+            @RequestParam(value = "benefitCode") Integer benefitCode,
+            HttpServletRequest request){
+
+        User sessionUser = getSessionUser(request);
+
+        Result<BenefitRef> ar = benefitRefService.find(
+                benefitCode,sessionUser.getUsername());
+
+        if(ar.isSuccess()){
+            return getJsonSuccessData(ar.getData());
+        } else {
+            return getJsonErrorMsg(ar.getMsg());
+        }
+
+    }
 }
