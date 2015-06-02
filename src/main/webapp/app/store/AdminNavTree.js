@@ -14,6 +14,10 @@ Ext.define('EMIS.store.AdminNavTree',{
             {
                 text: 'Premium Rates',
                 leaf: true
+            },
+            {
+                text: 'Benefits',
+                leaf: true
             }
         ]
     }

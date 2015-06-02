@@ -8,7 +8,8 @@ Ext.define("EMIS.view.admin.ManageAdmin", {
         'EMIS.view.admin.AdminNavTree',
         'EMIS.view.admin.AccountMapping',
         'EMIS.view.admin.PremiumRates',
-        'EMIS.view.admin.Intermediaries'
+        'EMIS.view.admin.Intermediaries',
+        'EMIS.view.admin.Benefits'
     ],
 
     layout: {
@@ -45,6 +46,8 @@ Ext.define("EMIS.view.admin.ManageAdmin", {
                             xtype: 'premiumrates'
                         },{
                             xtype: 'intermediaries'
+                        },{
+                            xtype:  'benefitgrid'
                         }
 
                     ]

@@ -19,6 +19,9 @@ Ext.define('EMIS.controller.AdminController',{
         },{
             ref: 'adminCards',
             selector: 'manageadmin #manageAdminCards'
+        },{
+            ref: 'benefitGrid',
+            selector: 'manageadmin benefitgrid'
         }
 
     ],
@@ -45,6 +48,8 @@ Ext.define('EMIS.controller.AdminController',{
             me.getAdminCards().getLayout().setActiveItem(me.getIntermediaryForm());
         } else if (selItem === 'Premium Rates'){
             me.getAdminCards().getLayout().setActiveItem(me.getPremRatesForm());
+        } else if (selItem === 'Benefits'){
+            me.getAdminCards().getLayout().setActiveItem(me.getBenefitGrid());
         }
 
     }

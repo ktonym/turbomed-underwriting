@@ -24,7 +24,7 @@ Ext.define("EMIS.view.admin.PremiumRates", {
             items: [
                 {
                     xtype: 'fieldset',
-                    width: 400,
+                    //width: 400,
                     fieldDefaults: 'anchor: 100%',
                     title: 'Premium Rates',
                     items: [

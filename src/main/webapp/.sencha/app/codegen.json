@@ -737,6 +737,16 @@
         "fields": "idBenefitRef:integer:null,benefitName:string:null,description:string:null",
         "modelFileName": "BenefitRef"
       }
+    },
+    "app/view/admin/Benefits.js": {
+      "source": "{viewFileName}.js.tpl.merge",
+      "version": "acde5ea901286ca2f976bcddea23e159dbaa0e6f",
+      "parameters": {
+        "viewName": "admin.Benefits",
+        "viewFileName": "admin/Benefits",
+        "appName": "EMIS",
+        "name": "admin.Benefits"
+      }
     }
   }
 }
