@@ -2,7 +2,7 @@ Ext.define("EMIS.view.LogonWindow", {
     extend: 'Ext.window.Window',
     xtype: 'logonwindow',
     closable: false,
-    iconCls: 'logo-small',
+    iconCls: 'fa fa-key fa-lg',//iconCls: 'logo-small',
     width: 300,
     bodyPadding: 10,
     title: 'EMIS Logon',

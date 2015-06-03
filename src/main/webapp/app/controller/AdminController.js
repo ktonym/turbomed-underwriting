@@ -87,9 +87,13 @@ Ext.define('EMIS.controller.AdminController',{
         cellEditing.startEditByPosition({row: 0, column: 1});
     },
 
-//    doEditBenefit: function(editor, context, options){
-//        context.record.set()
-//    },
+    doEditBenefit: function(editor, context, options){
+        context.record.set()
+    },
+
+    doCancelEdit: function(button, e, options){
+        button.up('benefitgrid').getStore().reload();
+    },
 
     doSaveBenefit: function(button, e, options){
 

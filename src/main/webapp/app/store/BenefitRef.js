@@ -4,7 +4,7 @@ Ext.define('EMIS.store.BenefitRef',{
     model: 'EMIS.model.BenefitRef',
     proxy: {
         type: 'ajax',
-        url: '/ref/benefits/find.json',
+        url: 'ref/benefits/findAll.json',
         reader: {
             type: 'json',
             root: 'data'
